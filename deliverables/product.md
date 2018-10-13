@@ -5,9 +5,9 @@ Note:_ This document is meant to evolve throughout the planning phase of your pr
 
 #### Q1: What are you planning to build?
 
-	F.O.B.S. is an online easy-access budgeting platform that manages financial planning for startups and companies that wish to digitalize the whole process.
-	Large businesses such as Apple or Google have set up their own financial management platforms to organize funds within the company, however newly developed startups may not have the necessary resources to build their own platforms and outdated companies still use pen and paper to manage their budget - such as Pershing Systems Corporation, a taiwanese based company that works on banking software (Note: A member of our team interned at PSC and noticed the inefficiency of pen and paper).
-	F.O.B.S. provides these companies an easy to integrate solution for budgeting and financial services. Users are capable of viewing 
+F.O.B.S. is an online easy-access budgeting platform that manages financial planning for startups and companies that wish to digitalize the whole process.
+Large businesses such as Apple or Google have set up their own financial management platforms to organize funds within the company, however newly developed startups may not have the necessary resources to build their own platforms and outdated companies still use pen and paper to manage their budget - such as Pershing Systems Corporation, a taiwanese based company that works on banking software (Note: A member of our team interned at PSC and noticed the inefficiency of pen and paper).
+F.O.B.S. provides these companies an easy to integrate solution for budgeting and financial services. Users are capable of viewing 
 [EXPLAIN AT A HIGH LEVEL WHAT USERS CAN DO]
 
 YOUR ANSWER GOES HERE ...
