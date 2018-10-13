@@ -7,8 +7,8 @@
 
 ## Iteration XX - Review & Retrospect
 
- * When: October 13th 2018
- * Where: BA3200
+* When: October 13th 2018
+* Where: BA3200
 
 ## Process - Reflection
 
@@ -16,49 +16,38 @@
 
 List process-related (i.e. team organization) decisions that, in retrospect, turned out to be successful.
 
-
- * 2 - 4 decisions.
- * Ordered from most to least important.
- * Explain why (i.e. give a supporting argument) you consider a decision to be successful.
- * Feel free to refer/link to process artifact(s).
+* Mockup design. It really illustrated what we wished to have accomplished by the end. We exchanged ideas and opinions which led to a clear and concise design which everyone was happy with. It was also established that the mockup was only an initial diagram which could have many more features.
+* We assigned the roles of product manager and scrum master to two members of the team, and so far, they have been delivering.
 
 #### Decisions that did not turn out as well as we hoped
 
 List process-related (i.e. team organization) decisions that, in retrospect, were not as successful as you thought they would be.
 
- * 2 - 4 decisions.
- * Ordered from most to least important.
- * Feel free to refer/link to process artifact(s).
-
+* We attempted to create many add-ons that included different features for our project, but most of them were rejected in the end for a lack of relevance and didn’t fit in our design goals in general.
+* We decided to spend a lot of time naming our product. In the end, a lot of time were used and not a lot of work was done during that period.
+* We discussed some languages that could be used for designing our webapp, but we realized it was too early to decide on it.
 
 #### Planned changes
 
 List any process-related changes you are planning to make (if there are any)
 
- * Ordered from most to least important.
- * Explain why you are making a change.
-
+* We will have pre-meetings in our facebook group to make sure that we do not come to actual meetings unprepared. It seems that during our meetings, we most often spend some time getting everyone on the same page before starting to work.
 
 ## Product - Review
 
 #### Goals and/or tasks that were met/completed:
 
- * From most to least important.
- * Refer/link to artifact(s) that show that a goal/task was met/completed.
- * If a goal/task was not part of the original iteration plan, please mention it.
+* We decided on the product we wish to make.
+* We completed the mockup on time.
+* We finished our markdown file.
 
 #### Goals and/or tasks that were planned but not met/completed:
 
- * From most to least important.
- * For each goal/task, explain why it was not met/completed.      
-   e.g. Did you change your mind, or did you just not get to it yet?
+* We did not go any deeper into details as we planned, but instead designed something a bit more than a M.V.P for the product. We decided that it was still too early to discuss technicalities.
 
 ## Meeting Highlights
 
 Going into the next iteration, our main insights are:
 
- * 2 - 4 items
- * Short (no more than one short paragraph per item)
- * High-level concepts that should guide your work for the next iteration.
- * These concepts should help you decide on where to focus your efforts.
- * Can be related to product and/or process.
+* Basic classes that will become the cores of our webapp. Such classes will include the different types of accounts, as well as a general account manager class that monitors, creates, and deletes accounts.
+* Figuring out the relationships between each class, and how they will integrate into our project, while eliminating items and features that are redundant.
