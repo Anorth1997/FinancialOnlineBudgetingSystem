@@ -21,6 +21,8 @@
 #### Planned changes
 
 * We will have pre-meetings in our facebook group to make sure that we do not come to actual meetings unprepared. It seems that during our meetings, we most often spend some time getting everyone on the same page before starting to work.
+* We will be creating a slack server to enable more convenient collaboration. A slack server offers features such as multi-channel group chats/voice channels that will allow team members to communicate more effectively with each other from anywhere. 
+* More frequent usage of branches 
 
 ## Product - Review
 
