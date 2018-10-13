@@ -32,4 +32,7 @@ Our product helps the company save time and money, but more importantly, encoura
 
 * We decided to lighten the load for the CEO. In the beginning, we intended to have the CEO directly interact with the department heads, but that seemed illogical as this only increases his/her workload. Instead, we now have the financial department be the main player while the CEO only serves as a supervisory role.
 
-* We noticed that some companies use emails and paper to communicate between members of the department to discuss about the budget. 
+* We noticed that some companies use emails and paper to communicate between members of the department to discuss about the budget. If they continued using emails and paper to communicate, the budget management process would be much slower.
+
+* For our project, we were deciding between using Django and Flask. Currently we are leaning towards Flask, because it is more lightweight, simple and more suitable for our project's needs. Whereas Django has more features, but is harder to learn. Since we may not need many built-in features of Django, Flask is preferred.
+
