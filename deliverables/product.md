@@ -6,6 +6,8 @@ F.O.B.S. is an online easy-access budgeting platform that manages financial plan
 Large businesses such as Apple or Google have set up their own financial management platforms to organize funds within the company, however newly developed startups may not have the necessary resources to build their own platforms and outdated companies still use pen and paper to manage their budget - such as Pershing Systems Corporation, a taiwanese based company that works on banking software (Note: A member of our team interned at PSC and noticed the inefficiency of pen and paper).
 F.O.B.S. provides these companies an easy to integrate solution for budgeting and financial services. Users are capable of viewing the financial history of each department depending on their user-level access (CEO, Financial Department Head, Department Head), creating new departments to manage (CEO), review department financial requests (Financial Department Head) or request funds (Department Head).
 
+![Artifact](artifacts\application_layout.jpg)
+
 #### Q2: Who are your target users?
 
 The target users are small and medium sized companies that do not have enough funds to set up a fully fledged financial system to manage the company budget. The software aims to be easy to integrate, while providing various features that focus on saving time.
