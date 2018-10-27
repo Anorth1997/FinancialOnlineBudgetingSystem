@@ -81,6 +81,13 @@ a {
 
 }
 
+.OverviewButtonsFrame {
+	font-family:sans-serif;
+	position:fixed;
+	top: 30%;
+	left: 70%;
+}
+
 .Button {
 	border:5px solid DarkGreen;
 	background-color:DarkSeaGreen;
