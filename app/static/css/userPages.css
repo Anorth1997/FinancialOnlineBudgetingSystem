@@ -1,0 +1,82 @@
+* {
+    font-family: sans-serif;
+}
+
+body {
+    background-color: rgb(64, 65, 66);
+    padding: 0;
+    margin: 0;
+}
+
+
+.welcome-text {
+    color: white;
+    font-size: 35px;
+    margin-left: 10px;
+}
+
+/*
+ * Navigation Bar CSS
+ */
+.nav-logo {
+    background-color:rgb(145, 213, 89);
+    border-radius: 100%;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.nav-company-name {
+    color: white;
+    font-size: 30px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.nav-logo-text {
+    font-weight: 300;
+    font-family: Sans-serif;
+    font-size: 20px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+.nav {
+    user-select: none;
+    background-color: rgb(63, 84, 67);
+    position: relative;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+li {
+    list-style: none;
+    display: inline-block;
+    padding: 3px 3px;
+}
+
+.log-out-btn {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    cursor: pointer;
+}
+
+a {
+
+}
