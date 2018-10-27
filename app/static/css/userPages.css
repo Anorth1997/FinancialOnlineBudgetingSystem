@@ -82,10 +82,13 @@ a {
 }
 
 .OverviewButtonsFrame {
+	border: 10px solid black;
 	font-family:sans-serif;
-	position:fixed;
-	top: 30%;
+	position:absolute;
+	top: 27%;
 	left: 70%;
+	width:23.5%;
+	height:47%;
 }
 
 .Button {
@@ -94,15 +97,14 @@ a {
 	font-size:30px;
 	line-height:30px;
 	margin-bottom:100px;
-	display:inline-block;
-	vertical-align:center;
-	height:75px;
-	width:400px;
+	display:block;
+	height:16.25%;
+	width:90%;
 	cursor:pointer;
-	margin-top:20px;
-	margin-bottom:20px;
-	margin-left:20px;
-	margin-right:20px;
+	margin-top:5%;
+	margin-bottom:5%;
+	margin-left:4.5%;
+	margin-right:5%;
 	font-weight:bold;
 	text-align:center;
 	position:relative;
