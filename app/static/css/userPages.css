@@ -80,3 +80,31 @@ li {
 a {
 
 }
+
+.Button {
+	border:5px solid DarkGreen;
+	background-color:DarkSeaGreen;
+	font-size:30px;
+	line-height:30px;
+	margin-bottom:100px;
+	display:inline-block;
+	vertical-align:center;
+	height:75px;
+	width:400px;
+	cursor:pointer;
+	margin-top:20px;
+	margin-bottom:20px;
+	margin-left:20px;
+	margin-right:20px;
+	font-weight:bold;
+	text-align:center;
+	position:relative;
+}
+
+.ButtonText {
+	position:absolute;
+	top:50%;
+	left:50%;
+	width:400px;
+	transform:translate(-50%, -50%);
+}
