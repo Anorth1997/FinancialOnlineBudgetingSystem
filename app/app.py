@@ -20,5 +20,9 @@ def add_header(r):
     r.headers['Cache-Control'] = 'public, max-age=0'
     return r
 
+@app.route("/financial")
+def ceo():
+    return render_template('financial.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
