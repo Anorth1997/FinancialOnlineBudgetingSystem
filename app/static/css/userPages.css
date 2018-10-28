@@ -3,14 +3,14 @@
 }
 
 body {
-    background-color: rgb(64, 65, 66);
+    /* background-color: rgb(64, 65, 66); */
+    background-color: white;
     padding: 0;
     margin: 0;
 }
 
-
 .welcome-text {
-    color: white;
+    color: black;
     font-size: 35px;
     margin-left: 10px;
 }
@@ -92,8 +92,9 @@ a {
 }
 
 .Button {
-	border:5px solid DarkGreen;
-	background-color:DarkSeaGreen;
+    border:1px solid rgb(20, 20, 20);
+    border-radius: 10px;
+	background-color:rgb(63, 84, 67);;
 	font-size:30px;
 	line-height:30px;
 	margin-bottom:100px;
@@ -105,12 +106,13 @@ a {
 	margin-bottom:5%;
 	margin-left:4.5%;
 	margin-right:5%;
-	font-weight:bold;
 	text-align:center;
-	position:relative;
+    position:relative;
 }
 
 .ButtonText {
+    color: white;
+    font-weight: 300px;
 	position:absolute;
 	top:50%;
 	left:50%;

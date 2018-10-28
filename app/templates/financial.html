@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html>
+{% extends "userLayout.html" %}
 
-<head>
-    <title>Financial department</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/userPages.css') }}">
-</head>
+{% block title %}Financial department{% endblock %}
 
-<body>
-    <h1 style="font-size:40px; text-align:center;">Financial Department Overview</h1>
-    <h2 style="left: 20px; top: 20px;">Total Revenue: $100000</h2>
+
+{% block content %}
+    <span class="welcome-text">Financial Department Overview</span>
+    <p class="welcome-text">Total Revenue: $100000</p>
     <div class="graph">
     </div>
     <div class="OverviewButtonsFrame">
@@ -17,6 +13,4 @@
         <div class="Button"><span class="ButtonText">Distribute Total Revenue</span></div>
         <div class="Button"><span class="ButtonText">View All Department list</span></div>
     </div>
-</body>
-
-</html>
+{% endblock %}
