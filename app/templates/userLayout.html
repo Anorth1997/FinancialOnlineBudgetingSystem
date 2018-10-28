@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/userPages.css') }}">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-logo">
+            <span class="nav-logo-text">F.O.B.S.</span>
+        </div>
+
+        <span class="nav-company-name">{Company name here}</span>
+
+        <ul>
+            <li class="log-out-btn"><a>Log out</a></li>
+        </ul>
+	</nav>
+
+    {% block content %}
+    {% endblock %}
+
+
+</body>
+
+</html>

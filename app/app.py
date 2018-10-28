@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    return render_template('ceo.html', my_string="Wheeeee!")
+    return render_template('signup.html', my_string="Wheeeee!")
 
 @app.after_request
 def add_header(r):
@@ -20,8 +20,20 @@ def add_header(r):
     r.headers['Cache-Control'] = 'public, max-age=0'
     return r
 
-@app.route("/financial")
+@app.route("/ceo")
 def ceo():
+    return render_template('ceo.html')
+
+@app.route("/signup")
+def signup():
+    return render_template('signup.html')
+
+@app.route("/login")
+def login():
+    return render_template('login.html')
+
+@app.route("/financial")
+def financial():
     return render_template('financial.html')
 
 if __name__ == '__main__':
