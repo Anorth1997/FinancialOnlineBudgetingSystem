@@ -30,7 +30,7 @@ def signup():
 
 @app.route("/login")
 def login():
-    return render_template('login.html')
+    return render_template('homePage.html')
 
 @app.route("/financial")
 def financial():
