@@ -4,11 +4,18 @@
 <head>
     <title>Financial department</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/userPages.css') }}">
 </head>
 
 <body>
-    <div class="container">
-        financial!
+    <h1 style="font-size:40px; text-align:center;">Financial Department Overview</h1>
+    <h2 style="left: 20px; top: 20px;">Total Revenue: $100000</h2>
+    <div class="graph">
+    </div>
+    <div class="OverviewButtonsFrame">
+        <div class="Button"><span class="ButtonText">Review Department Revenue</span></div>
+        <div class="Button"><span class="ButtonText">Distribute Total Revenue</span></div>
+        <div class="Button"><span class="ButtonText">View All Department list</span></div>
     </div>
 </body>
 
