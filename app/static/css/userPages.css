@@ -93,6 +93,29 @@ li {
 	height:70%;
 }
 
+.row {
+    display: flex;
+    height: 100%;
+    text-align: center;
+}
+
+.column {
+    flex: 50%;
+    position: relative;
+}
+
+.graph {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.graph-title-text {
+    color: white;
+    font-weight: 400;
+    /* font-size: 35px; */
+}
+
 .overview-buttons-frame {
 	border: 10px outset rgb(40, 70, 50);
 	border-radius:10px;
