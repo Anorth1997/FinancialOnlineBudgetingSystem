@@ -81,7 +81,7 @@ li {
     cursor: pointer;
 }
 
-.GraphFrame {
+.graph-frame {
 	border: 10px outset rgb(40,70,50);
 	background-color:rgb(63, 83, 67);
 	border-radius: 5px;
@@ -93,7 +93,7 @@ li {
 	height:70%;
 }
 
-.OverviewButtonsFrame {
+.overview-buttons-frame {
 	border: 10px outset rgb(40, 70, 50);
 	border-radius:10px;
 	background-color:rgb(63, 83, 67);
@@ -105,7 +105,7 @@ li {
 	height:47%;
 }
 
-.Button {
+.button {
     border:1px solid rgb(20, 20, 20);
     border-radius: 10px;
     background-color:rgb(145, 213, 89);
@@ -124,7 +124,7 @@ li {
     position:relative;
 }
 
-.ButtonText {
+.button-text {
     color: white;
     font-weight: 300px;
 	position:absolute;
