@@ -2,11 +2,16 @@
 
 {% block title %}CEO{% endblock %}
 
+{% block js %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/ceo.js') }}"></script>
+{% endblock %}
+
 {% block content %}
     <span class="welcome-text">Hello, {CEO name here}!</span>
 
     <div class="GraphFrame">
-
+        <span>Total Revenue: $456 789</span>
+        <canvas width="400" height="400" id="pie"></canvas>
     </div>
 
     <div class="OverviewButtonsFrame">

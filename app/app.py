@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    return render_template('signup.html', my_string="Wheeeee!")
+    return render_template('homePage.html', my_string="Wheeeee!")
 
 @app.after_request
 def add_header(r):
@@ -23,14 +23,6 @@ def add_header(r):
 @app.route("/ceo")
 def ceo():
     return render_template('ceo.html')
-
-@app.route("/signup")
-def signup():
-    return render_template('signup.html')
-
-@app.route("/login")
-def login():
-    return render_template('homePage.html')
 
 @app.route("/financial")
 def financial():
