@@ -47,20 +47,23 @@
         </div>
 
         <!-- Login input fields and Login button -->
-        <div class="input-container content-login">
-        <label class="input-name-text" for="uname">Username</label>
-	    <input class="input-text-box" type="text" placeholder="Enter your username" name="uname" required>
-        </div>
-
-        <div class="input-container content-login">
-        <label class="input-name-text" for="pwd">Password</label>
-        <input class="input-text-box" type="password" placeholder="Enter your password" name="pwd" required>
-        </div>
-
-        <div class="button content-login">
-            <span class="button-text">Login</span>
-        </div>
-
+        <form action="" method="post">
+            <div class="input-container content-login">
+                <label class="input-name-text" for="username">Username</label>
+                <input class="input-text-box" type="text" placeholder="Enter your username" name="username" value="{{
+                    request.form.username }}" required>
+                </div>
+        
+                <div class="input-container content-login">
+                <label class="input-name-text" for="password">Password</label>
+                <input class="input-text-box" type="password" placeholder="Enter your password" name="password" value="{{
+                    request.form.password }}" required>
+                </div>
+            <input class="btn btn-default" type="submit" value="Login">
+        </form>
+        {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+        {% endif %}
     </div>
     </div>
             
