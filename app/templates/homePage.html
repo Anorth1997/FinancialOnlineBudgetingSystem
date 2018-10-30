@@ -59,12 +59,16 @@
                 <input class="input-text-box" type="password" placeholder="Enter your password" name="password" value="{{
                     request.form.password }}" required>
                 </div>
-            <input class="btn btn-default" type="submit" value="Login">
+            <input class="button content-login" type="submit" value="Login">
+            <!-- <div input class="button content-login">
+                <span class="button-text" type="submit">Login</span>
+            </div> -->
         </form>
         {% if error %}
         <p class="error"><strong>Error:</strong> {{ error }}
         {% endif %}
     </div>
+
     </div>
             
 </body>
