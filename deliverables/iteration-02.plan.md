@@ -38,8 +38,6 @@ We currently have a product manager and a scrum lord. The product manager ensure
 
 #### Artifacts
 
-List/describe the artifacts you will produce in order to present your project idea.
-
 * Build a static website with basic pages to present a mock-up of our final product.
 * Image mock-ups of each website page to use as reference during development.
 * A video to present an interactive experience.
