@@ -28,5 +28,9 @@ def ceo():
 def financial():
     return render_template('financial.html')
 
+@app.route("/employee")
+def employee():
+    return render_template('employee.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

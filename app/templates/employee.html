@@ -1,15 +1,22 @@
-<!DOCTYPE html>
-<html>
+{% extends "userLayout.html" %}
 
-<head>
-    <title>Employee page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+{% block title %}Deparment Head{% endblock %}
 
-<body>
-    <div class="container">
-        Employee page!
+
+{% block content %}
+
+    <div class="graph-frame">
+
     </div>
-</body>
 
-</html>
+    <div class="name-box">
+        Jackie Chan, <br /> <span style="font-family:Georgia"> Engineering Manager </span>
+    </div>
+
+    <div class="overview-buttons-frame">
+    <div class="button"> <span class="button-text"> Request Funds </span> </div>
+    <div class="button"> <span class="button-text"> Set Expected Budget </span> </div>
+    <div class="button"> <span class="button-text"> View Department History </span> </div>
+    </div>
+{% endblock %}
+

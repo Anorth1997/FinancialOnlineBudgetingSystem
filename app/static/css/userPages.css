@@ -87,10 +87,10 @@ li {
 	border-radius: 5px;
 	font-family:sans-serif;
 	position:fixed;
-	top: 20%;
+	top: 12%;
 	left: 4%;
 	width:62%;
-	height:70%;
+	height:80%;
 }
 
 .row {
@@ -122,10 +122,10 @@ li {
 	background-color:rgb(63, 83, 67);
 	font-family:sans-serif;
 	position:absolute;
-	top: 27%;
+	top: 35%;
 	left: 70%;
 	width:23.5%;
-	height:47%;
+	height:57%;
 }
 
 .button {
@@ -140,7 +140,7 @@ li {
 	width:90%;
 	cursor:pointer;
 	margin-top:5%;
-	margin-bottom:5%;
+	margin-bottom:10%;
 	margin-left:4.5%;
 	margin-right:5%;
 	text-align:center;
@@ -155,4 +155,18 @@ li {
 	left:50%;
 	width:400px;
 	transform:translate(-50%, -50%);
+}
+
+.name-box {
+    position: absolute;
+    border: 10px outset rgb(63, 83, 67);
+    top: 12%;
+    left: 70%;
+    height: 15%;
+    width: 23.5%;
+    background-color: rgb(63, 83, 67);
+    font-weight: 900px;
+    font-size: 30px;
+    text-align:center;
+    font-family:Papyrus;
 }
