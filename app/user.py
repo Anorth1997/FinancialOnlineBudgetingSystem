@@ -47,16 +47,27 @@ class CEO(User):
         d = Deparment_head(dpt_name, dpt_username, dpt_password)
         self.company.department_list.append(d)
 
+    def set_total_revenue(self, company, tr):
+        company.set_revenue(tr)
+
 
 class FinancialDepartmentHead(User):
-    pass
+    def distribute_total_revenue(self, expected_revenue_set):  ## modifies the expected_revenue for each department
+        """
 
+        :param expected_revenue_set: dictionary {DepartmentHead.name: int}
+        :return: None
+        """
+
+        pass
 
 class DepartmentHead(User):
 
     def __init__(self, name, username, password, company):
         super().__init__(username, password, company)
         self.name = name
+        self.expected_revenue = 0
+        self.budget = 0
         
         
     def submit_request(amount, text):
@@ -66,4 +77,11 @@ class DepartmentHead(User):
             self.company.Financial_Department.requests.append(request) # FD needs request array
         else:
             self.company.CEO.dep_req.append(request) # CEO needs another request array to handle the requests exceeding threshold
-        return 0 #maybe for error checking?        
+        return 0 #maybe for error checking?
+
+
+    def set_expected_budge(self):
+        pass
+
+    def view_department_history(self):
+        pass
