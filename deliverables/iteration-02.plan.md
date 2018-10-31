@@ -28,7 +28,6 @@ We currently have a product manager and a scrum lord. The product manager ensure
 * Calvin Lu: front-end developer
     * user page layout
 
-
 #### Events
 
 * Oct 23rd, 10am, in-person:
