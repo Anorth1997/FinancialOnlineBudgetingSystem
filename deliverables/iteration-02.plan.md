@@ -10,11 +10,33 @@
 #### Roles & responsibilities
 
 We currently have a product manager and a scrum lord. The product manager ensures that the project does not deviate too much from the final product while also reviewing additional features that the group wishes to implement. The scrum lord assigns tasks and overviews them to gauge progress and make sure that we are on schedule.
+* Ziyao Chen: Scrum Lord, back-end developer 
+    * company.py, user.py
+* Amney El Azarif: Product Manger, back-end developer
+    * company.py, user.py, app.py
+* Jason Zheng: front-end developer & back-end developer
+    * user.py
+    * button layout
+* Ian Wang: front-end developer
+    * homepage layout
+* Boning Wang: front-end developer
+    * financial page layout
+    * employee page layout
+* David Kwon: front-end developer
+    * homepage
+    * dummy graphs
+* Calvin Lu: front-end developer
+    * user page layout
 
 #### Events
 
-* Oct 23rd, 10am, in-person: Before this meeting we will set up the classes for our project, and during the meeting, we will have a small code review and implement those classes.
-* Oct 27th, 2pm, in-person: Further discussion on presentable artifacts and write code and implement basic functions to have a live website prototype.
+* Oct 23rd, 10am, in-person:
+    * front-end code review about html, css and js.
+    * discussed user stories and rough back-end logic
+* Oct 27th, 2pm, in-person:
+    * Discussion on presentable artifacts
+    * implemented basic functions in back-end and front-end
+    * assigned specific roles and tasks to each person
 
 #### Artifacts
 
@@ -41,3 +63,4 @@ We currently have a product manager and a scrum lord. The product manager ensure
 * Build a static website with basic pages to present a mock-up of our final product.
 * Image mock-ups of each website page to use as reference during development.
 * A video to present an interactive experience.
+* User story for this project. The complete story is in User.md file.

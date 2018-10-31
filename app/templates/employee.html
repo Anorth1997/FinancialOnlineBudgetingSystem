@@ -1,15 +1,36 @@
-<!DOCTYPE html>
-<html>
+{% extends "userLayout.html" %}
 
-<head>
-    <title>Employee page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+{% block title %}Deparment Head{% endblock %}
 
-<body>
-    <div class="container">
-        Employee page!
+
+{% block js %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/graph.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="graph-frame">
+        <div class="row">
+            <div class="column">
+                <!--<h1 class="graph-title-text">Total Revenue: $456 789</h1>-->
+                <!--<canvas class="graph" width="400" height="400" id="pie"></canvas>-->
+            </div>
+            <div class="column">
+                <h1 class="graph-title-text">Budget Overview</h1>
+                <canvas class="graph" width="400" height="400" id="bar"></canvas>
+            </div>
+        </div>
+
     </div>
-</body>
 
-</html>
+    <div class="name-box">
+        Jackie Chan, <br /> <span style="font-family:Georgia"> Engineering Manager </span>
+    </div>
+
+    <div class="overview-buttons-frame">
+    <div class="button"> <span class="button-text"> Request Funds </span> </div>
+    <div class="button"> <span class="button-text"> Set Expected Budget </span> </div>
+    <div class="button"> <span class="button-text"> View Department History </span> </div>
+    </div>
+{% endblock %}
+

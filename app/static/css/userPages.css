@@ -4,7 +4,11 @@
 
 body {
     /* background-color: rgb(64, 65, 66); */
-    background-color: white;
+    /* background-color: white; */
+    background-image:url("../images/userpagebackground.png");
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position: 0% 0%;
     padding: 0;
     margin: 0;
 }
@@ -77,25 +81,58 @@ li {
     cursor: pointer;
 }
 
-a {
-
+.graph-frame {
+	border: 10px outset rgb(40,70,50);
+	background-color:rgb(63, 83, 67);
+	border-radius: 5px;
+	font-family:sans-serif;
+	position:fixed;
+	top: 12%;
+	left: 4%;
+	width:62%;
+	height:80%;
 }
 
-.OverviewButtonsFrame {
-	border: 10px solid black;
+.row {
+    display: flex;
+    height: 100%;
+    text-align: center;
+}
+
+.column {
+    flex: 50%;
+    position: relative;
+}
+
+.graph {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.graph-title-text {
+    color: white;
+    font-weight: 400;
+    /* font-size: 35px; */
+}
+
+.overview-buttons-frame {
+	border: 10px outset rgb(40, 70, 50);
+	border-radius:10px;
+	background-color:rgb(63, 83, 67);
 	font-family:sans-serif;
 	position:absolute;
-	top: 27%;
+	top: 35%;
 	left: 70%;
 	width:23.5%;
-	height:47%;
+	height:57%;
 }
 
-.Button {
+.button {
     border:1px solid rgb(20, 20, 20);
     border-radius: 10px;
-	background-color:rgb(63, 84, 67);;
-	font-size:30px;
+    background-color:rgb(145, 213, 89);
+	font-size:24px;
 	line-height:30px;
 	margin-bottom:100px;
 	display:block;
@@ -103,14 +140,14 @@ a {
 	width:90%;
 	cursor:pointer;
 	margin-top:5%;
-	margin-bottom:5%;
+	margin-bottom:10%;
 	margin-left:4.5%;
 	margin-right:5%;
 	text-align:center;
     position:relative;
 }
 
-.ButtonText {
+.button-text {
     color: white;
     font-weight: 300px;
 	position:absolute;
@@ -118,4 +155,18 @@ a {
 	left:50%;
 	width:400px;
 	transform:translate(-50%, -50%);
+}
+
+.name-box {
+    position: absolute;
+    border: 10px outset rgb(63, 83, 67);
+    top: 12%;
+    left: 70%;
+    height: 15%;
+    width: 23.5%;
+    background-color: rgb(63, 83, 67);
+    font-weight: 900px;
+    font-size: 30px;
+    text-align:center;
+    font-family:Papyrus;
 }

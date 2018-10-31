@@ -5,6 +5,8 @@
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/homePage.css') }}">
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/homePage.js') }}"></script>
 </head>
 
 <body>
@@ -16,20 +18,56 @@
             <span class="logo-text">F.O.B.S.</span>
             <p class="logo-bottom-text">Financial Online Budgeting System</p>
         </div>
-    </div>
-    </div>
-    </div>
-       
-            <h1 class="main-text">Welcome to F.O.B.S</h1>
-            <h3 class="sub-text">Your Financial Online Budgeting System.</h3>
-                    </br></br></br></br></br></br></br></br></br></br></br>
-    <center><label for="uname"><b><font size="+2">Username</font></b></label>
-	<input type="text" placeholder="Enter your username" name="uname" required></br></br>
-	
-	<label for="pwd"><b><font size="+2">Password</font></b></label>
-	<input type="password" placeholder="Enter your password" name="pwd" required></br></br>
 
-	<button type="submit">Login</button>
+        <!-- Create new company and Login buttons -->
+        <div class="button content-initial" onclick="createCompanyBtnClicked()">
+            <span class="button-text">Create new company</span>
+        </div>
+        <div class="button content-initial" onclick="loginBtnClicked()">
+            <span class="button-text">Login</span>
+        </div>
+        
+        <!-- Create new company input fields and sign up button -->
+        <div class="input-container content-create-company">
+        <label class="input-name-text" for="cname">Company Name</label>
+	    <input class="input-text-box" type="text" placeholder="Enter company name" name="cname" required>
+        </div>
+        <div class="input-container content-create-company">
+        <label class="input-name-text" for="uname">Username</label>
+	    <input class="input-text-box" type="text" placeholder="Enter username" name="uname" required>
+        </div>
+
+        <div class="input-container content-create-company">
+        <label class="input-name-text" for="pwd">Password</label>
+        <input class="input-text-box" type="password" placeholder="Enter password" name="pwd" required>
+        </div>
+
+        <div class="button content-create-company">
+            <span class="button-text">Sign up</span>
+        </div>
+
+        <!-- Login input fields and Login button -->
+        <form action="" method="post">
+            <div class="input-container content-login">
+                <label class="input-name-text" for="username">Username</label>
+                <input class="input-text-box" type="text" placeholder="Enter your username" name="username" value="{{
+                    request.form.username }}" required>
+                </div>
+        
+                <div class="input-container content-login">
+                <label class="input-name-text" for="password">Password</label>
+                <input class="input-text-box" type="password" placeholder="Enter your password" name="password" value="{{
+                    request.form.password }}" required>
+                </div>
+            <input class="button content-login" type="submit" value="Login">
+
+        </form>
+        {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+        {% endif %}
+    </div>
+
+    </div>
             
 </body>
 
