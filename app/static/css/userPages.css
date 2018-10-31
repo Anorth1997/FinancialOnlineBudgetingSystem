@@ -170,3 +170,7 @@ li {
     text-align:center;
     font-family:Papyrus;
 }
+
+.content-create-department {
+	display: none;
+}
