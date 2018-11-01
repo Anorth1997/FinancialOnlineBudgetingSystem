@@ -31,9 +31,11 @@ We have assigned a product manager and a scrum lord to guide the group. The prod
 #### Events
 
 * Oct 23rd, 10am, in-person:
+    * review meeting, coding session
     * front-end code review about html, css and js.
     * discussed user stories and some rough back-end logic
 * Oct 27th, 2pm, in-person:
+    * planning meeting, weekly scrums
     * discussion on presentable artifacts
     * implemented basic functions in back-end and front-end
     * assigned specific roles and tasks to each person
