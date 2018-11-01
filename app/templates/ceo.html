@@ -3,60 +3,53 @@
 {% block title %}CEO{% endblock %}
 
 {% block js %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/userPages.css') }}">
-    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/graph.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/userPages.js') }}"></script>
 {% endblock %}
 
 {% block content %}
 
-    <div class="graph-frame content-initial">
+    <div class="graph-frame">
         <div class="row content-initial">
-            <div class="column content-initial">
+            <div class="column">
                 <h1 class="graph-title-text">Total Revenue: $456 789</h1>
                 <canvas class="graph" width="400" height="400" id="pie"></canvas>
             </div>
-            <div class="column content-initial">
+            <div class="column">
                 <h1 class="graph-title-text">Budget Overview</h1>
                 <canvas class="graph" width="400" height="400" id="bar"></canvas>
             </div>
         </div>
 
-    </div>
+
+        <!-- Creating department -->
+        <div class="input-container content-create-department">
+        <label class="input-name-text" for="dname">Department Label</label>    
+        <input class="input-text-box" type="text" placeholder="Enter Department Name" name="dname" required>
+        </div>
+        <div class="input container content-create-department">
+        <label class="input-name-text" for="duname">Department Username</label>
+        <input class="input-text-box" type="text" placeholder="Enter Department Username" name="duname" required>
+        </div>
+        <div class="input-container content-create-department">
+        <label class="input-name-text" for="dpass">Department Password</label>
+        <input class="input-text-box" type="text" placeholder="Enter Department Password" name="dpass" required>
+        </div>
+        <div class="button content-create-department">
+        <span class="button-text">Create</span>
+        </div>
+        </div>
 
     <div class="name-box">
         Patrick Star, <br /> <span style="font-family:Georgia"> Chief Executive Officer </span>
     </div>
 
-    <div class="overview-buttons-frame content-initial">
-    <div class="button content-initial" onclick="createDptClicked()">
-        <span class="button-text">Create Department</span>
+    <div class="overview-buttons-frame">
+        <div class="button" onclick="createDptClicked()">
+            <span class="button-text">Create Department</span>
+        </div>
+        <div class="button"> <span class="button-text"> Set Total Revenue </span></div>
+        <div class="button"> <span class="button-text"> Review Financial Department Requests </span> </div>
+        <div class="button"> <span class="button-text"> View All Department History </span> </div>
     </div>
-    <div class="button content-initial"> <span class="button-text"> Set Total Revenue </span></div>
-    <div class="button content-initial"> <span class="button-text"> Review Financial Department Requests </span> </div>
-    <div class="button content-initial"> <span class="button-text"> View All Department History </span> </div>
-    </div>
-
-    <!-- Creating department -->
-    <div class="input-container content-create-department">
-    <label class="input-name-text" for="dname">Department Label</label>    
-	<input class="input-text-box" type="text" placeholder="Enter Department Name" name="dname" required>
-    </div>
-    <div class="input container content-create-department">
-    <label class="input-name-text" for="duname">Department Username</label>
-	<input class="input-text-box" type="text" placeholder="Enter Department Username" name="duname" required>
-    </div>
-    <div class="input-container content-create-department">
-    <label class="input-name-text" for="dpass">Department Password</label>
-	<input class="input-text-box" type="text" placeholder="Enter Department Password" name="dpass" required>
-    </div>
-    <div class="button content-create-department">
-    <span class="button-text">Create</span>
-    </div>
-
-    <!--<div class="button content-initial"> <span class="button-text"> Set Total Revenue </span> </div>
-    <div class="button content-initial"> <span class="button-text"> Review Financial Department Requests </span> </div>
-    <div class="button content-initial"> <span class="button-text"> View ALL Department History </span> </div>
-    </div>-->
 {% endblock %}
