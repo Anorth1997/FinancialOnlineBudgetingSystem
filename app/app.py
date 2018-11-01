@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, logging
-from flask_mysqldb import MySQL
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators
-from passlib.hash import sha256_crypt
+# from flask_mysqldb import MySQL
+# from wtforms import Form, StringField, TextAreaField, PasswordField, validators
+# from passlib.hash import sha256_crypt
 
 
 
@@ -9,11 +9,11 @@ from passlib.hash import sha256_crypt
 app = Flask(__name__)
 
 #config MySQL
-app.config['']
-app.config['']
-app.config['']
-app.config['']
-app.config['']
+# app.config['']
+# app.config['']
+# app.config['']
+# app.config['']
+# app.config['']
 
 #init MYSQL
 mysql = MySQL(app)
@@ -64,7 +64,6 @@ class RegisterForm(Form):
     name = StringField('Name', [validators.Length(min=1, max=50)])
     username = StringField('Username', [validators.Length(min=4, max=25)])
     password = PasswordField('Password', [
-        validators.DataRequired()
         validators.EqualTo('confirm', message='Passwords do not match')
     ])
     confirm = PasswordField('Confirm Password')
