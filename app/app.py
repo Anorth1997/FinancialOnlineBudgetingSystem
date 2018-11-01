@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, logging
-# from flask_mysqldb import MySQL
-# from wtforms import Form, StringField, TextAreaField, PasswordField, validators
-# from passlib.hash import sha256_crypt
+from flask_mysqldb import MySQL
+from wtforms import Form, StringField, TextAreaField, PasswordField, validators
+from passlib.hash import sha256_crypt
 
 
 
@@ -16,7 +16,7 @@ app = Flask(__name__)
 # app.config['']
 
 #init MYSQL
-# mysql = MySQL(app)
+mysql = MySQL(app)
 
 @app.route("/", methods=['GET', 'POST'])
 def main():
@@ -60,13 +60,13 @@ def financial():
 def employee():
     return render_template('employee.html')
 
-# class RegisterForm(Form):
-#     # name = StringField('Name', [validators.Length(min=1, max=50)])
-#     # username = StringField('Username', [validators.Length(min=4, max=25)])
-#     # password = PasswordField('Password', [
-#     #     validators.EqualTo('confirm', message='Passwords do not match')
-#     # ])
-#     # confirm = PasswordField('Confirm Password')
+class RegisterForm(Form):
+    name = StringField('Name', [validators.Length(min=1, max=50)])
+    username = StringField('Username', [validators.Length(min=4, max=25)])
+    password = PasswordField('Password', [
+        validators.EqualTo('confirm', message='Passwords do not match')
+    ])
+    confirm = PasswordField('Confirm Password')
 
 if __name__ == '__main__':
     app.run(debug=True)
