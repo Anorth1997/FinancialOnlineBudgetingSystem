@@ -1,0 +1,8 @@
+To begin with, here is our home page. It contains two buttons, the first allowing us to create a new company. It is a signup for new companies who wish to use our webapp.
+The second button is a login button for existing users. Here we enter the correcct username and passwords, which is a dummy account we created for testing purposes.
+Both username and password are admin. So here we go! And we are brought to our CEO main page. The pie chart illustrates the expencted total revenue for this year, which is set by
+the Set Total Revenue Button on the right. The Budget Overview graph depicts the expected and actual spendings for each department. For the IT department, the expected expense for
+this year is $1000, and the actual expenses so far is $450 on software, and $200 on repairs and improvements. The information in the bar graph has already been approved by the CEO by clicking
+the Review Financial Deparment Requests. The CEO receives its all its information directly from the Financial Department Head and not from Individual departments.
+The CEO also reserves the right to review each department's history.
+
