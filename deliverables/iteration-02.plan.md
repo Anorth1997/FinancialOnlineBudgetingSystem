@@ -12,6 +12,7 @@
 We have assigned a product manager and a scrum lord to guide the group. The product manager ensures that the project does not deviate too much from the final product while also reviewing additional features that the group wishes to implement. The scrum lord assigns tasks and overviews them to gauge progress and make sure that we are on schedule.
 * Ziyao Chen: Scrum Lord, back-end developer 
     * company.py, user.py
+    * dummy database for users
 * Amney El Azarif: Product Manager, back-end developer
     * company.py, user.py, app.py
 * Jason Zheng: front-end developer & back-end developer
