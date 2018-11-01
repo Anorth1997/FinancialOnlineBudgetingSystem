@@ -63,5 +63,5 @@ We have assigned a product manager and a scrum lord to guide the group. The prod
 * Build a static website with basic pages to present a mock-up of our final product.
 * Image mock-ups of each website page to use as reference during development.
 * A video to present an interactive experience.
-* User story for this project. The complete story is in User.md file.
+* User story for this project. The complete story is in user.md file.
 
