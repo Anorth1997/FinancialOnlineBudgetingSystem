@@ -1,5 +1,8 @@
 # Financial Online Budgeting System (F.O.B.S.)
 
+## Video Link:
+https://drive.google.com/file/d/18LpdeNOklxMpakRvVFWfQpYl2nU2MLLr/view?fbclid=IwAR2dKH_8Bh8iJ20RTdA-nmfTP_H4qTG1OOonSmDHDFVblq647KfFviEpkR8
+
 ## Iteration 02
 
 * Start date: Oct 16th 2018
