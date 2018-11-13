@@ -1,8 +1,5 @@
 # Financial Online Budgeting System (F.O.B.S.)
 
- > _Note:_ This document is meant to be written during (or shortly after) your initial planning meeting.     
- > It does not really make sense for you to edit this document much (if at all) while working on the project - Instead, at the end of the planning phase, you can refer back to this document and decide which parts of your plan you are happy with and which parts you would like to change.
-
 ## Iteration 03
 
 * Start date: Nov 13, 2018
@@ -10,19 +7,12 @@
 
 ## Process
 
-(Optional:) Quick introduction
-
 #### Changes from previous iteration
 
-List the most significant changes you made to your process (if any).
-
- * At most 3 items
- * Start with the most significant change
- * For each change, explain why you are making it and what you are hoping to achieve from it
- * Ideally, for each change, you will define a clear success metric (i.e. something you can measure at the end of the iteration to determine whether the change you made was successful)
-
- > *Note:* If you are not making any changes to your process, it means that you are happy with all of the decisions you made in the previous iterations.
- > In this case, list what you consider to be the most significant process decisions your team made. For each decision, explain why you consider it successful, and what success metric you are using (or could use) to assert that the decision is successful.
+ * Linking each team member's work to their commit history, as a way of demonstrating both their work and making the document more interactive.
+   * Success metric: Everyone's work wil be well documented and easily understandable.
+ * Making better use of Trello, Slack and our To-DO list to improve our team dynamic by communicating more effectively.
+   * Success metric: We're all still friends at the end of the project...On a serious note, if our Trello board is well populated and evely distributed amongst team members
 
 #### Roles & responsibilities
 
@@ -38,13 +28,10 @@ Describe meetings (and other events) you are planning to have:
 
 #### Artifacts
 
-List/describe the artifacts you will produce in order to organize your team.
-
- * Artifacts can be to-do lists, task boards, schedule(s), etc.
- * We want to understand:
-   * How do you keep track of what needs to get done?
-   * How do you prioritize tasks?
-   * How do tasks get assigned to team members?
+ * A screenshot of our Trello Board.
+   * Trello helps us keep track of what needs to be done and add priorities to each work 
+ * Slack: private chat
+   * Used for group discussions and task assignment
 
 #### Git / GitHub workflow
 
