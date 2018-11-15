@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, logging
+from flask import Flask, render_template, redirect, url_for, request, logging, flash
 from flask_mysqldb import MySQL
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
@@ -9,11 +9,11 @@ from passlib.hash import sha256_crypt
 app = Flask(__name__)
 
 #config MySQL
-# app.config['']
-# app.config['']
-# app.config['']
-# app.config['']
-# app.config['']
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'FOBS'
+app.config['MYSQL_PASSWORD'] = 'fobs'
+app.config['MYSQL_DB'] = 'FOBS'
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 #init MYSQL
 mysql = MySQL(app)
@@ -61,12 +61,41 @@ def employee():
     return render_template('employee.html')
 
 class RegisterForm(Form):
-    name = StringField('Name', [validators.Length(min=1, max=50)])
+    company = StringField('Company', [validators.Length(min=4, max=50)])
     username = StringField('Username', [validators.Length(min=4, max=25)])
     password = PasswordField('Password', [
+        validators.DataRequired(),
         validators.EqualTo('confirm', message='Passwords do not match')
     ])
     confirm = PasswordField('Confirm Password')
+
+@app.route('/signup', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm(request.form)
+    if request.method == 'POST' and form.validate():
+        company = form.company.data
+        username = form.username.data
+        password = sha256_crypt.encrypt(str(form.password.data))
+        role = "ceo"
+        # Create cursor
+        cur = mysql.connection.cursor()
+
+        cur.execute("INSERT INTO users(username, password, company, role) VALUES(%s, %s, %s, %s)",
+                    (username, password, company, role))
+
+        # commit to DB
+        mysql.connection.commit()
+
+        # close connection
+        cur.close()
+
+        # flash('Your company is now registered and you can login as the CEO', 'success')
+
+        return redirect("/")
+
+    return render_template('signup.html', form=form)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

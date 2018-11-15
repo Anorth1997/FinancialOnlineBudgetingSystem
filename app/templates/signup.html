@@ -2,20 +2,52 @@
 <html>
 
 <head>
-    <title>Sign Up</title>
+    <title>Signup</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/homePage.css') }}">
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/homePage.js') }}"></script>
 </head>
 
 <body>
-    <div class="container">
-        <p class="sign">Signup! {{my_string}}</p>
 
-    <div class="logo">
-        <span class="logo-text">F.O.B.S.</span>
-        <span class="logo-bottom-text"</span>
+    <div class="bg">
+    <div class="white-card">
+        <div class="logo">
+            <span class="logo-text">F.O.B.S.</span>
+            <p class="logo-bottom-text">Financial Online Budgeting System</p>
+        </div>
+        <form action="" method="post">
+            <div class="input-container">
+            <label class="input-name-text" for="company">Company Name</label>
+            <input class="input-text-box" type="text" placeholder="Enter company name" name="company" value="{{
+                    request.form.company }}" required>
+            </div>
+            <div class="input-container">
+            <label class="input-name-text" for="username">Username</label>
+            <input class="input-text-box" type="text" placeholder="Enter username" name="username" value="{{
+                    request.form.password }}" required>
+            </div>
+
+            <div class="input-container">
+            <label class="input-name-text" for="password">Password</label>
+            <input class="input-text-box" type="password" placeholder="Enter password" name="password" value="{{
+                    request.form.password }}" required>
+            </div>
+
+            <div class="input-container">
+            <label class="input-name-text" for="confirm">Confirm Password</label>
+            <input class="input-text-box" type="password" placeholder="Confirm password" name="confirm" value="{{
+                    request.form.confirm}}" required>
+            </div>
+
+            <input class="button" type="submit" value="Sign Up">
+
+        </form>
     </div>
+
     </div>
+
 </body>
 
 </html>
