@@ -24,29 +24,9 @@
             <span class="button-text">Create new company</span>
         </a>
 
-        <div class="button content-initial" onclick="loginBtnClicked()">
+        <a href="/login" class="button content-intial">
             <span class="button-text">Login</span>
-        </div>
-
-        <!-- Login input fields and Login button -->
-        <form action="" method="post">
-            <div class="input-container content-login">
-                <label class="input-name-text" for="username">Username</label>
-                <input class="input-text-box" type="text" placeholder="Enter your username" name="username" value="{{
-                    request.form.username }}" required>
-                </div>
-        
-                <div class="input-container content-login">
-                <label class="input-name-text" for="password">Password</label>
-                <input class="input-text-box" type="password" placeholder="Enter your password" name="password" value="{{
-                    request.form.password }}" required>
-                </div>
-            <input class="button content-login" type="submit" value="Login">
-
-        </form>
-        {% if error %}
-        <p class="error"><strong>Error:</strong> {{ error }}
-        {% endif %}
+        </a>
     </div>
 
     </div>

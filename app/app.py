@@ -20,19 +20,7 @@ mysql = MySQL(app)
 
 @app.route("/", methods=['GET', 'POST'])
 def main():
-    # form = RegisterForm(request.form)
-    # if request.method == 'POST' and form.validate():
-    #
-    # return render_template('s', form=form)
-
-    error = None
-
-    if request.method == 'POST':
-        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-            error = 'Invalid Credentials. Please try again.'
-        else:
-            return redirect("/ceo")
-    return render_template('homePage.html', error=error)
+    return render_template('homePage.html')
 
 @app.after_request
 def add_header(r):
@@ -96,7 +84,16 @@ def register():
 
     return render_template('signup.html', form=form)
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
 
+    if request.method == 'POST':
+        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+            error = 'Invalid Credentials. Please try again.'
+        else:
+            return redirect("/ceo")
+    return render_template('login.html', error=error)
 
 if __name__ == '__main__':
     app.run(debug=True)
