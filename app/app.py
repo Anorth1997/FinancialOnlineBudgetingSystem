@@ -108,11 +108,17 @@ def login():
             #Get stored hash
             data = cur.fetchone()
             password = data['password']
+            role = data['role']
 
             # Compare Passwords
             if sha256_crypt.verify(password_candidate, password):
                 app.logger.info('PASSWORD MATCHED')
-                return redirect("/ceo")
+                if role == 'ceo':
+                    return redirect("/ceo")
+                elif role == 'FD':
+                    return redirect("/financial")
+                else:
+                    return redirect("/employee")
             else:
                 error = 'Password not matched'
         else:
