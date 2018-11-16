@@ -1,0 +1,14 @@
+Intro()
+Welcome to F.O.B.S.!
+What you are about to see is a webapp for an easy-access budgeting platform that manages financial planning for startups and companies that which to digitalize the process. This app provides a systematic process of organizing its finances. We are mostly focusing on the utilities of the CEO for this deliverable since it is the user with most access to the company. Since this is a webapp, users will not have to install it on their devices and still have full access to its features.
+
+To begin with, here is our home page. It contains two buttons, the first allowing us to create a new company. It is a signup for new companies who wish to use our webapp.
+The second button is a login button for existing users. Here we enter the correcct username and passwords, which is a dummy account we created for testing purposes.
+Both username and password are admin. So here we go! And we are brought to our CEO main page. The pie chart illustrates the expencted total revenue for this year, which is set by
+the Set Total Revenue Button on the right. The Budget Overview graph depicts the expected and actual spendings for each department. For the IT department, the expected expense for
+this year is $1000, and the actual expenses so far is $450 on software, and $200 on repairs and improvements. The information in the bar graph has already been approved by the CEO by clicking
+the Review Financial Deparment Requests. The CEO receives its all its information directly from the Financial Department Head and not from Individual departments.
+The CEO also reserves the right to review each department's history.
+
+In conclusion, this webapp provides a visual way to help the CEO manage the budget and expenditure of the startup or small company. For the next phase of our project, we will implement the interactions between CEO, Financial Department Head and individual department heads. Most of the work will be contributed to back-end development from this point on. We would also need to implement the rest of the buttons.
+
