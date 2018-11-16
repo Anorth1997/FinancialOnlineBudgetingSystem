@@ -94,17 +94,18 @@ def login():
 
         username = request.form['username']
         password_candidate = request.form['password']
+        input_company = request.form['company']
+
+        if username == 'admin' and password_candidate == 'admin':
+            return redirect("/ceo")
 
         # Create cursor
         cur = mysql.connection.cursor()
 
         # Get user by username
-        result = cur.execute("SELECT * FROM users WHERE username = %s", [username])
+        result = cur.execute("SELECT * FROM users WHERE company = %s AND username = %s", [input_company, username])
 
-        if username == 'admin' and password_candidate == 'admin':
-            return redirect("/ceo")
-
-        elif result > 0:
+        if result > 0:
             #Get stored hash
             data = cur.fetchone()
             password = data['password']

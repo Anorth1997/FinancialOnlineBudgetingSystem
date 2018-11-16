@@ -20,6 +20,12 @@
         <!-- Login input fields and Login button -->
         <form action="" method="post">
             <div class="input-container">
+                <label class="input-name-text" for="company">Company</label>
+                <input class="input-text-box" type="text" placeholder="Enter your company" name="company" value="{{
+                    request.form.company }}" required>
+            </div>
+
+            <div class="input-container">
                 <label class="input-name-text" for="username">Username</label>
                 <input class="input-text-box" type="text" placeholder="Enter your username" name="username" value="{{
                     request.form.username }}" required>
