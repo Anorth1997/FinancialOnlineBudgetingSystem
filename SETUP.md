@@ -31,14 +31,11 @@ Run the following command to install mysql on Mac:
 > brew install mysql
 
 ## SETTING UP DATABASE
+On your terminal, log in to your mysql as user root:
+> mysql -u root -p 
 
-Then, run the following commands in mysql:
-> GRANT ALL PRIVILEGES ON * . * TO 'FOBS'@'localhost';
-> ALTER USER 'FOBS'@'localhost' IDENTIFIED WITH mysql_native_password BY 'fobs';
-> CREATE TABLE users (id INT(10) PRIMARY KEY auto_increment, username varchar(30), password varchar(100), company varchar(100), role varchar(100));
-
-On your terminal, type mysql -u root -p to get into your root user for MySQL.  
 You suppose to know your root's password.  
+
 Now you are in your root user. Create a new user called FOBS with password fobs with the following command:  
 > mysql> CREATE USER 'FOBS'@'localhost' IDENTIFIED BY 'fobs';
 
@@ -46,10 +43,12 @@ Give the new created user FOBS all the privileges:
 > mysql> GRANT ALL PRIVILEGES ON * . * TO 'FOBS'@'localhost';
 
 Type \q to exit the mysql program.  
+
 Now log in to MySQL as the user FOBS:  
 > mysql -u FOBS -p
 
-Type the user's password (fobs), and then press Enter  
+Type the user's password (fobs), and then press Enter 
+ 
 Create the database FOBS with the following command:  
 > mysql> CREATE DATABASE FOBS;
 
