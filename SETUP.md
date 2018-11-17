@@ -38,6 +38,8 @@ You suppose to know your root's password.
 
 Now you are in your root user. Create a new user called FOBS with password fobs with the following command:  
 > mysql> CREATE USER 'FOBS'@'localhost' IDENTIFIED BY 'fobs';
+**NOTE:** For windows users, also run the following command:  
+> mysql> ALTER USER 'FOBS'@'localhost' IDENTIFIED WITH mysql_native_password BY 'fobs';
 
 Give the new created user FOBS all the privileges:  
 > mysql> GRANT ALL PRIVILEGES ON * . * TO 'FOBS'@'localhost';
