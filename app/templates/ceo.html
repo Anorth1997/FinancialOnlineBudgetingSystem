@@ -94,10 +94,17 @@
 
     <div class="overview-buttons-frame">
         <div class="button" onclick="createDptClicked()">
-            <span class="button-text">Create Department</span>
+            <span class="button-text"> Create Department</span>
         </div>
-        <div class="button"> <span class="button-text"> Set Total Revenue </span> </div>
-        <div class="button"> <span class="button-text" style="font-size: 20px"> Review Financial <br/>Department Requests </span> </div>
-        <div class="button"> <span class="button-text" style="font-size: 20px"> View ALL Department History </span> </div>
+
+        <div class="button" onclick="setTotalRevenueClicked()">
+            <span class="button-text">Set Total Revenue </span>
+        </div>
+        <div class="button" onclick="reviewFDRequestsClicked()">
+            <span class="button-text">Review Financial Department Requests</span>
+        </div>
+        <div class="button" onclick="ViewAllDepartmentHistoryClicked()"> 
+            <span class="button-text"> View All Department History </span>
+        </div>
     </div>
 {% endblock %}
