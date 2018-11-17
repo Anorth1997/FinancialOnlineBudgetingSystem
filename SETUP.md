@@ -10,7 +10,8 @@ Just make sure python3 and pip are installed, and install these libraries.
 > pip install passlib.hash  
 
 Make sure you have the MySQL installed correctly, otherwise you wouldn't be able
-to install the flask_mysqldb package
+to install the flask_mysqldb package  
+The download for windows can be found [here](https://dev.mysql.com/downloads/installer/)
 
 ## RUNNING THE APPLICATION
 
