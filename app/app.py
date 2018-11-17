@@ -1,7 +1,7 @@
-from flask import Flask, render_template, redirect, url_for, request, logging
-# from flask_mysqldb import MySQL
-# from wtforms import Form, StringField, TextAreaField, PasswordField, validators
-# from passlib.hash import sha256_crypt
+from flask import Flask, render_template, redirect, url_for, request, logging, flash
+from flask_mysqldb import MySQL
+from wtforms import Form, StringField, TextAreaField, PasswordField, validators
+from passlib.hash import sha256_crypt
 
 
 
@@ -9,29 +9,18 @@ from flask import Flask, render_template, redirect, url_for, request, logging
 app = Flask(__name__)
 
 #config MySQL
-# app.config['']
-# app.config['']
-# app.config['']
-# app.config['']
-# app.config['']
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'FOBS'
+app.config['MYSQL_PASSWORD'] = 'fobs'
+app.config['MYSQL_DB'] = 'FOBS'
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 #init MYSQL
-# mysql = MySQL(app)
+mysql = MySQL(app)
 
 @app.route("/", methods=['GET', 'POST'])
 def main():
-    # form = RegisterForm(request.form)
-    # if request.method == 'POST' and form.validate():
-    #
-    # return render_template('s', form=form)
-
-    error = None
-    if request.method == 'POST':
-        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-            error = 'Invalid Credentials. Please try again.'
-        else:
-            return redirect("/ceo")
-    return render_template('homePage.html', error=error)
+    return render_template('homePage.html')
 
 @app.after_request
 def add_header(r):
@@ -60,13 +49,83 @@ def financial():
 def employee():
     return render_template('employee.html')
 
-# class RegisterForm(Form):
-#     # name = StringField('Name', [validators.Length(min=1, max=50)])
-#     # username = StringField('Username', [validators.Length(min=4, max=25)])
-#     # password = PasswordField('Password', [
-#     #     validators.EqualTo('confirm', message='Passwords do not match')
-#     # ])
-#     # confirm = PasswordField('Confirm Password')
+class RegisterForm(Form):
+    company = StringField('Company', [validators.Length(min=4, max=50)])
+    username = StringField('Username', [validators.Length(min=4, max=25)])
+    password = PasswordField('Password', [
+        validators.DataRequired(),
+        validators.EqualTo('confirm', message='Passwords do not match')
+    ])
+    confirm = PasswordField('Confirm Password')
+
+@app.route('/signup', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm(request.form)
+    if request.method == 'POST' and form.validate():
+        company = form.company.data
+        username = form.username.data
+        password = sha256_crypt.encrypt(str(form.password.data))
+        role = "ceo"
+        # Create cursor
+        cur = mysql.connection.cursor()
+
+        cur.execute("INSERT INTO users(username, password, company, role) VALUES(%s, %s, %s, %s)",
+                    (username, password, company, role))
+
+        # commit to DB
+        mysql.connection.commit()
+
+        # close connection
+        cur.close()
+
+        # flash('Your company is now registered and you can login as the CEO', 'success')
+
+        return redirect("/")
+
+    return render_template('signup.html', form=form)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+
+    if request.method == 'POST':
+
+        # Get Form Fields
+
+        username = request.form['username']
+        password_candidate = request.form['password']
+        input_company = request.form['company']
+
+        if username == 'admin' and password_candidate == 'admin':
+            return redirect("/ceo")
+
+        # Create cursor
+        cur = mysql.connection.cursor()
+
+        # Get user by username
+        result = cur.execute("SELECT * FROM users WHERE company = %s AND username = %s", [input_company, username])
+
+        if result > 0:
+            #Get stored hash
+            data = cur.fetchone()
+            password = data['password']
+            role = data['role']
+
+            # Compare Passwords
+            if sha256_crypt.verify(password_candidate, password):
+                app.logger.info('PASSWORD MATCHED')
+                if role == 'ceo':
+                    return redirect("/ceo")
+                elif role == 'FD':
+                    return redirect("/financial")
+                else:
+                    return redirect("/employee")
+            else:
+                error = 'Password not matched'
+        else:
+            error = 'Invalid Credentials. Please try again.'
+
+    return render_template('login.html', error=error)
 
 if __name__ == '__main__':
     app.run(debug=True)
