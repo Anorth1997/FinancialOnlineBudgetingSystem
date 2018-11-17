@@ -25,15 +25,18 @@ From the directory you are working from, run the following command:
 
 Once MySQL is installed, add mysql to your path. This is done by adding the bin folder from your installation to your PATH environment variable.
 
+## SETTING UP MYSQL ON MAC
+I strongly recommend using homebrew to install MySQL on Mac
+Run the following command to install mysql on Mac:
+> brew install mysql
+
+## SETTING UP DATABASE
+
 Then, run the following commands in mysql:
 > GRANT ALL PRIVILEGES ON * . * TO 'FOBS'@'localhost';
 > ALTER USER 'FOBS'@'localhost' IDENTIFIED WITH mysql_native_password BY 'fobs';
 > CREATE TABLE users (id INT(10) PRIMARY KEY auto_increment, username varchar(30), password varchar(100), company varchar(100), role varchar(100));
 
-## RUNNING THE APPLICATION
-
-According to Mac System, you need to do the followings to set up your database:
-Installed your MySQL properly.  
 On your terminal, type mysql -u root -p to get into your root user for MySQL.  
 You suppose to know your root's password.  
 Now you are in your root user. Create a new user called FOBS with password fobs with the following command:  
@@ -57,6 +60,9 @@ Create the table users with the following command:
 > mysql> CREATE TABLE users(id INT(10) PRIMARY KEY AUTO_INCREMENT, username VARCHAR(30), password VARCHAR(100), company VARCHAR(100), role VARCHAR(100));
   
 Now everything related to database has been set up properly.
+
+
+## RUNNING THE APPLICATION
 
 The application can be run from the command line:
 > python app.py
