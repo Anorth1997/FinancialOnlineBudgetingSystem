@@ -1,5 +1,5 @@
 # SQL Database Schema
-* Attrbutes that have an asterisk (*) in front of their name, are keys
+* Attributes that have an asterisk (*) in front of their name, are keys
 * Foreign key constraints are listed in the bottom of this document
 
 **Company table**
@@ -27,7 +27,7 @@
 
 | *request_id | user_id | amount | date |     reason    |                  status                  |
 |:----------:|:-------:|:------:|:----:|:-------------:|:----------------------------------------:|
-|     INT    |   INT   |   INT  |  INT | VARCHAR(1000) | ENUM = {in_progress, accepted, declined} |
+|     INT    |   INT   |   INT  |  DATETIME | VARCHAR(1000) | ENUM = {in_progress, accepted, declined} |
 <br>
 
 **Expense_history table**
