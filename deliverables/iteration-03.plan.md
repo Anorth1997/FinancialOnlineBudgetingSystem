@@ -25,6 +25,12 @@ Describe meetings (and other events) you are planning to have:
  * When and where? In-person or online?
  * What's the **purpose** of each meeting?
  * Other events could be coding sessions, code reviews, quick weekly sync' meeting online, etc.
+ 
+* Nov 17nd, 2pm, in-person:
+    * Planning meeting
+    * Designed a schema for our relational database
+    * Demoed signup and login using a dummy database
+    * Set up local SQL database for each group member
 
 #### Artifacts
 
@@ -32,6 +38,7 @@ Describe meetings (and other events) you are planning to have:
    * Trello helps us keep track of what needs to be done and add priorities to each work 
  * Slack: private chat
    * Used for group discussions and task assignment
+ * [Relational Database Schema](./artifacts/schema.md)
 
 #### Git / GitHub workflow
 
