@@ -21,7 +21,7 @@ function ReviewFDRequestClicked() {
 }
 
 function showReviewFDRequestCClicked(callback) {
-    %('.content-review-financial-request').fadeIn(callback);
+    $('.content-review-financial-request').fadeIn(callback);
 }
 
 function ViewAllDepartmentHistoryClicked() {
@@ -29,5 +29,5 @@ function ViewAllDepartmentHistoryClicked() {
 }
 
 function showViewAllDeptHistory(callback) {
-    %('.content-view-department-history').fadeIn(callback);
+    $('.content-view-department-history').fadeIn(callback);
 }

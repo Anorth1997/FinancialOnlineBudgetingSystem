@@ -39,6 +39,7 @@ def add_header(r):
 
 @app.route("/ceo")
 def ceo():
+
     return render_template('ceo.html')
 
 @app.route("/financial")
