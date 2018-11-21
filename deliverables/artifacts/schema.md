@@ -3,13 +3,16 @@
 * Foreign key constraints are listed in the bottom of this document
 
 **Company table**
+* This table contains information about all companies that have signed up.
 
 | *company_id | company_name | total_revenue_goal |
 |:----------:|:------------:|:------------------:|
 |     INT    | VARCHAR(100) |         INT        |
 <br>
 
+
 **Users table**
+* This table contains information about all users, their login information, company and role.
 
 | *user_id |   username   |   password   | company_id |     role     |
 |:-------:|:------------:|:------------:|:----------:|:------------:|
@@ -17,6 +20,8 @@
 <br>
 
 **Departments table**
+* This table contains information for each individual department within a company.
+* The user_id field contains the user_id of the department head.
 
 | *dept_id | user_id | budget | revenue_goal | actual_expenses |
 |:-------:|:-------:|:------:|:------------:|:---------------:|
@@ -24,6 +29,8 @@
 <br>
 
 **Requests table**
+* This table contains all requests that has ever been made.
+* The user_id is the user that has made the request. 
 
 | *request_id | user_id | amount | date |     reason    |                  status                  |
 |:----------:|:-------:|:------:|:----:|:-------------:|:----------------------------------------:|
@@ -31,6 +38,7 @@
 <br>
 
 **Expense_history table**
+* This table contains all expense history for all departments.
 
 | *exp_id | user_id |   purpose   | amount |
 |:------:|:-------:|:-----------:|:------:|
