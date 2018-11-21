@@ -57,8 +57,16 @@ Create the database FOBS with the following command:
 Work with the database FOBS:  
 > mysql> USE FOBS;
 
-Create the table users with the following command:  
-> mysql> CREATE TABLE users(id INT(10) PRIMARY KEY AUTO_INCREMENT, username VARCHAR(30), password VARCHAR(100), company VARCHAR(100), role VARCHAR(100));
+Create the tables listed in the [schema](./artifacts/schema.md), with these commands:
+> mysql> CREATE TABLE Company (company_id INT(10) PRIMARY KEY AUTO_INCREMENT, company_name VARCHAR(100), total_revenue_goal INT);
+<br>
+> mysql> CREATE TABLE Users (user_id INT PRIMARY KEY AUTO_INCREMENT, username VARCHAR(100), password VARCHAR(100), company_id INT, role VARCHAR(100), FOREIGN KEY (company_id) REFERENCES Company(company_id));
+<br>
+> mysql> CREATE TABLE Departments (dept_id INT PRIMARY KEY AUTO_INCREMENT, user_id INT, budget INT, revenue_goal INT, actual_expenses INT, FOREIGN KEY (user_id) REFERENCES Users(user_id));
+<br>
+> mysql> CREATE TABLE Requests (request_id INT PRIMARY KEY AUTO_INCREMENT, user_id INT, amount INT, data DATETIME, reason VARCHAR(100), status ENUM('in_progress', 'accepted', 'declined'), FOREIGN KEY (user_id) REFERENCES Users(user_id));
+<br>
+> mysql> CREATE TABLE Expense_history (exp_id INT PRIMARY KEY AUTO_INCREMENT, user_id INT, purpose VARCHAR(30), amount INT, FOREIGN KEY (user_id) REFERENCES Users(user_id));
   
 Now everything related to database has been set up properly.
 
