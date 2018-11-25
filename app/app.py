@@ -39,21 +39,21 @@ def add_header(r):
 @app.route("/ceo")
 def ceo():
     if 'username' in session:
-        return render_template('ceo.html')
+        return render_template('ceo.html', username=session['username'], company=session['company'])
     # TODO: (IAN) render a not logged in page
     return render_template('homePage.html')
 
 @app.route("/financial")
 def financial():
     if 'username' in session:
-        return render_template('financial.html')
+        return render_template('financial.html', company=session['company'])
     # TODO: (IAN) render a not logged in page
     return render_template('homePage.html')
 
 @app.route("/employee")
 def employee():
     if 'username' in session:
-        return render_template('employee.html')
+        return render_template('employee.html', company=session['company'])
     # TODO: (IAN) render a not logged in page
     return render_template('homePage.html')
     
@@ -133,6 +133,12 @@ def login():
             # Compare Passwords
             if sha256_crypt.verify(password_candidate, password):
                 session['username'] = data['username']
+                query = "SELECT * FROM "
+                query += "(company INNER JOIN users ON company.company_id=users.company_id) "
+                query += "WHERE username = '" + data['username'] + "'"
+                result = cur.execute(query)
+                data = cur.fetchone()
+                session['company'] = data['company_name']
                 app.logger.info('PASSWORD MATCHED')
                 if role == 'ceo':
                     return redirect("/ceo")
