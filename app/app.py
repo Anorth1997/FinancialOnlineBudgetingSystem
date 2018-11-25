@@ -67,11 +67,19 @@ def register():
         username = form.username.data
         password = sha256_crypt.encrypt(str(form.password.data))
         role = "ceo"
+        null = None
         # Create cursor
         cur = mysql.connection.cursor()
 
-        cur.execute("INSERT INTO users(username, password, company, role) VALUES(%s, %s, %s, %s)",
-                    (username, password, company, role))
+        ## Create the company instance in company table
+        cur.execute("INSERT INTO Company(company_name, total_revenue_goal) VALUES(%s, %s)", (company, null))
+        cur.execute("SELECT company_id FROM Company WHERE company_name = %s", [company])
+        data = cur.fetchone()
+        mysql.connection.commit()
+
+        ## Create the ceo in user
+        cur.execute("INSERT INTO users(username, password, company_id, role) VALUES(%s, %s, %s, %s)",
+                    (username, password, data['company_id'], role))
 
         # commit to DB
         mysql.connection.commit()
