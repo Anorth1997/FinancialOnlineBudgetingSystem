@@ -207,6 +207,8 @@ li {
 
 .input-box {
     display: block;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 20px;
     margin-top: 5px;
 }
@@ -217,11 +219,11 @@ li {
 }
 
 .form-div {
+    background-color: blue;
     display: inline-block;
     text-align: left;
     margin-top: 7%;
-    /* margin-left: auto;
-    margin-right: auto; */
+    min-width: 400px;
 }
 
 .content-title {
@@ -230,32 +232,6 @@ li {
     font-weight: 400;
 }
 
-
-
-
-/* CSS for the Employee page */
-
-.input-text-box-reason {
-    width: 500px;
-    height: 100px;  
-}
-
 .content-set-total-revenue {
     display: none;
-}
-
-.dollar-sign {
-    color: white;
-    font-weight: 400;
-}
-
-.content-request-funds {
-    padding-top: 10px;
-    height: 100%;
-    text-align: center;
-    display: none;
-}
-
-.test {
-    display: block;
 }

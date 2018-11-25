@@ -1,0 +1,36 @@
+/* CSS for the Employee page */
+
+.content-set-expected-budget {
+    padding-top: 10px;
+    height: 100%;
+    text-align: center;
+    display: none;
+}
+
+.content-add-expenses {
+    padding-top: 10px;
+    height: 100%;
+    text-align: center;
+    display: none;
+}   
+
+.content-request-funds {
+    padding-top: 10px;
+    height: 100%;
+    text-align: center;
+    display: none;
+}
+
+.dollar-sign {
+    color: white;
+    font-weight: 400;
+}
+
+.input-text-box-reason {
+    width: 500px;
+    height: 100px;  
+}
+
+.test {
+    display: block;
+}

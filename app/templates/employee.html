@@ -6,6 +6,8 @@
 {% block js %}
     <script type="text/javascript" src="{{ url_for('static', filename='js/graph.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/userPages.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/employee.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/employee.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -46,6 +48,56 @@
             </div>
         </div>
 
+
+        <div class="content-set-expected-budget">
+            <h1 class="content-title">Set Expected Budget</h1>
+            <div class="form-div" style="text-align: center">
+            <form action="" method="post">
+                <div class="input-container">
+                <label class="input-amount input-label" for="amount">Expected Budget</label>
+                <span class="input"><span class="dollar-sign">&#36;</span> <input class="input-dollar-box" type="number" placeholder="Enter request amount" name="amount" value="{{
+                        request.form.request }}" required></span>
+                </div>
+                <input class="button" type="submit" value="Send Request">
+            </form>
+            </div>
+        </div>
+
+        <div class="content-add-expenses" style="text-align: center">
+            <h1 class="content-title">Add Expenses</h1>
+            <div class="form-div" style="text-align: center">
+            <form action="" method="post">
+                <div class="input-container">
+
+                    <label class="input-amount input-label" for="number_of_expenses">Number of Expenses</label>
+                    <input class="input-box" type="number" placeholder="Number of Expenses" name="number_of_expenses" value="{{
+                            request.form.numRequests }}" required>
+
+                    <table class="expenses-table">
+                        <tr>
+                            <th>Purpose</th>
+                            <th>Cost</th>
+                        </tr>
+                        <tr>
+                            <td><input class="input-dollar-box" type="number" placeholder="Enter request amount" name="amount" value="{{
+                            request.form.request }}" required></td>
+                            <td><input class="input-dollar-box" type="number" placeholder="Enter request amount" name="amount" value="{{
+                            request.form.request }}" required></td>
+                        </tr>
+                    </table>
+                    
+
+                    <!-- <label class="input-amount input-label" for="amount"></label>
+                    <span class="input"><span class="dollar-sign">&#36;</span> <input class="input-dollar-box" type="number" placeholder="Enter request amount" name="amount" value="{{
+                            request.form.request }}" required></span>
+                    -->
+                </div>
+                
+                <input class="button" type="submit" value="Send Request">
+            </form>
+            </div>
+        </div>
+
     </div>
 
     <div class="name-box">
@@ -54,9 +106,9 @@
 
     <div class="overview-buttons-frame">
     <div class="button" onclick="requestFundsClicked()"> <span class="button-text"> Request Funds </span> </div>
-    <div class="button"> <span class="button-text"> Set Expected Budget </span> </div>
+    <div class="button" onclick="setExpectedBudgetClicked()"> <span class="button-text"> Set Expected Budget </span> </div>
     <div class="button"> <span class="button-text"> View Department History </span> </div>
-    <div class="button"> <span class="button-text"> Add Expenses </span> </div>
+    <div class="button" onclick="addExpensesClicked()"> <span class="button-text"> Add Expenses </span> </div>
     </div>
 {% endblock %}
 

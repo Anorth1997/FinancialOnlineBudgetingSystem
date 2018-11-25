@@ -23,7 +23,6 @@ function hideAllContent(callback) {
     $('.content-set-total-revenue').hide();
     $('.content-review-financial-request').hide();
     $('.content-view-department-history').hide();
-
 }
 
 function showCreateDepartmentContent(callback) {
@@ -54,14 +53,4 @@ function ViewAllDepartmentHistoryClicked() {
 
 function showViewAllDeptHistory(callback) {
     $('.content-view-department-history').fadeIn(callback);
-}
-
-// Functions for the employee page
-function requestFundsClicked() {
-    console.log('wacha');
-    hideInitialContent(showRequestFunds);
-}
-
-function showRequestFunds(callback) {
-    $('.content-request-funds').fadeIn(callback);
 }
