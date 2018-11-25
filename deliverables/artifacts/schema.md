@@ -34,7 +34,7 @@
 
 | *request_id | user_id | amount | date |     reason    |                  status                  |
 |:----------:|:-------:|:------:|:----:|:-------------:|:----------------------------------------:|
-|     INT    |   INT   |   INT  |  DATETIME | VARCHAR(1000) | ENUM = {in_progress, accepted, declined} |
+|     INT    |   INT   |   INT  |  DATETIME | VARCHAR(1000) | ENUM = {ceo_notified, ceo_not_notified, accepted, declined} |
 <br>
 
 **Expense_history table**
