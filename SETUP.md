@@ -61,7 +61,7 @@ Create the tables listed in the [schema](./artifacts/schema.md), with these comm
 > mysql> CREATE TABLE Company (company_id INT(10) PRIMARY KEY AUTO_INCREMENT, company_name VARCHAR(100), total_revenue_goal INT);
 <br>
 
-> mysql> CREATE TABLE Users (user_id INT PRIMARY KEY AUTO_INCREMENT, username VARCHAR(100), password VARCHAR(100), company_id INT, role VARCHAR(100), FOREIGN KEY (company_id) REFERENCES Company(company_id));
+> mysql> CREATE TABLE Users (user_id INT PRIMARY KEY AUTO_INCREMENT, username VARCHAR(100) UNIQUE, password VARCHAR(100), company_id INT, role VARCHAR(100), FOREIGN KEY (company_id) REFERENCES Company(company_id));
 <br>
 
 > mysql> CREATE TABLE Departments (dept_id INT PRIMARY KEY AUTO_INCREMENT, user_id INT, budget INT, revenue_goal INT, actual_expenses INT, FOREIGN KEY (user_id) REFERENCES Users(user_id));
