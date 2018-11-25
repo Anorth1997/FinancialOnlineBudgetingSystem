@@ -31,3 +31,19 @@ function ViewAllDepartmentHistoryClicked() {
 function showViewAllDeptHistory(callback) {
     $('.content-view-department-history').fadeIn(callback);
 }
+
+function reviewDeptRequestsClicked() {
+    hideInitialContent(showReviewDeptRequests);
+}
+
+function showReviewDeptRequests(callback) {
+    $('.content-review-department-requests').fadeIn(callback);
+}
+
+function distributeTotalRevenueClicked() {
+    hideInitialContent(showDistributeTotalRevenue);
+}
+
+function showDistributeTotalRevenue(callback) {
+    $('.content-show-distribute-total-revenue').fadeIn(callback);
+}

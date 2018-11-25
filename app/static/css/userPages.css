@@ -182,3 +182,17 @@ li {
 .content-set-total-revenue {
     display: none;
 }
+
+.content-review-department-requests {
+    display: none;
+}
+
+.request-list-box {
+    position:absolute;
+    border: 5px solid black;
+    background-color:rgb(38, 208, 83);
+    height:80%;
+    width:90%;
+    left:5%;
+    top:10%;
+}

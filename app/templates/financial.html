@@ -4,13 +4,13 @@
 
 {% block js %}
     <script type="text/javascript" src="{{ url_for('static', filename='js/graph.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/financialPage.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/userPages.js') }}"></script>
 {% endblock %}
 
 {% block content %}
 
-    <div class="graph-frame content-initial">
-        <div class="row">
+    <div class="graph-frame">
+        <div class="row content-initial">
             <div class="column">
                 <h1 class="graph-title-text">Total Revenue: $456 789</h1>
                 <canvas class="graph" width="400" height="400" id="pie"></canvas>
@@ -21,6 +21,20 @@
             </div>
         </div>
 
+        <div class="input-container content-review-department-requests">
+            <div class = "request-list-box">
+
+            </div>
+        </div>
+
+        <div class="input-container content-show-distribute-total-revenue">
+
+        </div>
+
+        <div class="input-container content-view-department-history">
+
+        </div>
+
     </div>
 
 
@@ -28,8 +42,8 @@
         Danny Phantom, <br /> <span style="font-family:Georgia; font-size: 25px"> Senior Financial Analyst </span>
     </div>
     <div class="overview-buttons-frame">
-        <div class="button" onclick="review_button_clicked()"><span class="button-text" style="font-size: 20px">Review Department Revenue</span></div>
-        <div class="button"><span class="button-text">Distribute Total Revenue</span></div>
-        <div class="button"><span class="button-text">View All Department list</span></div>
+        <div class="button" onclick="reviewDeptRequestsClicked()"><span class="button-text" style="font-size: 20px">Review Department Requests</span></div>
+        <div class="button" onclick="distributeTotalRevenueClicked()"><span class="button-text">Distribute Total Revenue</span></div>
+        <div class="button" onclick="ViewAllDepartmentHistoryClicked()"><span class="button-text">View All Department list</span></div>
     </div>
 {% endblock %}
