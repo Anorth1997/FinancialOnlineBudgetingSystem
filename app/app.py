@@ -192,7 +192,7 @@ def login():
                 app.logger.info('PASSWORD MATCHED')
                 if role == 'ceo':
                     return redirect("/ceo")
-                elif role == 'FD':
+                elif role == 'financial':
                     return redirect("/financial")
                 else:
                     return redirect("/employee")
