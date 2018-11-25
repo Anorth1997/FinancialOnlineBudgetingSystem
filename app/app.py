@@ -113,6 +113,8 @@ def login():
         password_candidate = request.form['password']
 
         if username == 'admin' and password_candidate == 'admin':
+            session['username'] = "admin"
+            session['company'] = "admin"
             return redirect("/ceo")
 
         # Create cursor
