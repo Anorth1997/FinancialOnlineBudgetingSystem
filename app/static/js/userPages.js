@@ -16,11 +16,11 @@ function showSetTotalRevenue(callback) {
     $('.content-set-total-revenue').fadeIn(callback);
 }
 
-function ReviewFDRequestClicked() {
+function reviewFDRequestsClicked() {
     hideInitialContent(showReviewFDRequest);
 }
 
-function showReviewFDRequestCClicked(callback) {
+function showReviewFDRequest(callback) {
     $('.content-review-financial-request').fadeIn(callback);
 }
 
