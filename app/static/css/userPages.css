@@ -147,6 +147,25 @@ li {
     position:relative;
 }
 
+.button1 {
+    border:1px solid rgb(20, 20, 20);
+    border-radius: 10px;
+    background-color:rgb(213, 145, 89);
+	font-size:24px;
+	line-height:30px;
+	margin-bottom:100px;
+	display:block;
+	height:16.25%;
+	width:90%;
+	cursor:pointer;
+	margin-top:5%;
+	margin-bottom:10%;
+	margin-left:4.5%;
+	margin-right:5%;
+	text-align:center;
+    position:relative;
+}
+
 .button-text {
     color: white;
     font-weight: 300px;
@@ -179,6 +198,64 @@ li {
     display: none;
 }
 
+/* CSS for the formatting of the forms */
+.input-label {
+    color: white;
+    font-weight: 400;
+    display: block;
+}
+
+.input-box {
+    display: block;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.input-dollar-box {
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.form-div {
+    display: inline-block;
+    text-align: left;
+    margin-top: 7%;
+    /* margin-left: auto;
+    margin-right: auto; */
+}
+
+.content-title {
+    /* margin-top: 5px; */
+    color: white;
+    font-weight: 400;
+}
+
+
+
+
+/* CSS for the Employee page */
+
+.input-text-box-reason {
+    width: 500px;
+    height: 100px;  
+}
+
 .content-set-total-revenue {
     display: none;
+}
+
+.dollar-sign {
+    color: white;
+    font-weight: 400;
+}
+
+.content-request-funds {
+    padding-top: 10px;
+    height: 100%;
+    text-align: center;
+    display: none;
+}
+
+.test {
+    display: block;
 }
