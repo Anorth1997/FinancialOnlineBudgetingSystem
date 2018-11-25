@@ -17,6 +17,8 @@ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 # Init MYSQL
 mysql = MySQL(app)
 
+
+
 @app.route("/", methods=['GET', 'POST'])
 def main():
     return render_template('homePage.html')
@@ -36,8 +38,57 @@ def add_header(r):
     r.headers['Cache-Control'] = 'public, max-age=0'
     return r
 
-@app.route("/ceo")
+class CreateDepartmentForm(Form):
+    department = StringField('department', [validators.Length(min=4, max=50)])
+    username = StringField('Username', [validators.Length(min=4, max=25)])
+    password = PasswordField('Password', [
+        validators.DataRequired(),
+        validators.EqualTo('confirm', message='Passwords do not match')
+    ])
+    confirm = PasswordField('Confirm Password')
+
+@app.route("/ceo", methods=['GET', 'POST'])
 def ceo():
+    if request.method == 'POST':
+        form = CreateDepartmentForm(request.form)
+        if form.validate():
+            ## initalize the fields
+            company = session['company']
+            department = form.department.data
+            username = form.username.data
+            password = sha256_crypt.encrypt(str(form.password.data))
+            null = None
+
+            # Create cursor
+            cur = mysql.connection.cursor()
+
+
+            # get company_id
+            cur.execute("SELECT company_id FROM Company WHERE company_name = %s", [company])
+            data = cur.fetchone()
+            company_id = data['company_id']
+
+
+            print(username, password, company_id, department)
+            ## Create the department in user
+            cur.execute("INSERT INTO users(username, password, company_id, role) VALUES(%s, %s, %s, %s)",
+                        (username, password, company_id, department))
+
+            ## if this is not the financial department, it needs to be stored in department table
+            if department != 'financial':
+                cur.execute("SELECT user_id FROM Users WHERE username = %s", [username])
+                user_id = cur.fetchone()['user_id']
+                cur.execute("INSERT INTO Departments(user_id, budget, revenue_goal, actual_expenses) VALUES(%s, %s, %s, %s)",
+                            (user_id, null, null, null))
+
+            # commit to DB
+            mysql.connection.commit()
+
+            # close connection
+            cur.close()
+
+            return render_template('ceo.html', username=session['username'], company=session['company'])
+
     if 'username' in session:
         return render_template('ceo.html', username=session['username'], company=session['company'])
     # TODO: (IAN) render a not logged in page
@@ -56,7 +107,7 @@ def employee():
         return render_template('employee.html', company=session['company'])
     # TODO: (IAN) render a not logged in page
     return render_template('homePage.html')
-    
+
 
 class RegisterForm(Form):
     company = StringField('Company', [validators.Length(min=4, max=50)])

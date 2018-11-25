@@ -26,20 +26,30 @@
 
         <form action="" method="post">
             <div class="input-container content-create-department">
-            <label class="input-name-text" for="dname">Department Name</label>
-            <input class="input-text-box" type="text" placeholder="Enter Department Name" name="dname" required>
+                <label class="input-name-text" for="department">Department Name</label>
+                <input class="input-text-box" type="text" placeholder="Enter Department Name" name="department" value="{{
+                request.form.department }}" required>
             </div>
+
             <div class="input container content-create-department">
-            <label class="input-name-text" for="duname">Department Username</label>
-            <input class="input-text-box" type="text" placeholder="Enter Department Username" name="duname" required>
+                <label class="input-name-text" for="username">Department Username</label>
+                <input class="input-text-box" type="text" placeholder="Enter Department Username" name="username" value="{{
+                request.form.username }}" required>
             </div>
+
             <div class="input-container content-create-department">
-            <label class="input-name-text" for="dpass">Department Password</label>
-            <input class="input-text-box" type="text" placeholder="Enter Department Password" name="dpass" required>
+                <label class="input-name-text" for="password">Department Password</label>
+                <input class="input-text-box" type="password" placeholder="Enter Department Password" name="password" value="{{
+                request.form.password }}" required>
             </div>
-            <div class="button content-create-department">
-            <span class="button-text">Create</span>
+
+            <div class="input-container content-create-department">
+                <label class="input-name-text" for="confirm">Confirm Password</label>
+                <input class="input-text-box" type="password" placeholder="Confirm password" name="confirm" value="{{
+                request.form.confirm}}" required>
             </div>
+
+            <input class="button" type="submit" value="Sign Up">
         </form>
         
         <!-- Setting Total Revenue-->
