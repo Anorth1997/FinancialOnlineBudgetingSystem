@@ -3,6 +3,7 @@ from flask_mysqldb import MySQL
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 from os import urandom
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = urandom(16)
@@ -69,7 +70,6 @@ def ceo():
             company_id = data['company_id']
 
 
-            print(username, password, company_id, department)
             ## Create the department in user
             cur.execute("INSERT INTO users(username, password, company_id, role) VALUES(%s, %s, %s, %s)",
                         (username, password, company_id, department))
@@ -101,8 +101,35 @@ def financial():
     # TODO: (IAN) render a not logged in page
     return render_template('homePage.html')
 
-@app.route("/employee")
+class RequestFundForm(Form):
+    amount = StringField('department', [validators.Length(min=1, max=50)])
+    reason = StringField('Username', [validators.Length(min=4, max=200)])
+
+@app.route("/employee", methods=['GET', 'POST'])
 def employee():
+    if request.method == 'POST':
+        form = RequestFundForm(request.form)
+        if form.validate():
+            # initialize the fields
+            amount = form.amount.data
+            reason = form.reason.data
+            now = datetime.now()
+            formatted_date = now.strftime('%Y-%m-%d')
+            # Create cursor
+            cur = mysql.connection.cursor()
+
+            # Create the request in table
+            cur.execute("INSERT INTO Requests(user_id, amount, data, reason, status) VALUES(%s, %s, %s, %s, %s)",
+                        (session['user_id'], amount, formatted_date, reason, 'ceo_not_notified'))
+
+            # commit to DB
+            mysql.connection.commit()
+
+            # close connection
+            cur.close()
+
+            return render_template('employee.html', company=session['company'])
+
     if 'username' in session:
         return render_template('employee.html', company=session['company'])
     # TODO: (IAN) render a not logged in page
@@ -189,6 +216,8 @@ def login():
                 result = cur.execute(query)
                 data = cur.fetchone()
                 session['company'] = data['company_name']
+                session['company_id'] = data['company_id']
+                session['user_id'] = data['user_id']
                 app.logger.info('PASSWORD MATCHED')
                 if role == 'ceo':
                     return redirect("/ceo")
