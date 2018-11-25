@@ -56,6 +56,23 @@ function showViewAllDeptHistory(callback) {
     $('.content-view-department-history').fadeIn(callback);
 }
 
+
+function reviewDeptRequestsClicked() {
+    hideInitialContent(showReviewDeptRequests);
+}
+
+function showReviewDeptRequests(callback) {
+    $('.content-review-department-requests').fadeIn(callback);
+}
+
+function distributeTotalRevenueClicked() {
+    hideInitialContent(showDistributeTotalRevenue);
+}
+
+function showDistributeTotalRevenue(callback) {
+    $('.content-show-distribute-total-revenue').fadeIn(callback);
+}
+
 // Functions for the employee page
 function requestFundsClicked() {
     console.log('wacha');
@@ -65,3 +82,4 @@ function requestFundsClicked() {
 function showRequestFunds(callback) {
     $('.content-request-funds').fadeIn(callback);
 }
+
