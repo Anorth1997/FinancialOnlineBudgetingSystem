@@ -190,14 +190,6 @@ li {
     font-family:Papyrus;
 }
 
-.content-create-department {
-	display: none;
-}
-
-.content-review-financial-request {
-    display: none;
-}
-
 /* CSS for the formatting of the forms */
 .input-label {
     color: white;
@@ -259,3 +251,4 @@ li {
 .test {
     display: block;
 }
+
