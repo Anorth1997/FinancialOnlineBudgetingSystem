@@ -1,21 +1,20 @@
-from flask import Flask, render_template, redirect, url_for, request, logging, flash
+from flask import Flask, render_template, redirect, url_for, request, logging, flash, session
 from flask_mysqldb import MySQL
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
-
-
-
+from os import urandom
 
 app = Flask(__name__)
+app.secret_key = urandom(16)
 
-#config MySQL
+# Config MySQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'FOBS'
 app.config['MYSQL_PASSWORD'] = 'fobs'
 app.config['MYSQL_DB'] = 'FOBS'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
-#init MYSQL
+# Init MYSQL
 mysql = MySQL(app)
 
 @app.route("/", methods=['GET', 'POST'])
@@ -39,15 +38,25 @@ def add_header(r):
 
 @app.route("/ceo")
 def ceo():
-    return render_template('ceo.html')
+    if 'username' in session:
+        return render_template('ceo.html')
+    # TODO: (IAN) render a not logged in page
+    return render_template('homePage.html')
 
 @app.route("/financial")
 def financial():
-    return render_template('financial.html')
+    if 'username' in session:
+        return render_template('financial.html')
+    # TODO: (IAN) render a not logged in page
+    return render_template('homePage.html')
 
 @app.route("/employee")
 def employee():
-    return render_template('employee.html')
+    if 'username' in session:
+        return render_template('employee.html')
+    # TODO: (IAN) render a not logged in page
+    return render_template('homePage.html')
+    
 
 class RegisterForm(Form):
     company = StringField('Company', [validators.Length(min=4, max=50)])
@@ -62,15 +71,27 @@ class RegisterForm(Form):
 def register():
     form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
-        company = form.company.data
-        username = form.username.data
-        password = sha256_crypt.encrypt(str(form.password.data))
-        role = "ceo"
         # Create cursor
         cur = mysql.connection.cursor()
 
-        cur.execute("INSERT INTO users(username, password, company, role) VALUES(%s, %s, %s, %s)",
-                    (username, password, company, role))
+        # CREATE A NEW COMPANY FIRST
+        company_name = form.company.data
+        cur.execute("INSERT INTO company(company_name) VALUES(%s)", [company_name])
+
+        # GET THE ID OF THE CREATED COMPANY
+        company_id = -1
+        result = cur.execute("SELECT * FROM company WHERE company_name = %s", [company_name])
+        if result > 0:
+            # Get stored hash
+            data = cur.fetchone()
+            company_id = int(data['company_id'])
+
+        username = form.username.data
+        password = sha256_crypt.encrypt(str(form.password.data))
+        role = "ceo"
+
+        cur.execute("INSERT INTO users(username, password, company_id, role) VALUES(%s, %s, %s, %s)",
+                    (username, password, company_id, role))
 
         # commit to DB
         mysql.connection.commit()
@@ -91,10 +112,8 @@ def login():
     if request.method == 'POST':
 
         # Get Form Fields
-
         username = request.form['username']
         password_candidate = request.form['password']
-        input_company = request.form['company']
 
         if username == 'admin' and password_candidate == 'admin':
             return redirect("/ceo")
@@ -103,16 +122,17 @@ def login():
         cur = mysql.connection.cursor()
 
         # Get user by username
-        result = cur.execute("SELECT * FROM users WHERE company = %s AND username = %s", [input_company, username])
+        result = cur.execute("SELECT * FROM users WHERE username = %s", [username])
 
         if result > 0:
-            #Get stored hash
+            # Get stored hash
             data = cur.fetchone()
             password = data['password']
             role = data['role']
 
             # Compare Passwords
             if sha256_crypt.verify(password_candidate, password):
+                session['username'] = data['username']
                 app.logger.info('PASSWORD MATCHED')
                 if role == 'ceo':
                     return redirect("/ceo")

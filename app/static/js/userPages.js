@@ -1,15 +1,38 @@
 function createDptClicked() {
-    hideInitialContent(showCreateDepartmentContent);
+    hideAllContent();
+    $('.content-create-department').show();
+
 }
+
+function createDpt() {
+    window.alert("Hello!");
+}
+
+function setRevenue() {
+    prompt("What do you want?");
+    alert("Hello!");
+}
+
 function hideInitialContent(callback) {
     $('.content-initial').fadeOut(callback);
 }
+
+function hideAllContent(callback) {
+    hideInitialContent();
+    $('.content-create-department').hide();
+    $('.content-set-total-revenue').hide();
+    $('.content-review-financial-request').hide();
+    $('.content-view-department-history').hide();
+
+}
+
 function showCreateDepartmentContent(callback) {
     $('.content-create-department').fadeIn(callback);
 }
 
 function setTotalRevenueClicked() {
-    hideInitialContent(showSetTotalRevenue);
+    hideAllContent();
+    $('.content-set-total-revenue').show();
 }
 
 function showSetTotalRevenue(callback) {
@@ -17,7 +40,8 @@ function showSetTotalRevenue(callback) {
 }
 
 function reviewFDRequestsClicked() {
-    hideInitialContent(showReviewFDRequest);
+    hideAllContent();
+    $('.content-review-financial-request').show();
 }
 
 function showReviewFDRequest(callback) {
@@ -25,13 +49,12 @@ function showReviewFDRequest(callback) {
 }
 
 function ViewAllDepartmentHistoryClicked() {
-    hideInitialContent(showViewAllDeptHistory);
+    hideAllContent();
 }
 
 function showViewAllDeptHistory(callback) {
     $('.content-view-department-history').fadeIn(callback);
 }
-
 
 // Functions for the employee page
 function requestFundsClicked() {
