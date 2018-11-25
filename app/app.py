@@ -71,27 +71,24 @@ class RegisterForm(Form):
 def register():
     form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
-        # Create cursor
-        cur = mysql.connection.cursor()
-
-        # CREATE A NEW COMPANY FIRST
-        company_name = form.company.data
-        cur.execute("INSERT INTO company(company_name) VALUES(%s)", [company_name])
-
-        # GET THE ID OF THE CREATED COMPANY
-        company_id = -1
-        result = cur.execute("SELECT * FROM company WHERE company_name = %s", [company_name])
-        if result > 0:
-            # Get stored hash
-            data = cur.fetchone()
-            company_id = int(data['company_id'])
-
+        # take the user information from front-end first
+        company = form.company.data
         username = form.username.data
         password = sha256_crypt.encrypt(str(form.password.data))
         role = "ceo"
+        null = None
+        # Create cursor
+        cur = mysql.connection.cursor()
 
+        ## Create the company instance in company table
+        cur.execute("INSERT INTO Company(company_name, total_revenue_goal) VALUES(%s, %s)", (company, null))
+        cur.execute("SELECT company_id FROM Company WHERE company_name = %s", [company])
+        data = cur.fetchone()
+        mysql.connection.commit()
+
+        ## Create the ceo in user
         cur.execute("INSERT INTO users(username, password, company_id, role) VALUES(%s, %s, %s, %s)",
-                    (username, password, company_id, role))
+                    (username, password, data['company_id'], role))
 
         # commit to DB
         mysql.connection.commit()

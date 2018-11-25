@@ -174,3 +174,11 @@ li {
 .content-create-department {
 	display: none;
 }
+
+.content-review-financial-request {
+    display: none;
+}
+
+.content-set-total-revenue {
+    display: none;
+}
