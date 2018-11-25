@@ -31,3 +31,14 @@ function ViewAllDepartmentHistoryClicked() {
 function showViewAllDeptHistory(callback) {
     $('.content-view-department-history').fadeIn(callback);
 }
+
+
+// Functions for the employee page
+function requestFundsClicked() {
+    console.log('wacha');
+    hideInitialContent(showRequestFunds);
+}
+
+function showRequestFunds(callback) {
+    $('.content-request-funds').fadeIn(callback);
+}
