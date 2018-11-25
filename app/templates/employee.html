@@ -30,15 +30,13 @@
             <form action="" method="post">
                 <div class="input-container">
                 <label class="input-amount input-label" for="amount">Request amount</label>
-                <span class="input"><span class="dollar-sign">&#36;</span> <input class="input-dollar-box" type="number" placeholder="Enter request amount" name="amount" value="{{
-                        request.form.request }}" required></span>
+                <span class="input"><span class="dollar-sign">&#36;</span> <input class="input-dollar-box" type="number" placeholder="Enter request amount" name="requestAmount" value="{{
+                        request.form.requestAmount }}" required></span>
                 </div>
 
                 <div class="input-container">
                 <label class="input-reason input-label" for="reason">Request reason</label>
-                <!--<input class="input-text-box-reason input-box" type="text" placeholder="Enter reason" name="reason" value="{{
-                        request.form.reason }}" required>
-                -->
+
                 <textarea rows="4" cols="50" class="input-text-box-reason input-box" placeholder="Enter reason" name="reason" value="{{
                 request.form.reason }}" required></textarea>
                 </div>
@@ -54,8 +52,8 @@
             <div class="form-div" style="text-align: center">
             <form action="" method="post">
                 <div class="input-container">
-                <label class="input-amount input-label" for="amount">Expected Budget</label>
-                <span class="input"><span class="dollar-sign">&#36;</span> <input class="input-dollar-box" type="number" placeholder="Enter request amount" name="amount" value="{{
+                <label class="input-amount input-label" for="expectedBudget">Expected Budget</label>
+                <span class="input"><span class="dollar-sign">&#36;</span> <input class="input-dollar-box" type="number" placeholder="Enter request amount" name="expectedBudget" value="{{
                         request.form.request }}" required></span>
                 </div>
                 <input class="button" type="submit" value="Send Request">
@@ -68,32 +66,21 @@
             <div class="form-div" style="text-align: center">
             <form action="" method="post">
                 <div class="input-container">
-
-                    <label class="input-amount input-label" for="number_of_expenses">Number of Expenses</label>
-                    <input class="input-box" type="number" placeholder="Number of Expenses" name="number_of_expenses" value="{{
-                            request.form.numRequests }}" required>
-
                     <table class="expenses-table">
                         <tr>
                             <th>Purpose</th>
                             <th>Cost</th>
                         </tr>
                         <tr>
-                            <td><input class="input-dollar-box" type="number" placeholder="Enter request amount" name="amount" value="{{
-                            request.form.request }}" required></td>
-                            <td><input class="input-dollar-box" type="number" placeholder="Enter request amount" name="amount" value="{{
-                            request.form.request }}" required></td>
+                            <td><input class="input-box" type="text" placeholder="Enter request purpose" name="purpose" value="{{
+                            request.form.purpose }}" required></td>
+                            <td><span class="input"><span class="dollar-sign">&#36;</span> <input class="input-dollar-box" type="number" placeholder="Enter request amount" name="amount" value="{{
+                            request.form.amount }}" required></span></td>
                         </tr>
                     </table>
-                    
-
-                    <!-- <label class="input-amount input-label" for="amount"></label>
-                    <span class="input"><span class="dollar-sign">&#36;</span> <input class="input-dollar-box" type="number" placeholder="Enter request amount" name="amount" value="{{
-                            request.form.request }}" required></span>
-                    -->
                 </div>
                 
-                <input class="button" type="submit" value="Send Request">
+                <input class="button" type="submit" value="Enter">
             </form>
             </div>
         </div>
