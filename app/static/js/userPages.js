@@ -13,6 +13,10 @@ function setRevenue() {
     alert("Hello!");
 }
 
+function showInitialContent(callback) {
+    $('.content-initial').fadeIn(callback);
+}
+
 function hideInitialContent(callback) {
     $('.content-initial').fadeOut(callback);
 }

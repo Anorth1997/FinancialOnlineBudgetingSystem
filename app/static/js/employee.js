@@ -11,6 +11,15 @@ function fadeAllEmployee(callBack) {
     }
 }
 
+function graphButtonClicked() {
+    $('.graph-button').fadeOut();
+    fadeAllEmployee(showInitialContent);
+}
+
+function fadeInGraphButton(callback) {
+    $('.graph-button').fadeIn(callback);
+}
+
 function requestFundsClicked() {
     fadeAllEmployee(showRequestFunds);
 }
@@ -23,14 +32,17 @@ function addExpensesClicked() {
     fadeAllEmployee(showAddExpenses);
 }
 
-function showAddExpenses() {
+function showAddExpenses(callback) {
     $('.content-add-expenses').fadeIn();
+    fadeInGraphButton()
 }
 
-function showExpectedBudget() {
+function showExpectedBudget(callback) {
     $('.content-set-expected-budget').fadeIn();
+    fadeInGraphButton()
 }
 
-function showRequestFunds() {
+function showRequestFunds(callback) {
     $('.content-request-funds').fadeIn();
+    fadeInGraphButton()
 }

@@ -147,6 +147,23 @@ li {
     position:relative;
 }
 
+.graph-button {
+    display: none;
+    border:1px solid rgb(20, 20, 20);
+    border-radius: 10px;
+    background-color:rgb(145, 213, 89);
+	font-size:17px;
+    /* line-height:30px; */
+    margin-top: 25px;
+	margin-left: 25px;
+	/* display:block; */
+	height:37px;
+	width:140px;
+	cursor:pointer;
+	text-align:center;
+    position:absolute;
+}
+
 .button1 {
     border:1px solid rgb(20, 20, 20);
     border-radius: 10px;
@@ -233,4 +250,8 @@ li {
 
 .content-set-total-revenue {
     display: none;
+}
+
+input[type=submit] {
+    color: white;
 }
