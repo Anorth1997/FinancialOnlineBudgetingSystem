@@ -16,10 +16,6 @@ function graphButtonClicked() {
     fadeAllEmployee(showInitialContent);
 }
 
-function fadeInGraphButton(callback) {
-    $('.graph-button').fadeIn(callback);
-}
-
 function requestFundsClicked() {
     fadeAllEmployee(showRequestFunds);
 }

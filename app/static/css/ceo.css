@@ -1,0 +1,27 @@
+.content-create-department {
+    padding-top: 10px;
+    height: 100%;
+    text-align: center;
+    display: none;
+}
+
+.content-set-total-revenue {
+    padding-top: 10px;
+    height: 100%;
+    text-align: center;
+    display: none;
+}
+
+.content-review-financial-request {
+    padding-top: 10px;
+    height: 100%;
+    text-align: center;
+    display: none;
+}
+
+.input-box-ceo {
+    display: block;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    width: 400px;
+}

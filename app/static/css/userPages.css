@@ -207,14 +207,6 @@ li {
     font-family:Papyrus;
 }
 
-.content-create-department {
-	display: none;
-}
-
-.content-review-financial-request {
-    display: none;
-}
-
 /* CSS for the formatting of the forms */
 .input-label {
     color: white;
@@ -240,16 +232,13 @@ li {
     text-align: left;
     margin-top: 7%;
     min-width: 400px;
+    /* background-color: blue; */
 }
 
 .content-title {
     /* margin-top: 5px; */
     color: white;
     font-weight: 400;
-}
-
-.content-set-total-revenue {
-    display: none;
 }
 
 input[type=submit] {
