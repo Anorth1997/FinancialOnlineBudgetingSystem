@@ -240,7 +240,8 @@ def view_deptartments():
     items = []
     for row in result:
 	items.append({'Department_name': row[0], 'Budget': row[1], 'Revenue_goal': row[2], 'Actual_expenses': row[3]})
-    return items
+    dump = json.dump(items)
+    return dump
     
 
 if __name__ == '__main__':
