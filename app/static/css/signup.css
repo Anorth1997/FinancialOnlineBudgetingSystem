@@ -10,6 +10,29 @@ body {
     position: relative;
 }
 
+.bg {
+    display: inline-block;
+    background-image: url("../images/bg.jpg");
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.white-card {
+    position: absolute;
+    background-color: rgb(33, 32, 36);
+    border-radius: 5px;
+    height: 600px;
+    width: 600px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .3);
+    text-align: center;
+}
+
 .logo-text {
     font-weight: 300;
     font-family: Sans-serif;
@@ -21,6 +44,40 @@ body {
     color: white;
 }
 
-.logo-bottom-text {
+.input-container {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
 
+.input-name-text {
+    color: white;
+    font-weight: 400;
+}
+
+.input-text-box {
+    height: 25px;
+}
+
+.button {
+    border:1px solid rgb(20, 20, 20);
+    border-radius: 5px;
+	background-color:#4dff4d;
+	line-height:30px;
+	margin-bottom:100px;
+	display:block;
+	height:10%;
+	width:50%;
+	cursor:pointer;
+	margin-top:5%;
+	margin-bottom:5%;
+	text-align:center;
+    position:relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content-create-company {
+    display: none;
 }

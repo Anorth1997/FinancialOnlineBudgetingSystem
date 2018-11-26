@@ -36,6 +36,11 @@ class User(UserMixin, db.Model):
 
 class CEO(User):
 
+    def __init__(self, username, password, company, name):
+	super().__init__(self, username, password, company)
+	self.name = name
+	self.dep_req = [] # department requests exceeding threshold: cannot be handled by FD
+
     def create_financial_department(self, fd_username, fd_password):
         if self.company.Financial_Department != null:
             raise Exception("FD already exists for this company!")
@@ -47,23 +52,68 @@ class CEO(User):
         d = Deparment_head(dpt_name, dpt_username, dpt_password)
         self.company.department_list.append(d)
 
+    def set_total_revenue(self, company, tr):
+        company.set_revenue(tr)
+
 
 class FinancialDepartmentHead(User):
-    pass
 
+    def __init__(self, name, username, password, company):
+	super().__init__(username, password, company)
+	self.name = name
+	self.budget_requests = []
+
+    def new_head_incoming(new_name):
+	self,name = new_name
+
+    def distribute_total_revenue(self, expected_revenue_set):  ## modifies the expected_revenue for each department
+        """
+
+        :param expected_revenue_set: dictionary {DepartmentHead.name: int}
+        :return: None
+        """
+	for dpt in expected_revenue_set:
+	    if dpt not in self.company.departments:
+		raise Exception("FD trying to set revenue for a department which does not exist")
+	    dpt.budget = expected_revenue_set.get(dpt)
+        return None
+
+    def review_budget_request():
+	for item in this.budget_requests:
+	    print("Department: %s, Budget demanded: %d, Reason: %s".format(budget_request[0], budget_request[1], budget_request[2])) #prints the amount required by the department as 
+																     #well as reason for it. 
+	    response = input("0 for decline, 1 for approve.")
+	    # figure out how to set budget
 
 class DepartmentHead(User):
 
-    def __init__(self, name, username, password, company):
+    def __init__(self, name, dptname, username, password, company):
         super().__init__(username, password, company)
+	self.dptname = dptname
         self.name = name
-        
+        self.expected_revenue = 0
+        self.budget = 0
+        self.requests = []
         
     def submit_request(amount, text):
         #create a request here
         request = []
+	request[0] = dptname
+	request[1] = input("Amount to request: ")
+	request[2] = input("Reason(s) for this request: ")
         if !(amount > self.company.threshold): # company needs threshold field
             self.company.Financial_Department.requests.append(request) # FD needs request array
         else:
             self.company.CEO.dep_req.append(request) # CEO needs another request array to handle the requests exceeding threshold
-        return 0 #maybe for error checking?        
+        return 0 #maybe for error checking?
+
+    def throw_out_request(request):
+	# if we decide we don't want it anymore?
+	pass
+
+
+    def set_expected_budget(self):
+        pass
+
+    def view_department_history(self):
+        pass

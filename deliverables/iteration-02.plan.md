@@ -12,11 +12,18 @@ https://drive.google.com/file/d/18LpdeNOklxMpakRvVFWfQpYl2nU2MLLr/view?fbclid=Iw
 
 #### Roles & responsibilities
 
+<<<<<<< HEAD
 We have assigned a product manager and a scrum lord to guide the group. The product manager ensures that the project does not deviate too much from the final product while also reviewing additional features that the group wishes to implement. The scrum lord assigns tasks and overviews them to gauge progress and make sure that we are on schedule.
 * Ziyao Chen: Scrum Lord, back-end developer 
     * company.py, user.py
     * dummy database for users
 * Amney El Azarif: Product Manager, back-end developer
+=======
+We currently have a product manager and a scrum lord. The product manager ensures that the project does not deviate too much from the final product while also reviewing additional features that the group wishes to implement. The scrum lord assigns tasks and overviews them to gauge progress and make sure that we are on schedule.
+* Ziyao Chen: Scrum Lord, back-end developer 
+    * company.py, user.py
+* Amney El Azarif: Product Manger, back-end developer
+>>>>>>> 51a5beee05b5c1ba1a0664ce2add70ff7c63ae94
     * company.py, user.py, app.py
 * Jason Zheng: front-end developer & back-end developer
     * user.py
@@ -27,20 +34,34 @@ We have assigned a product manager and a scrum lord to guide the group. The prod
     * financial page layout
     * employee page layout
 * David Kwon: front-end developer
+<<<<<<< HEAD
     * homepage layout
     * dummy graphs
 * Calvin Lu: front-end developer
     * user-page layout
+=======
+    * homepage
+    * dummy graphs
+* Calvin Lu: front-end developer
+    * user page layout
+>>>>>>> 51a5beee05b5c1ba1a0664ce2add70ff7c63ae94
 
 #### Events
 
 * Oct 23rd, 10am, in-person:
+<<<<<<< HEAD
     * review meeting, coding session
     * front-end code review about html, css and js.
     * discussed user stories and some rough back-end logic
 * Oct 27th, 2pm, in-person:
     * planning meeting, weekly scrums
     * discussion on presentable artifacts
+=======
+    * front-end code review about html, css and js.
+    * discussed user stories and rough back-end logic
+* Oct 27th, 2pm, in-person:
+    * Discussion on presentable artifacts
+>>>>>>> 51a5beee05b5c1ba1a0664ce2add70ff7c63ae94
     * implemented basic functions in back-end and front-end
     * assigned specific roles and tasks to each person
 
@@ -69,5 +90,9 @@ We have assigned a product manager and a scrum lord to guide the group. The prod
 * Build a static website with basic pages to present a mock-up of our final product.
 * Image mock-ups of each website page to use as reference during development.
 * A video to present an interactive experience.
+<<<<<<< HEAD
 * User story for this project. The complete story is in user.md file.
+=======
+* User story for this project. The complete story is in User.md file.
+>>>>>>> 51a5beee05b5c1ba1a0664ce2add70ff7c63ae94
 

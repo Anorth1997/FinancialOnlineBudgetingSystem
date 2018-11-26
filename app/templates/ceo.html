@@ -2,6 +2,117 @@
 
 {% block title %}CEO{% endblock %}
 
+{% block js %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/graph.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/userPages.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/ceo.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ceo.css') }}">
+{% endblock %}
+
 {% block content %}
-<span class="welcome-text">Hello, {CEO name here}!</span
+
+    <div class="graph-frame">
+        
+        <div class="graph-button" onclick="graphButtonClicked()"> <span class="button-text"> Back to Graph </span> </div>
+
+        <div class="row content-initial">
+            <div class="column">
+                <h1 class="graph-title-text">Total Revenue: $456 789</h1>
+                <canvas class="graph" width="400" height="400" id="pie"></canvas>
+            </div>
+            <div class="column">
+                <h1 class="graph-title-text">Budget Overview</h1>
+                <canvas class="graph" width="400" height="400" id="bar"></canvas>
+            </div>
+        </div>
+
+
+        <!-- Creating department -->
+        <div class="content-create-department">
+            <h1 class="content-title">Create Department</h1>
+            <div class="form-div">
+                <form action="" method="post">
+                    <label class="input-label" for="dname">Department Name</label>
+                    <input class="input-box-ceo" type="text" placeholder="Enter Department Name" name="department" value="{{
+                            request.form.department }}" required>
+
+                    <label class="input-label" for="duname">Department Username</label>
+                    <input class="input-box-ceo" type="text" placeholder="Enter Department Username" name="username" value="{{
+                            request.form.username }}" required>
+
+                    <label class="input-label" for="dpass">Department Password</label>
+                    <input class="input-box-ceo" type="password" placeholder="Enter Department Password" name="password" value="{{
+                            request.form.password }}" required>
+
+                    <label class="input-label" for="confirm">Confirm Password</label>
+                    <input class="input-box-ceo" type="password" placeholder="Confirm password" name="confirm" value="{{
+                            request.form.confirm}}" required>
+
+                    <input class="button content-create-department" type="submit" value="Sign Up">
+                </form>
+            </div>
+        </div>
+
+        <!-- Setting Total Revenue-->
+        <div class="content-set-total-revenue">
+            <h1 class="content-title">Set Total Revenue</h1>
+            <div class="form-div">
+                <form action="" method="post">
+                    <label class="input-label" for="total">Total Revenue</label>
+                    <input class="input-box-ceo" type="number" placeholder="Enter Total Revenue" name="total" required>
+                    <input class="button" type="submit" value="Set Revenue">
+                </form>
+            </div>
+        </div>
+        
+        <!-- Since we have not decided upon how this will work, below is just some thoughts: could use checkboxes-->
+        <div class="content-review-financial-request">
+            <h1 class="content-title">Review Financial Requests</h1>
+            <div class="form-div">
+                <label class="input-name-text" for="total">Amount Allocate</label>    
+                <input class="input-text-box" type="text" placeholder="Enter Amount" name="total" required>
+
+                <label class="input-name-text" for="approve">Approve</label>
+                <input class="input-text-box" type="text" placeholder="Enter Response" name="approve" required>
+
+                <label class="input-name-text" for="decline">Decline</label>
+                <input class="input-text-box" type="text" placeholder="Enter Response" name="decline" required>
+
+                <label class="input-name-text" for="commments">Comments</label>
+                <input class="input-text-box" type="text" placeholder="Enter Optional Comments" name="comments">
+
+                <span class="button-text">Submit</span>
+
+                <div class="button">
+                    <span class="button-text">Next</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Viewing all department expense history -->
+        <div class="content-view-department-history">
+        </div>
+
+    </div> <!-- This closes the graph-frame -->
+
+    <div class="name-box">
+        {{ username }}, <br /> <span style="font-family:Georgia"> Chief Executive Officer </span>
+    </div>
+
+    <div class="overview-buttons-frame">
+        <div class="button" onclick="createDptClicked()">
+            <span class="button-text"> Create Department</span>
+        </div>
+
+        <div class="button" onclick="setTotalRevenueClicked()">
+            <span class="button-text">Set Total Revenue </span>
+        </div>
+        <div class="button" onclick="reviewFDRequestsClicked()">
+            <span class="button-text">Review Financial Department Requests</span>
+        </div>
+        <div class="button" onclick="viewAllDepartmentHistoryClicked()"> 
+            <span class="button-text"> View All Department History </span>
+        </div>
+    </div>
 {% endblock %}
