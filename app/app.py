@@ -114,7 +114,7 @@ def employee():
             amount = form.amount.data
             reason = form.reason.data
             now = datetime.now()
-            formatted_date = now.strftime('%Y-%m-%d')
+            formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
             # Create cursor
             cur = mysql.connection.cursor()
 
