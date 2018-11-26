@@ -57,7 +57,7 @@ Create the database FOBS with the following command:
 Work with the database FOBS:  
 > mysql> USE FOBS;
 
-Create the tables listed in the [schema](./artifacts/schema.md), with these commands:
+Create the tables listed in the [schema](./deliverables/artifacts/schema.md), with these commands:
 > mysql> CREATE TABLE Company (company_id INT(10) PRIMARY KEY AUTO_INCREMENT, company_name VARCHAR(100), total_revenue_goal INT);
 <br>
 
