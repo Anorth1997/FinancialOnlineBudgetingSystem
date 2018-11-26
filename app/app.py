@@ -232,5 +232,16 @@ def login():
 
     return render_template('login.html', error=error)
 
+@app.route('/departments', methods=['GET', 'POST'])
+def view_deptartments():
+    cur = mysql.connection.cursor()
+    result = cur.execute("SELECT roles as Dept_name, Departments.budget, Departments.revenue_goal, Departments.actual_expenses" + 
+			"FROM Departments JOIN Users on Department.user_id = Users.user_id")
+    items = []
+    for row in result:
+	items.append({'Department_name': row[0], 'Budget': row[1], 'Revenue_goal': row[2], 'Actual_expenses': row[3]})
+    return items
+    
+
 if __name__ == '__main__':
     app.run(debug=True)
