@@ -97,7 +97,7 @@ def ceo():
 @app.route("/financial")
 def financial():
     if 'username' in session:
-        return render_template('financial.html', company=session['company'])
+        return render_template('financial.html', username=session['username'], company=session['company'])
     # TODO: (IAN) render a not logged in page
     return render_template('homePage.html')
 
@@ -128,10 +128,10 @@ def employee():
             # close connection
             cur.close()
 
-            return render_template('employee.html', company=session['company'])
+            return render_template('employee.html', username=session['username'], company=session['company'])
 
     if 'username' in session:
-        return render_template('employee.html', company=session['company'])
+        return render_template('employee.html', username=session['username'], company=session['company'])
     # TODO: (IAN) render a not logged in page
     return render_template('homePage.html')
 
