@@ -27,42 +27,37 @@
         <form action="" method="post">
             <div class="input-container content-create-department">
             <label class="input-name-text" for="dname">Department Name</label>
-            <input class="input-text-box" type="text" placeholder="Enter Department Name" name="dname" required>
+            <input class="input-text-box" type="text" placeholder="Enter Department Name" name="department" value="{{
+                    request.form.department }}" required>
             </div>
             <div class="input container content-create-department">
             <label class="input-name-text" for="duname">Department Username</label>
-            <input class="input-text-box" type="text" placeholder="Enter Department Username" name="duname" required>
+            <input class="input-text-box" type="text" placeholder="Enter Department Username" name="username" value="{{
+                    request.form.username }}" required>
             </div>
             <div class="input-container content-create-department">
             <label class="input-name-text" for="dpass">Department Password</label>
-            <input class="input-text-box" type="text" placeholder="Enter Department Password" name="dpass" required>
+            <input class="input-text-box" type="password" placeholder="Enter Department Password" name="password" value="{{
+                    request.form.password }}" required>
             </div>
-            <div class="button content-create-department">
-            <span class="button-text">Create</span>
+            <div class="input-container content-create-department">
+            <label class="input-name-text" for="confirm">Confirm Password</label>
+            <input class="input-text-box" type="password" placeholder="Confirm password" name="confirm" value="{{
+                    request.form.confirm}}" required>
             </div>
+
+            <input class="button content-create-department" type="submit" value="Sign Up">
         </form>
         
         <!-- Setting Total Revenue-->
-        <center><div class="input-container content-set-total-revenue">
-        <label class="input-name-text" for="total">Total Revenue</label>    
-        <input class="input-text-box" type="text" placeholder="Enter Total Revenue" name="total" required>
-        </div>
-        <div class="input container content-set-total-revenue">
-        <label class="input-name-text" for="d1">Expected Revenue D1</label>
-        <input class="input-text-box" type="text" placeholder="Enter Expected Revenue" name="d1" required>
-        </div>
-        <div class="input container content-set-total-revenue">
-        <label class="input-name-text" for="d2">Expected Revenue D2</label>
-        <input class="input-text-box" type="text" placeholder="Enter Expected Revenue" name="d2" required>
-        </div>
-        <div class="input-container content-set-total-revenue">
-        <label class="input-name-text" for="d3">Expected Revenue D3</label>
-        <input class="input-text-box" type="text" placeholder="Enter Expected Revenue" name="d3" required>
-        </div>
-        <div class="button content-set-total-revenue" onclick="setRevenue()">
-        <span class="button-text">Set Revenue</span>
-        </div>
-        </center>
+        <form action="" method="post">
+            <center><div class="input-container content-set-total-revenue">
+            <label class="input-name-text" for="total">Total Revenue</label>
+            <input class="input-text-box" type="text" placeholder="Enter Total Revenue" name="total" required>
+            </div>
+            <input class="button content-set-total-revenue" type="submit" value="Set Revenue">
+            </center>
+        </form>
         
         <!-- Since we have not decided upon how this will work, below is just some thoughts: could use checkboxes-->
         <center><div class="inputcontainer content-review-financial-request">
@@ -92,7 +87,7 @@
         </div> <!-- This closes the graph-frame -->
 
     <div class="name-box">
-        Patrick Star, <br /> <span style="font-family:Georgia"> Chief Executive Officer </span>
+        {{ username }}, <br /> <span style="font-family:Georgia"> Chief Executive Officer </span>
     </div>
 
     <div class="overview-buttons-frame">
