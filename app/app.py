@@ -262,8 +262,6 @@ def department_expenses():
     if result == 0:
         return "No department found with user_id"
     data = cur.fetchone()
-    print(query)
-    print(data)
     budget = data["budget"]
     # Get the expense history from the department
     query = "SELECT * FROM expense_history WHERE user_id = " + str(session["user_id"])
@@ -276,6 +274,42 @@ def department_expenses():
         item["amount"] = row["amount"]
         item["exp_id"] = row["user_id"]
         result_data["items"].append(item)
+    return jsonify(result_data)
+
+@app.route('/expenses/overview', methods=['GET'])
+def overview_expenses():
+    # Create cursor
+    cur = mysql.connection.cursor()
+    # Get the list of all departments in the company
+    query = "SELECT * FROM users WHERE company_id = " + str(session["company_id"])
+    cur.execute(query)
+    result_set = cur.fetchall()
+    department_users = []
+    for item in result_set:
+        department_users.append((item["user_id"], item["role"]))
+    # Construct the result department data
+    result_data = {"departments": []}
+    for department in department_users:
+        user_id, role = department
+        # Get the budget of the department
+        query = "SELECT * FROM departments WHERE user_id = " + str(user_id)
+        result = cur.execute(query)
+        if result == 0:
+            return "No department found with user_id"
+        data = cur.fetchone()
+        budget = data["budget"]
+        # Get the expense history from the department
+        query = "SELECT * FROM expense_history WHERE user_id = " + str(user_id)
+        cur.execute(query)
+        result_set = cur.fetchall()
+        department_data = {"role": role, "items": [], "budget": budget}
+        for row in result_set:
+            item = {}
+            item["purpose"] = row["purpose"]
+            item["amount"] = row["amount"]
+            item["exp_id"] = row["user_id"]
+            department_data["items"].append(item)
+        result_data["departments"].append(department_data)
     return jsonify(result_data)
 
 if __name__ == '__main__':
