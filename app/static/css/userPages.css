@@ -147,6 +147,23 @@ li {
     position:relative;
 }
 
+.graph-button {
+    display: none;
+    border:1px solid rgb(20, 20, 20);
+    border-radius: 10px;
+    background-color:rgb(145, 213, 89);
+	font-size:17px;
+    /* line-height:30px; */
+    margin-top: 25px;
+	margin-left: 25px;
+	/* display:block; */
+	height:37px;
+	width:140px;
+	cursor:pointer;
+	text-align:center;
+    position:absolute;
+}
+
 .button1 {
     border:1px solid rgb(20, 20, 20);
     border-radius: 10px;
@@ -199,6 +216,8 @@ li {
 
 .input-box {
     display: block;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 20px;
     margin-top: 5px;
 }
@@ -212,8 +231,8 @@ li {
     display: inline-block;
     text-align: left;
     margin-top: 7%;
-    /* margin-left: auto;
-    margin-right: auto; */
+    min-width: 400px;
+    /* background-color: blue; */
 }
 
 .content-title {
@@ -222,47 +241,6 @@ li {
     font-weight: 400;
 }
 
-
-
-
-/* CSS for the Employee page */
-
-.input-text-box-reason {
-    width: 500px;
-    height: 100px;
-}
-
-.content-set-total-revenue {
-    display: none;
-}
-
-.content-review-department-requests {
-    display: none;
-}
-
-.request-list-box {
-    position:absolute;
-    border: 5px solid black;
-    background-color:rgb(38, 208, 83);
-    height:80%;
-    width:90%;
-    left:5%;
-    top:10%;
-}
-
-.dollar-sign {
+input[type=submit] {
     color: white;
-    font-weight: 400;
 }
-
-.content-request-funds {
-    padding-top: 10px;
-    height: 100%;
-    text-align: center;
-    display: none;
-}
-
-.test {
-    display: block;
-}
-
