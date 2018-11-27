@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, logging, flash, session
+from flask import Flask, render_template, redirect, url_for, request, logging, flash, session, jsonify
 from flask_mysqldb import MySQL
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
@@ -17,8 +17,6 @@ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 # Init MYSQL
 mysql = MySQL(app)
-
-
 
 @app.route("/", methods=['GET', 'POST'])
 def main():
@@ -232,21 +230,31 @@ def login():
 
     return render_template('login.html', error=error)
 
-<<<<<<< HEAD
-
-=======
-@app.route('/departments', methods=['GET', 'POST'])
-def view_deptartments():
+@app.route('/expenses/department', methods=['GET'])
+def department_expenses():
+    # Create cursor
     cur = mysql.connection.cursor()
-    result = cur.execute("SELECT roles as Dept_name, Departments.budget, Departments.revenue_goal, Departments.actual_expenses" + 
-			"FROM Departments JOIN Users on Department.user_id = Users.user_id")
-    items = []
-    for row in result:
-	items.append({'Department_name': row[0], 'Budget': row[1], 'Revenue_goal': row[2], 'Actual_expenses': row[3]})
-    dump = json.dump(items)
-    return dump
->>>>>>> ceea68865605e321b885b5df0c7e11d1734cfde6
-    
+    # Get the budget of the department
+    query = "SELECT * FROM departments WHERE user_id = " + str(session["user_id"])
+    result = cur.execute(query)
+    if result == 0:
+        return "No department found with user_id"
+    data = cur.fetchone()
+    print(query)
+    print(data)
+    budget = data["budget"]
+    # Get the expense history from the department
+    query = "SELECT * FROM expense_history WHERE user_id = " + str(session["user_id"])
+    cur.execute(query)
+    result_set = cur.fetchall()
+    result_data = {"items":[], "budget": budget}
+    for row in result_set:
+        item = {}
+        item["purpose"] = row["purpose"]
+        item["amount"] = row["amount"]
+        item["exp_id"] = row["user_id"]
+        result_data["items"].append(item)
+    return jsonify(result_data)
 
 if __name__ == '__main__':
     app.run(debug=True)
