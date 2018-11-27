@@ -14,7 +14,7 @@
 
     <div class="graph-frame">
         
-        <div class="graph-button" onclick="graphButtonClicked()"> <span class="button-text"> Back to Graph </span> </div>
+        <div class="graph-button" onclick="graphButtonClicked()"> <span class="button-text" style="position: absolute; right: 0;"> Back to Graph </span> </div>
 
         <div class="row content-initial">
             <div class="column">
@@ -29,7 +29,7 @@
 
 
         <!-- Creating department -->
-        <div class="content-create-department">
+        <center><div class="content-create-department">
             <h1 class="content-title">Create Department</h1>
             <div class="form-div">
                 <form action="" method="post">
@@ -53,6 +53,7 @@
                 </form>
             </div>
         </div>
+        </center>
 
         <!-- Setting Total Revenue-->
         <div class="content-set-total-revenue">
@@ -73,11 +74,8 @@
                 <label class="input-name-text" for="total">Amount Allocate</label>    
                 <input class="input-text-box" type="text" placeholder="Enter Amount" name="total" required>
 
-                <label class="input-name-text" for="approve">Approve</label>
-                <input class="input-text-box" type="text" placeholder="Enter Response" name="approve" required>
-
-                <label class="input-name-text" for="decline">Decline</label>
-                <input class="input-text-box" type="text" placeholder="Enter Response" name="decline" required>
+                Accept <input type="checkbox" class="exclusive" value="Accept Request" /> 
+                Decline <input type="checkbox" class="exclusive" value="Decline Request" /><br />
 
                 <label class="input-name-text" for="commments">Comments</label>
                 <input class="input-text-box" type="text" placeholder="Enter Optional Comments" name="comments">
