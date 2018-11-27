@@ -1,6 +1,7 @@
 from flask_login import UserMixin
 from passlib.context import CryptContext
 import db
+from flask_mysqldb import MySQL
 
 pwd_context = CryptContext(
     schemes=["pbkdf2_sha256"],
@@ -54,6 +55,15 @@ class CEO(User):
 
     def set_total_revenue(self, company, tr):
         company.set_revenue(tr)
+    def view_deptartments():
+        cur = mysql.connection.cursor()
+        result = cur.execute("SELECT roles as Dept_name, Departments.budget, Departments.revenue_goal, Departments.actual_expenses" + 
+			"FROM Departments JOIN Users on Department.user_id = Users.user_id")
+        items = []
+        for row in result:
+	    items.append({'Department_name': row[0], 'Budget': row[1], 'Revenue_goal': row[2], 'Actual_expenses': row[3]})
+        dump = json.dump(items)
+        return dump
 
 
 class FinancialDepartmentHead(User):
@@ -84,6 +94,15 @@ class FinancialDepartmentHead(User):
 																     #well as reason for it. 
 	    response = input("0 for decline, 1 for approve.")
 	    # figure out how to set budget
+    def view_deptartments():
+        cur = mysql.connection.cursor()
+        result = cur.execute("SELECT roles as Dept_name, Departments.budget, Departments.revenue_goal, Departments.actual_expenses" + 
+			"FROM Departments JOIN Users on Department.user_id = Users.user_id")
+        items = []
+        for row in result:
+	    items.append({'Department_name': row[0], 'Budget': row[1], 'Revenue_goal': row[2], 'Actual_expenses': row[3]})
+        dump = json.dump(items)
+        return dump
 
 class DepartmentHead(User):
 
