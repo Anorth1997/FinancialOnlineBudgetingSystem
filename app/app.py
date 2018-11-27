@@ -46,46 +46,68 @@ class CreateDepartmentForm(Form):
     ])
     confirm = PasswordField('Confirm Password')
 
+class SetTotalRevenue(Form):
+    total = StringField('total', [validators.Length(min=4, max=50)])
+
 @app.route("/ceo", methods=['GET', 'POST'])
 def ceo():
     if request.method == 'POST':
-        form = CreateDepartmentForm(request.form)
-        if form.validate():
-            ## initalize the fields
-            company = session['company']
-            department = form.department.data
-            username = form.username.data
-            password = sha256_crypt.encrypt(str(form.password.data))
-            null = None
+        if 'total' in request.form.keys():
+            form = SetTotalRevenue(request.form)
+            if form.validate():
+                company = session['company']
+                total = int(form.total.data)
+                cur = mysql.connection.cursor()
 
-            # Create cursor
-            cur = mysql.connection.cursor()
+                cur.execute("SELECT company_id FROM Company WHERE company_name = %s", [company])
+                data = cur.fetchone()
+                company_id = data['company_id']
+
+                cur.execute("UPDATE Company SET total_revenue_goal = %s WHERE company_id = %s", (total, company_id))
+
+                mysql.connection.commit()
+
+                cur.close()
+                if 'username' in session:
+                    return render_template('ceo.html', username=session['username'], company=session['company'])
+        elif 'username' in request.form.keys():
+            form = CreateDepartmentForm(request.form)
+            if form.validate():
+                ## initalize the fields
+                company = session['company']
+                department = form.department.data
+                username = form.username.data
+                password = sha256_crypt.encrypt(str(form.password.data))
+                null = None
+
+                # Create cursor
+                cur = mysql.connection.cursor()
 
 
-            # get company_id
-            cur.execute("SELECT company_id FROM Company WHERE company_name = %s", [company])
-            data = cur.fetchone()
-            company_id = data['company_id']
+                # get company_id
+                cur.execute("SELECT company_id FROM Company WHERE company_name = %s", [company])
+                data = cur.fetchone()
+                company_id = data['company_id']
 
 
-            ## Create the department in user
-            cur.execute("INSERT INTO users(username, password, company_id, role) VALUES(%s, %s, %s, %s)",
-                        (username, password, company_id, department))
+                ## Create the department in user
+                cur.execute("INSERT INTO users(username, password, company_id, role) VALUES(%s, %s, %s, %s)",
+                            (username, password, company_id, department))
 
-            ## if this is not the financial department, it needs to be stored in department table
-            if department != 'financial':
-                cur.execute("SELECT user_id FROM Users WHERE username = %s", [username])
-                user_id = cur.fetchone()['user_id']
-                cur.execute("INSERT INTO Departments(user_id, budget, revenue_goal, actual_expenses) VALUES(%s, %s, %s, %s)",
-                            (user_id, null, null, null))
+                ## if this is not the financial department, it needs to be stored in department table
+                if department != 'financial':
+                    cur.execute("SELECT user_id FROM Users WHERE username = %s", [username])
+                    user_id = cur.fetchone()['user_id']
+                    cur.execute("INSERT INTO Departments(user_id, budget, revenue_goal, actual_expenses) VALUES(%s, %s, %s, %s)",
+                                (user_id, null, null, null))
 
-            # commit to DB
-            mysql.connection.commit()
+                # commit to DB
+                mysql.connection.commit()
 
-            # close connection
-            cur.close()
-            if 'username' in session:
-                return render_template('ceo.html', username=session['username'], company=session['company'])
+                # close connection
+                cur.close()
+                if 'username' in session:
+                    return render_template('ceo.html', username=session['username'], company=session['company'])
 
     if 'username' in session:
         return render_template('ceo.html', username=session['username'], company=session['company'])
