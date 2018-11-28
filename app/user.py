@@ -42,6 +42,7 @@ class CEO(User):
 	self.name = name
 	self.dep_req = [] # department requests exceeding threshold: cannot be handled by FD
 
+
     def create_financial_department(self, fd_username, fd_password):
         if self.company.Financial_Department != null:
             raise Exception("FD already exists for this company!")
