@@ -263,11 +263,18 @@ def department_expenses():
         return "No department found with user_id"
     data = cur.fetchone()
     budget = data["budget"]
+
+    # Get department name
+    query = "SELECT role FROM users WHERE user_id = " + str(session["user_id"])
+    cur.execute(query)
+    result = cur.fetchone()
+    departmentName = result['role']
+
     # Get the expense history from the department
     query = "SELECT * FROM expense_history WHERE user_id = " + str(session["user_id"])
     cur.execute(query)
     result_set = cur.fetchall()
-    result_data = {"items":[], "budget": budget}
+    result_data = {"items":[], "budget": budget, "departmentName": departmentName}
     for row in result_set:
         item = {}
         item["purpose"] = row["purpose"]
