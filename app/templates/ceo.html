@@ -3,6 +3,7 @@
 {% block title %}CEO{% endblock %}
 
 {% block js %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ceo.css') }}">
     <script type="text/javascript" src="{{ url_for('static', filename='js/graph.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/userPages.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/ceo.js') }}"></script>
@@ -12,8 +13,8 @@
 {% block content %}
 
     <div class="graph-frame">
-        
-        <div class="graph-button" onclick="graphButtonClicked()"> <span class="button-text"> Back to Graph </span> </div>
+
+        <div class="graph-button" onclick="graphButtonClicked()"> <span class="button-text" style="position: absolute; right: 0;"> Back to Graph </span> </div>
 
         <div class="row content-initial">
             <div class="column">
@@ -28,7 +29,7 @@
 
 
         <!-- Creating department -->
-        <div class="content-create-department">
+        <center><div class="content-create-department">
             <h1 class="content-title">Create Department</h1>
             <div class="form-div">
                 <form action="" method="post">
@@ -52,6 +53,7 @@
                 </form>
             </div>
         </div>
+        </center>
 
         <!-- Setting Total Revenue-->
         <div class="content-set-total-revenue">
@@ -59,24 +61,22 @@
             <div class="form-div">
                 <form action="" method="post">
                     <label class="input-label" for="total">Total Revenue</label>
-                    <input class="input-box-ceo" type="number" placeholder="Enter Total Revenue" name="total" required>
-                    <input class="button" type="submit" value="Set Revenue">
+                    <input class="input-box-ceo" type="text" placeholder="Enter Total Revenue" name="total" value="{{
+                            request.form.total}}" required>
+                    <input class="button content-set-total-revenue" type="submit" value="Set Revenue">
                 </form>
             </div>
         </div>
-        
+
         <!-- Since we have not decided upon how this will work, below is just some thoughts: could use checkboxes-->
         <div class="content-review-financial-request">
             <h1 class="content-title">Review Financial Requests</h1>
             <div class="form-div">
-                <label class="input-name-text" for="total">Amount Allocate</label>    
+                <label class="input-name-text" for="total">Amount Allocate</label>
                 <input class="input-text-box" type="text" placeholder="Enter Amount" name="total" required>
 
-                <label class="input-name-text" for="approve">Approve</label>
-                <input class="input-text-box" type="text" placeholder="Enter Response" name="approve" required>
-
-                <label class="input-name-text" for="decline">Decline</label>
-                <input class="input-text-box" type="text" placeholder="Enter Response" name="decline" required>
+                Accept <input type="checkbox" class="exclusive" value="Accept Request" />
+                Decline <input type="checkbox" class="exclusive" value="Decline Request" /><br />
 
                 <label class="input-name-text" for="commments">Comments</label>
                 <input class="input-text-box" type="text" placeholder="Enter Optional Comments" name="comments">
@@ -111,7 +111,7 @@
         <div class="button" onclick="reviewFDRequestsClicked()">
             <span class="button-text">Review Financial Department Requests</span>
         </div>
-        <div class="button" onclick="viewAllDepartmentHistoryClicked()"> 
+        <div class="button" onclick="viewAllDepartmentHistoryClicked()">
             <span class="button-text"> View All Department History </span>
         </div>
     </div>
