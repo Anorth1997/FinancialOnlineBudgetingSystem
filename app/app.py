@@ -9,15 +9,14 @@ app = Flask(__name__)
 app.secret_key = urandom(16)
 
 # Config MySQL
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'FOBS'
-app.config['MYSQL_PASSWORD'] = 'fobs'
+app.config['MYSQL_HOST'] = 'aaejzhw16jsq33.cwg4vc0h4ybf.ca-central-1.rds.amazonaws.com'
+app.config['MYSQL_USER'] = 'fobs'
+app.config['MYSQL_PASSWORD'] = 'fobsadmin'
 app.config['MYSQL_DB'] = 'FOBS'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 # Init MYSQL
 mysql = MySQL(app)
-
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -71,7 +70,7 @@ def ceo():
 
 
             ## Create the department in user
-            cur.execute("INSERT INTO users(username, password, company_id, role) VALUES(%s, %s, %s, %s)",
+            cur.execute("INSERT INTO Users(username, password, company_id, role) VALUES(%s, %s, %s, %s)",
                         (username, password, company_id, department))
 
             ## if this is not the financial department, it needs to be stored in department table
@@ -165,7 +164,7 @@ def register():
         mysql.connection.commit()
 
         ## Create the ceo in user
-        cur.execute("INSERT INTO users(username, password, company_id, role) VALUES(%s, %s, %s, %s)",
+        cur.execute("INSERT INTO Users(username, password, company_id, role) VALUES(%s, %s, %s, %s)",
                     (username, password, data['company_id'], role))
 
         # commit to DB
@@ -199,7 +198,7 @@ def login():
         cur = mysql.connection.cursor()
 
         # Get user by username
-        result = cur.execute("SELECT * FROM users WHERE username = %s", [username])
+        result = cur.execute("SELECT * FROM Users WHERE username = %s", [username])
 
         if result > 0:
             # Get stored hash
@@ -211,7 +210,7 @@ def login():
             if sha256_crypt.verify(password_candidate, password):
                 session['username'] = data['username']
                 query = "SELECT * FROM "
-                query += "(company INNER JOIN users ON company.company_id=users.company_id) "
+                query += "(Company INNER JOIN Users ON Company.company_id=Users.company_id) "
                 query += "WHERE username = '" + data['username'] + "'"
                 result = cur.execute(query)
                 data = cur.fetchone()
@@ -231,6 +230,7 @@ def login():
             error = 'Invalid Credentials. Please try again.'
 
     return render_template('login.html', error=error)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
