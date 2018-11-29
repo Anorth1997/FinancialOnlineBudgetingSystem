@@ -155,6 +155,14 @@ def employee():
                 cur.execute("INSERT INTO Expense_history(user_id, purpose, amount) VALUES(%s, %s, %s)",
                             (user_id, purpose, amount))
 
+                cur.execute("SELECT * FROM Departments WHERE user_id = %s", [user_id])
+                department_data = cur.fetchone()
+                actual_expenses = department_data['actual_expenses']
+                if actual_expenses is None:
+                    actual_expenses = 0
+
+                cur.execute("UPDATE Departments SET actual_expenses = %s WHERE user_id = %s", (actual_expenses + int(amount), user_id))
+
                 mysql.connection.commit()
 
                 cur.close()
