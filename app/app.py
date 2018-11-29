@@ -287,12 +287,17 @@ def overview_expenses():
     # Create cursor
     cur = mysql.connection.cursor()
     # Get the list of all departments in the company
-    query = "SELECT * FROM Users WHERE company_id = " + str(session["company_id"])
+
+    query = "SELECT * FROM Users WHERE company_id = " + str(session["company_id"]) + " AND role != 'ceo'"
+
     cur.execute(query)
     result_set = cur.fetchall()
     department_users = []
+    print(result_set)
     for item in result_set:
         department_users.append((item["user_id"], item["role"]))
+    print('--dep--')
+    print(department_users)
     # Construct the result department data
     result_data = {"departments": []}
     for department in department_users:
@@ -304,11 +309,12 @@ def overview_expenses():
             return "No department found with user_id"
         data = cur.fetchone()
         budget = data["budget"]
+        revenue_goal = data["revenue_goal"]
         # Get the expense history from the department
         query = "SELECT * FROM Expense_history WHERE user_id = " + str(user_id)
         cur.execute(query)
         result_set = cur.fetchall()
-        department_data = {"role": role, "items": [], "budget": budget}
+        department_data = {"role": role, "items": [], "budget": budget, "revenue_goal": revenue_goal}
         for row in result_set:
             item = {}
             item["purpose"] = row["purpose"]
@@ -316,6 +322,50 @@ def overview_expenses():
             item["exp_id"] = row["user_id"]
             department_data["items"].append(item)
         result_data["departments"].append(department_data)
+    return jsonify(result_data)
+
+
+# Route for the CEO to get the full expenditure history of the 
+# departments
+@app.route('/expenses/full_history', methods=['GET'])
+def overview_expenses_full_history():
+    # Create cursor
+    cur = mysql.connection.cursor()
+    # Get the list of all departments in the company
+    query = "SELECT * FROM Users WHERE company_id = " + str(session["company_id"]) + " AND role != 'ceo'"
+
+    cur.execute(query)
+    result_set = cur.fetchall()
+    department_users = []
+
+    for item in result_set:
+        department_users.append((item["user_id"], item["role"]))
+
+    # Create the query
+    query = "SELECT B.role, A.amount, A.purpose, A.date " + \
+        "FROM Expense_history AS A JOIN Users AS B ON A.user_id = " + \
+        "B.user_id WHERE "
+
+    for i in range(len(department_users)):
+        user_id, role = department_users[i]
+        query += "A.user_id = " + str(user_id) + " "
+        if i < len(department_users) - 1:
+            query += "OR "
+    
+    query += "ORDER BY date DESC"
+    result = cur.execute(query)
+    result_set = cur.fetchall()
+    result_data = {"expenses": []}
+
+    # Convert query result into JSON and return
+    for row in result_set:  
+        item = {}
+        item["department"] = row["role"]
+        item["amount"] = row["amount"]
+        item["purpose"] = row["purpose"]
+        item["date"] = row["date"]
+        result_data["expenses"].append(item)
+
     return jsonify(result_data)
 
 if __name__ == '__main__':

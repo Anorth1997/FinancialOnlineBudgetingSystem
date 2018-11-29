@@ -67,10 +67,10 @@ Create the tables listed in the [schema](./deliverables/artifacts/schema.md), wi
 > mysql> CREATE TABLE Departments (dept_id INT PRIMARY KEY AUTO_INCREMENT, user_id INT, budget INT, revenue_goal INT, actual_expenses INT, FOREIGN KEY (user_id) REFERENCES Users(user_id));
 <br>
 
-> mysql> CREATE TABLE Requests (request_id INT PRIMARY KEY AUTO_INCREMENT, user_id INT, amount INT, data DATETIME, reason VARCHAR(100), status ENUM('in_progress', 'accepted', 'declined'), FOREIGN KEY (user_id) REFERENCES Users(user_id));
+> mysql> CREATE TABLE Requests (request_id INT PRIMARY KEY AUTO_INCREMENT, user_id INT, amount INT, date DATETIME, reason VARCHAR(100), status ENUM('in_progress', 'accepted', 'declined'), FOREIGN KEY (user_id) REFERENCES Users(user_id));
 <br>
 
-> mysql> CREATE TABLE Expense_history (exp_id INT PRIMARY KEY AUTO_INCREMENT, user_id INT, purpose VARCHAR(30), amount INT, FOREIGN KEY (user_id) REFERENCES Users(user_id));
+> mysql> CREATE TABLE Expense_history (exp_id INT PRIMARY KEY AUTO_INCREMENT, user_id INT, purpose VARCHAR(30), amount INT, date DATETIME, FOREIGN KEY (user_id) REFERENCES Users(user_id));
   
 Now everything related to database has been set up properly.
 
