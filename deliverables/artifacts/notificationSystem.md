@@ -3,7 +3,7 @@ CEO - Financial - Departnent Notification System
 
 1. CEO sets the total revenue goal, therefore setting the total_revenue_goal field in the Company table from NULL to an integer value.
 2. The financial departments can be notified of the CEO's revenue goal by checking the database to see if the company that the financial department belongs to, has a total_revenue_goal of NULL. If it is NULL, there is no notification, as the CEO has not set the total_revenue_goal yet. If it is not NULL, there is a notification prompting the financial department to distribute the revenue to the departments.
-  * BACKEND: We need a route in app.py that returns the total_revenue_goal of the company.
+  * ~~BACKEND: We need a route in app.py that returns the total_revenue_goal of the company.~~
 3. In order for the financial department to distributes the total_revenue_goal. The financial department will fill out a form to distribute the revenue. The submitted form will contain the distributed revenue for each individual department.
   * BACKEND: We need a route in app.py that provides all the departments for the company.
   * BACKEND: We need to read the information from the form and update the Departments table's revenue_goal attribute from the information in the form.
