@@ -20,6 +20,7 @@ mysql = MySQL(app)
 
 @app.route("/", methods=['GET', 'POST'])
 def main():
+    session.clear()
     return render_template('homePage.html')
 
 @app.after_request
@@ -116,38 +117,72 @@ def ceo():
 @app.route("/financial")
 def financial():
     if 'username' in session:
-        return render_template('financial.html', username=session['username'], company=session['company'])
+        # Create cursor
+        cur = mysql.connection.cursor()
+
+        # Get the total revenue goal data
+        cur.execute("SELECT * FROM Company WHERE company_id = %s", [session['company_id']])
+        data = cur.fetchone()
+
+        return render_template('financial.html', username=session['username'], company=session['company'], total_revenue_goal=data['total_revenue_goal'])
     # TODO: (IAN) render a not logged in page
     return render_template('homePage.html')
+
 
 class RequestFundForm(Form):
     amount = StringField('department', [validators.Length(min=1, max=50)])
     reason = StringField('Username', [validators.Length(min=4, max=200)])
 
+
+class AddExpenseForm(Form):
+    purpose = StringField('purpose', [validators.Length(min=4, max=200)])
+    amount = StringField('amount', [validators.Length(min=1, max=50)])
+
+
 @app.route("/employee", methods=['GET', 'POST'])
 def employee():
     if request.method == 'POST':
-        form = RequestFundForm(request.form)
-        if form.validate():
-            # initialize the fields
-            amount = form.amount.data
-            reason = form.reason.data
-            now = datetime.now()
-            formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
-            # Create cursor
-            cur = mysql.connection.cursor()
+        if 'purpose' in request.form.keys():
+            form = AddExpenseForm(request.form)
+            if form.validate():
 
-            # Create the request in table
-            cur.execute("INSERT INTO Requests(user_id, amount, data, reason, status) VALUES(%s, %s, %s, %s, %s)",
-                        (session['user_id'], amount, formatted_date, reason, 'ceo_not_notified'))
+                purpose = form.purpose.data
+                amount = form.amount.data
+                user_id = session['user_id']
 
-            # commit to DB
-            mysql.connection.commit()
+                cur = mysql.connection.cursor()
 
-            # close connection
-            cur.close()
+                cur.execute("INSERT INTO Expense_history(user_id, purpose, amount) VALUES(%s, %s, %s)",
+                            (user_id, purpose, amount))
 
-            return render_template('employee.html', username=session['username'], company=session['company'])
+                mysql.connection.commit()
+
+                cur.close()
+
+                return render_template('employee.html', username=session['username'], company=session['company'])
+
+        elif 'reason' in request.form.keys():
+            form = RequestFundForm(request.form)
+            if form.validate():
+                # initialize the fields
+                amount = form.amount.data
+                reason = form.reason.data
+                now = datetime.now()
+                formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
+                # Create cursor
+                cur = mysql.connection.cursor()
+
+                # Create the request in table
+                cur.execute("INSERT INTO Requests(user_id, amount, data, reason, status) VALUES(%s, %s, %s, %s, %s)",
+                            (session['user_id'], amount, formatted_date, reason, 'ceo_not_notified'))
+
+                # commit to DB
+                mysql.connection.commit()
+
+                # close connection
+                cur.close()
+
+                return render_template('employee.html', username=session['username'], company=session['company'])
 
     if 'username' in session:
         return render_template('employee.html', username=session['username'], company=session['company'])
@@ -327,7 +362,7 @@ def overview_expenses():
     return jsonify(result_data)
 
 
-# Route for the CEO to get the full expenditure history of the 
+# Route for the CEO to get the full expenditure history of the
 # departments
 @app.route('/expenses/full_history', methods=['GET'])
 def overview_expenses_full_history():
@@ -353,20 +388,45 @@ def overview_expenses_full_history():
         query += "A.user_id = " + str(user_id) + " "
         if i < len(department_users) - 1:
             query += "OR "
-    
+
     query += "ORDER BY date DESC"
     result = cur.execute(query)
     result_set = cur.fetchall()
     result_data = {"expenses": []}
 
     # Convert query result into JSON and return
-    for row in result_set:  
+    for row in result_set:
         item = {}
         item["department"] = row["role"]
         item["amount"] = row["amount"]
         item["purpose"] = row["purpose"]
         item["date"] = row["date"]
         result_data["expenses"].append(item)
+
+    return jsonify(result_data)
+
+@app.route('/requests/all_requests', methods=['GET'])
+def all_department_requests ():
+    cur = mysql.connection.cursor()
+    query = ("SELECT U2.role, R.amount, R.reason "
+             "FROM Users U1, Users U2, Requests R "
+             "WHERE U1.user_id = " + str(session["user_id"]) + " AND "
+             "U1.company_id = U2.company_id AND "
+             "U2.user_id = R.user_id ")
+    cur.execute(query)
+    result_set = cur.fetchall()
+    result_data = {"requests":[]}
+
+    counter = 0
+    for row in result_set:
+        print(counter)
+        counter += 1
+        print(row["role"] + " " + str(row["amount"]) + " " + row["reason"])
+        item = {}
+        item["department"] = row["role"]
+        item["amount"] = row["amount"]
+        item["reason"] = row["reason"]
+        result_data["requests"].append(item)
 
     return jsonify(result_data)
 
