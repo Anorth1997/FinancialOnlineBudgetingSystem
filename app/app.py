@@ -385,7 +385,8 @@ def all_department_requests ():
              "FROM Users U1, Users U2, Requests R "
              "WHERE U1.user_id = " + str(session["user_id"]) + " AND "
              "U1.company_id = U2.company_id AND "
-             "U2.user_id = R.user_id ")
+             "U2.user_id = R.user_id AND "
+             "R.status = 'ceo_not_notified' ")
     cur.execute(query)
     result_set = cur.fetchall()
     result_data = {"requests":[]}
