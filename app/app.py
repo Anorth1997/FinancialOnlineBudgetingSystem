@@ -28,7 +28,6 @@ def add_header(r):
     This code disable caching in Flask.
     This behaviour is convenient for development because when refreshing the webpage,
     cached versions of CSS and JS files are loaded instead of the most recent versions.
-
     Code from: https://stackoverflow.com/questions/47376744/how-to-prevent-cached-response-flask-server-using-chrome
     """
     r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
@@ -91,7 +90,7 @@ def ceo():
 
 
                 ## Create the department in user
-                cur.execute("INSERT INTO users(username, password, company_id, role) VALUES(%s, %s, %s, %s)",
+                cur.execute("INSERT INTO Users(username, password, company_id, role) VALUES(%s, %s, %s, %s)",
                             (username, password, company_id, department))
 
                 ## if this is not the financial department, it needs to be stored in department table
@@ -185,7 +184,7 @@ def register():
         mysql.connection.commit()
 
         ## Create the ceo in user
-        cur.execute("INSERT INTO users(username, password, company_id, role) VALUES(%s, %s, %s, %s)",
+        cur.execute("INSERT INTO Users(username, password, company_id, role) VALUES(%s, %s, %s, %s)",
                     (username, password, data['company_id'], role))
 
         # commit to DB
@@ -219,7 +218,7 @@ def login():
         cur = mysql.connection.cursor()
 
         # Get user by username
-        result = cur.execute("SELECT * FROM users WHERE username = %s", [username])
+        result = cur.execute("SELECT * FROM Users WHERE username = %s", [username])
 
         if result > 0:
             # Get stored hash
@@ -231,7 +230,7 @@ def login():
             if sha256_crypt.verify(password_candidate, password):
                 session['username'] = data['username']
                 query = "SELECT * FROM "
-                query += "(company INNER JOIN users ON company.company_id=users.company_id) "
+                query += "(Company INNER JOIN Users ON Company.company_id=Users.company_id) "
                 query += "WHERE username = '" + data['username'] + "'"
                 result = cur.execute(query)
                 data = cur.fetchone()
@@ -257,7 +256,7 @@ def department_expenses():
     # Create cursor
     cur = mysql.connection.cursor()
     # Get the budget of the department
-    query = "SELECT * FROM departments WHERE user_id = " + str(session["user_id"])
+    query = "SELECT * FROM Departments WHERE user_id = " + str(session["user_id"])
     result = cur.execute(query)
     if result == 0:
         return "No department found with user_id"
@@ -265,13 +264,13 @@ def department_expenses():
     budget = data["budget"]
 
     # Get department name
-    query = "SELECT role FROM users WHERE user_id = " + str(session["user_id"])
+    query = "SELECT role FROM Users WHERE user_id = " + str(session["user_id"])
     cur.execute(query)
     result = cur.fetchone()
     departmentName = result['role']
 
     # Get the expense history from the department
-    query = "SELECT * FROM expense_history WHERE user_id = " + str(session["user_id"])
+    query = "SELECT * FROM Expense_history WHERE user_id = " + str(session["user_id"])
     cur.execute(query)
     result_set = cur.fetchall()
     result_data = {"items":[], "budget": budget, "departmentName": departmentName}
@@ -288,7 +287,9 @@ def overview_expenses():
     # Create cursor
     cur = mysql.connection.cursor()
     # Get the list of all departments in the company
-    query = "SELECT * FROM users WHERE company_id = " + str(session["company_id"]) + " AND role != 'ceo'"
+
+    query = "SELECT * FROM Users WHERE company_id = " + str(session["company_id"]) + " AND role != 'ceo'"
+
     cur.execute(query)
     result_set = cur.fetchall()
     department_users = []
@@ -302,9 +303,7 @@ def overview_expenses():
     for department in department_users:
         user_id, role = department
         # Get the budget of the department
-        print('first_userid: ' + str(user_id))
-        query = "SELECT * FROM departments WHERE user_id = " + str(user_id)
-        
+        query = "SELECT * FROM Departments WHERE user_id = " + str(user_id)
         result = cur.execute(query)
         if result == 0:
             return "No department found with user_id"
@@ -312,10 +311,10 @@ def overview_expenses():
         budget = data["budget"]
         revenue_goal = data["revenue_goal"]
         # Get the expense history from the department
-        query = "SELECT * FROM expense_history WHERE user_id = " + str(user_id)
+        query = "SELECT * FROM Expense_history WHERE user_id = " + str(user_id)
         cur.execute(query)
         result_set = cur.fetchall()
-        department_data = {"role": role, "items": [], "budget": budget, "revenue_goal": srevenue_goal}
+        department_data = {"role": role, "items": [], "budget": budget, "revenue_goal": revenue_goal}
         for row in result_set:
             item = {}
             item["purpose"] = row["purpose"]
