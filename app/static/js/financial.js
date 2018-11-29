@@ -13,7 +13,8 @@ function displayAllRequests(html) {
 
     const requests = html.requests;
 
-    // clears the list 
+    // Clears the list before appending html elements to div's. Prevents the same tuples from being printed more than
+    // once when fading out of the Review Department Requests frame, and then fading it back in.
     $('.request-list-box-department-name').html("");
     $('.request-list-box-amount').html("");
     $('.request-list-box-reason').html("");
@@ -50,9 +51,31 @@ function showReviewDepartmentRequests(callback) {
     fadeInGraphButton();
 }
 
+function displayAllDepartmentsAndRevenueInputs(html) {
+    const departments = html.departments;
+
+    $('.distribute-revenue-form').html('');
+
+    for (let i = 0; departments.length; i++) {
+        const currentDepartment = departments[i];
+        $('.distribute-revenue-form').append('<div class="distribute-revenue-entry"><form>'
+                                        + currentDepartment.department
+                                        + ': <input type="text" name="'
+                                        + currentDepartment.department
+                                        + 'RevenueEntry"> </form> </div>')
+    }
+}
+
 function distributeTotalRevenueClicked() {
     $('.graph-button').fadeOut();
     fadeAllFinancial(showDistributeTotalRevenue);
+    $.ajax({
+        url: "http://127.0.0.1:5000/all_departments",
+        cache: false,
+        success: function(html){
+            displayAllDepartmentsAndRevenueInputs(html);
+        }
+    });
 }
 
 function showDistributeTotalRevenue(callback) {

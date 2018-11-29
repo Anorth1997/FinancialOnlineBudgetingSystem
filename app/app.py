@@ -452,9 +452,9 @@ def all_department_requests ():
     query = ("SELECT U2.role, R.amount, R.reason "
              "FROM Users U1, Users U2, Requests R "
              "WHERE U1.user_id = " + str(session["user_id"]) + " AND "
-             "U1.company_id = U2.company_id AND "
-             "U2.user_id = R.user_id AND "
-             "R.status = 'ceo_not_notified' ")
+                    "U1.company_id = U2.company_id AND "
+                    "U2.user_id = R.user_id AND "
+                    "R.status = 'ceo_not_notified' ")
     cur.execute(query)
     result_set = cur.fetchall()
     result_data = {"requests":[]}
@@ -469,6 +469,25 @@ def all_department_requests ():
         item["amount"] = row["amount"]
         item["reason"] = row["reason"]
         result_data["requests"].append(item)
+
+    return jsonify(result_data)
+
+@app.route('/all_departments', methods=['GET'])
+def get_all_departments():
+    cur = mysql.connection.cursor()
+    query = ("SELECT U2.role "
+             "FROM Users U1, Users U2 "
+             "WHERE U1.user_id = " + str(session["user_id"]) + " AND "
+                    "U1.company_id = U2.company_id "
+             "ORDER BY U2.role ")
+    cur.execute(query)
+    result_set = cur.fetchall()
+    result_data = {"departments":[]}
+
+    for row in result_set:
+        item = {}
+        item["department"] = row["role"]
+        result_data["departments"].append(item)
 
     return jsonify(result_data)
 
