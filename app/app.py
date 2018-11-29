@@ -128,34 +128,61 @@ def financial():
     # TODO: (IAN) render a not logged in page
     return render_template('homePage.html')
 
+
 class RequestFundForm(Form):
     amount = StringField('department', [validators.Length(min=1, max=50)])
     reason = StringField('Username', [validators.Length(min=4, max=200)])
 
+
+class AddExpenseForm(Form):
+    purpose = StringField('purpose', [validators.Length(min=4, max=200)])
+    amount = StringField('amount', [validators.Length(min=1, max=50)])
+
+
 @app.route("/employee", methods=['GET', 'POST'])
 def employee():
     if request.method == 'POST':
-        form = RequestFundForm(request.form)
-        if form.validate():
-            # initialize the fields
-            amount = form.amount.data
-            reason = form.reason.data
-            now = datetime.now()
-            formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
-            # Create cursor
-            cur = mysql.connection.cursor()
+        if 'purpose' in request.form.keys():
+            form = AddExpenseForm(request.form)
+            if form.validate():
 
-            # Create the request in table
-            cur.execute("INSERT INTO Requests(user_id, amount, data, reason, status) VALUES(%s, %s, %s, %s, %s)",
-                        (session['user_id'], amount, formatted_date, reason, 'ceo_not_notified'))
+                purpose = form.purpose.data
+                amount = form.amount.data
+                user_id = session['user_id']
 
-            # commit to DB
-            mysql.connection.commit()
+                cur = mysql.connection.cursor()
 
-            # close connection
-            cur.close()
+                cur.execute("INSERT INTO Expense_history(user_id, purpose, amount) VALUES(%s, %s, %s)",
+                            (user_id, purpose, amount))
 
-            return render_template('employee.html', username=session['username'], company=session['company'])
+                mysql.connection.commit()
+
+                cur.close()
+
+                return render_template('employee.html', username=session['username'], company=session['company'])
+
+        elif 'reason' in request.form.keys():
+            form = RequestFundForm(request.form)
+            if form.validate():
+                # initialize the fields
+                amount = form.amount.data
+                reason = form.reason.data
+                now = datetime.now()
+                formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
+                # Create cursor
+                cur = mysql.connection.cursor()
+
+                # Create the request in table
+                cur.execute("INSERT INTO Requests(user_id, amount, data, reason, status) VALUES(%s, %s, %s, %s, %s)",
+                            (session['user_id'], amount, formatted_date, reason, 'ceo_not_notified'))
+
+                # commit to DB
+                mysql.connection.commit()
+
+                # close connection
+                cur.close()
+
+                return render_template('employee.html', username=session['username'], company=session['company'])
 
     if 'username' in session:
         return render_template('employee.html', username=session['username'], company=session['company'])
