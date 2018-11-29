@@ -138,6 +138,8 @@ class AddExpenseForm(Form):
     purpose = StringField('purpose', [validators.Length(min=4, max=200)])
     amount = StringField('amount', [validators.Length(min=1, max=50)])
 
+class ExpectedBudgetForm(Form):
+    budget_amount = StringField('amount', [validators.Length(min=1, max=50)])
 
 @app.route("/employee", methods=['GET', 'POST'])
 def employee():
@@ -161,13 +163,17 @@ def employee():
                 if actual_expenses is None:
                     actual_expenses = 0
 
+                cur.execute("SELECT * FROM Users WHERE user_id = %s", [session['user_id']])
+                user_data = cur.fetchone()
+
                 cur.execute("UPDATE Departments SET actual_expenses = %s WHERE user_id = %s", (actual_expenses + int(amount), user_id))
 
                 mysql.connection.commit()
 
                 cur.close()
 
-                return render_template('employee.html', username=session['username'], company=session['company'])
+                return render_template('employee.html', username=session['username'], company=session['company'],
+                                       role=user_data['role'])
 
         elif 'reason' in request.form.keys():
             form = RequestFundForm(request.form)
@@ -184,13 +190,43 @@ def employee():
                 cur.execute("INSERT INTO Requests(user_id, amount, data, reason, status) VALUES(%s, %s, %s, %s, %s)",
                             (session['user_id'], amount, formatted_date, reason, 'ceo_not_notified'))
 
+                cur.execute("SELECT * FROM Users WHERE user_id = %s", [session['user_id']])
+                user_data = cur.fetchone()
+
                 # commit to DB
                 mysql.connection.commit()
 
                 # close connection
                 cur.close()
 
-                return render_template('employee.html', username=session['username'], company=session['company'])
+                return render_template('employee.html', username=session['username'], company=session['company'],
+                                       role=user_data['role'])
+
+        elif 'budget_amount' in request.form.keys():
+            form = ExpectedBudgetForm(request.form)
+            if form.validate():
+                #initialize the fileds
+                amount = form.budget_amount.data
+                user_id = session['user_id']
+
+
+                # Create cursor
+                cur = mysql.connection.cursor()
+
+                cur.execute("SELECT * FROM Departments WHERE user_id = %s", [user_id])
+                department_data = cur.fetchone()
+
+                cur.execute("SELECT * FROM Users WHERE user_id = %s", [session['user_id']])
+                user_data = cur.fetchone()
+
+                cur.execute("UPDATE Departments SET budget = %s WHERE user_id = %s", (amount, user_id))
+
+                mysql.connection.commit()
+
+                cur.close()
+
+                return render_template('employee.html', username=session['username'], company=session['company'],
+                                       role=user_data['role'])
 
     if 'username' in session:
         # Create cursor
