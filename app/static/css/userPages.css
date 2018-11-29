@@ -64,7 +64,8 @@ li {
 }
 
 .log-out-btn {
-    background-color: rgb(114, 76, 175);
+    border-radius: 30%;
+    background-color: #23a13e;
     position: absolute;
     right: 15px;
     top: 50%;
@@ -75,7 +76,7 @@ li {
 }
 
 .log-out-btn:hover {
-    background-color: red;
+    background-color: #789114;
 }
 
 .graph-frame {
@@ -146,7 +147,8 @@ li {
 }
 
 .button:hover {
-    color : gold;
+    background-color : #789114;
+    color: black;
 }
 
 .graph-button {
@@ -260,7 +262,7 @@ input[type=submit] {
 }
 
 .close-button:hover {
-    color: purple;
+    color: #789114;
 }
 
 .light-green-notification-popup {
