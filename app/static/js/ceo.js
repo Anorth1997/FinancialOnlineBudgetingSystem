@@ -39,8 +39,6 @@ function getRequests() {
     }
 }
 
-
-
 function fadeAllCeo(callBack) {
     if ($('.content-initial').css('display').toLowerCase() != 'none') {
         $('.content-initial').fadeOut(callBack);
