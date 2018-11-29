@@ -140,10 +140,11 @@ li {
 }
 
 .graph-button {
+    z-index: 99;
     display: none;
     border:1px solid rgb(20, 20, 20);
     border-radius: 10px;
-    background-color:rgb(145, 213, 89);
+    background-color:#23a13e;
 	font-size:17px;
     /* line-height:30px; */
     margin-top: 25px;

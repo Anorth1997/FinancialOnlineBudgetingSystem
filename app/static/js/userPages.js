@@ -8,6 +8,7 @@ function setRevenue() {
 }
 
 function showInitialContent(callback) {
+    console.log('get');
     $('.content-initial').fadeIn(callback);
 }
 

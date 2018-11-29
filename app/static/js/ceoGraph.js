@@ -5,8 +5,8 @@ $.ajax({
         console.log(html);
         generateBarGraph(html);
         generatePieGraph(html);
-        const totalRevenueGoal = getTotalRevenueGoal(departments);
-        
+        const totalRevenueGoal = getTotalRevenueGoal(html.departments);
+        $('#total-revenue').text('Total Revenue: $' + totalRevenueGoal.toString());
     }
 });
 
@@ -15,6 +15,7 @@ function getTotalRevenueGoal(departments) {
     for (let i = 0; i < departments.length; i++) {
         total += departments[i].revenue_goal;
     }
+    return total;
 }
 
 function generatePieGraph(html) {
