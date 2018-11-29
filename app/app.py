@@ -279,6 +279,7 @@ def department_expenses():
         item["purpose"] = row["purpose"]
         item["amount"] = row["amount"]
         item["exp_id"] = row["user_id"]
+        item["date"] = row["date"]
         result_data["items"].append(item)
     return jsonify(result_data)
 
@@ -320,6 +321,7 @@ def overview_expenses():
             item["purpose"] = row["purpose"]
             item["amount"] = row["amount"]
             item["exp_id"] = row["user_id"]
+            item["date"] = row["date"]
             department_data["items"].append(item)
         result_data["departments"].append(department_data)
     return jsonify(result_data)
