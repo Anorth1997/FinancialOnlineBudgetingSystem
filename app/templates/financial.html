@@ -13,7 +13,7 @@
 
     <div class="graph-frame">
 
-        <div class="graph-button" onclick="graphButtonClicked()" style="left:1%;top:65%;"> <span class="button-text"> Back to Graph </span> </div>
+        <div class="graph-button" onclick="graphButtonClicked()" style="top:65%;"> <span class="button-text"> Back to Graph </span> </div>
 
         <div class="row content-initial">
             <div class="column">
@@ -51,11 +51,14 @@
         </div>
 
         <div class="content-distribute-total-revenue">
+            <div style="position:absolute;left:3%;top:20%;background-color:orange;height:27px;width:150px;border:1px solid black;
+                    border-radius:10px;font-size:26px;text-align:center;" onclick="submitFormClicked()">
+                Submit Form
+            </div>
             <img src="/static/images/helpicon.png" class="help-icon"
                  title="The form to the right lists all of the departments in your company. Each department must be allocated a target revenue (e.g. allocate $0 if a department does not generate revenue). The sum of the target revenues for all departments must be equal to the 'Total Target Revenue'.">
             <div class = "distribute-revenue-form-header"> Total Target Revenue: {{total_revenue_goal}}</div>
             <div class = "distribute-revenue-form">
-
             </div>
         </div>
 
