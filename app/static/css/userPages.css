@@ -70,6 +70,7 @@ li {
     transform: translateY(-50%);
     color: white;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .graph-frame {

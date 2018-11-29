@@ -20,6 +20,7 @@ mysql = MySQL(app)
 
 @app.route("/", methods=['GET', 'POST'])
 def main():
+    session.clear()
     return render_template('homePage.html')
 
 @app.after_request
