@@ -325,7 +325,7 @@ def overview_expenses():
     return jsonify(result_data)
 
 
-# Route for the CEO to get the full expenditure history of the 
+# Route for the CEO to get the full expenditure history of the
 # departments
 @app.route('/expenses/full_history', methods=['GET'])
 def overview_expenses_full_history():
@@ -351,20 +351,45 @@ def overview_expenses_full_history():
         query += "A.user_id = " + str(user_id) + " "
         if i < len(department_users) - 1:
             query += "OR "
-    
+
     query += "ORDER BY date DESC"
     result = cur.execute(query)
     result_set = cur.fetchall()
     result_data = {"expenses": []}
 
     # Convert query result into JSON and return
-    for row in result_set:  
+    for row in result_set:
         item = {}
         item["department"] = row["role"]
         item["amount"] = row["amount"]
         item["purpose"] = row["purpose"]
         item["date"] = row["date"]
         result_data["expenses"].append(item)
+
+    return jsonify(result_data)
+
+@app.route('/requests/all_requests', methods=['GET'])
+def all_department_requests ():
+    cur = mysql.connection.cursor()
+    query = ("SELECT U2.role, R.amount, R.reason "
+             "FROM Users U1, Users U2, Requests R "
+             "WHERE U1.user_id = " + str(session["user_id"]) + " AND "
+             "U1.company_id = U2.company_id AND "
+             "U2.user_id = R.user_id ")
+    cur.execute(query)
+    result_set = cur.fetchall()
+    result_data = {"requests":[]}
+
+    counter = 0
+    for row in result_set:
+        print(counter)
+        counter += 1
+        print(row["role"] + " " + str(row["amount"]) + " " + row["reason"])
+        item = {}
+        item["department"] = row["role"]
+        item["amount"] = row["amount"]
+        item["reason"] = row["reason"]
+        result_data["requests"].append(item)
 
     return jsonify(result_data)
 
