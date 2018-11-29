@@ -27,15 +27,33 @@
         </div>
 
         <div class="content-review-department-requests">
+            <img src="static/images/helpicon.png" class="help-icon" title="The following is a list of requests from all departments within the company for additional funds. With each listed request is an associated department (the department making the request), the dollar value of the request, and the reason. The financial department employee is to review all of the requests, then notify the CEO by clicking the 'Notify CEO' buttons associated with each request.">
+            <div class = "request-list-box-header">
+                <div class = "request-list-box-header-department-name">
+                    Department Name
+                </div>
+                <div class = "request-list-box-header-amount">
+                    Amount ($)
+                </div>
+                <div class = "request-list-box-header-reason">
+                    Reason
+                </div>
+                <div class = "request-list-box-header-notify">
+                    Notify CEO
+                </div>
+            </div>
             <div class = "request-list-box">
-
+                <div class="request-list-box-department-name"> </div>
+                <div class="request-list-box-amount"> </div>
+                <div class="request-list-box-reason"> </div>
+                <div class="request-list-box-notify"> </div>
             </div>
         </div>
 
         <div class="content-distribute-total-revenue">
             <img src="/static/images/helpicon.png" class="help-icon"
                  title="The form to the right lists all of the departments in your company. Each department must be allocated a target revenue (e.g. allocate $0 if a department does not generate revenue). The sum of the target revenues for all departments must be equal to the 'Total Target Revenue'.">
-            <div class = "distribute-revenue-form-header"> Total Target Revenue: </div>
+            <div class = "distribute-revenue-form-header"> Total Target Revenue: {{total_revenue_goal}}</div>
             <div class = "distribute-revenue-form">
 
             </div>
@@ -49,7 +67,9 @@
 
 
     <div class="name-box">
-        {{ username }}, <br /> <span style="font-family:Georgia; font-size: 25px"> Senior Financial Analyst </span>
+        <span class = "vertical-center">
+            {{ username }} <br /><br /> <span style="font-weight: bold;">Financial Department</span>
+        </span>
     </div>
 
     <div class="overview-buttons-frame">

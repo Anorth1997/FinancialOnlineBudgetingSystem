@@ -64,12 +64,15 @@ li {
 }
 
 .log-out-btn {
+    border-radius: 30%;
+    background-color: #23a13e;
     position: absolute;
     right: 15px;
     top: 50%;
     transform: translateY(-50%);
     color: white;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .graph-frame {
@@ -116,7 +119,8 @@ li {
 	top: 35%;
 	left: 70%;
 	width:23.5%;
-	height:57%;
+    height:57%;
+    
 }
 
 .button {
@@ -196,7 +200,18 @@ li {
     font-weight: 900px;
     font-size: 30px;
     text-align:center;
-    font-family:Papyrus;
+    /* font-family: Arial, Helvetica, sans-serif; */
+}
+
+.vertical-center {
+    color: white;
+    font-weight: 300px;
+	position:absolute;
+	top:50%;
+	left:50%;
+	width:400px;
+    transform:translate(-50%, -50%);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 /* CSS for the formatting of the forms */
@@ -235,4 +250,22 @@ li {
 
 input[type=submit] {
     color: white;
+}
+
+.close-button {
+    margin-left: 15px;
+    color: teal;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.light-green-notification-popup {
+    padding: 20px;
+    background-color: #7FFF00;
+    color: black;
+    margin-bottom: 12px;
 }

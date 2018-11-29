@@ -53,9 +53,11 @@
             <div class="form-div" style="text-align: center">
             <form action="" method="post">
                 <div class="input-container">
-                <label class="input-amount input-label" for="expectedBudget">Expected Budget</label>
-                <span class="input"><span class="dollar-sign">&#36;</span> <input class="input-dollar-box" type="number" placeholder="Enter request amount" name="expectedBudget" value="{{
-                        request.form.request }}" required></span>
+                    <label class="input-amount input-label">Revenue Goal: {{ revenue_goal }}</label>
+
+                    <label class="input-amount input-label" for="expectedBudget">Expected Budget</label>
+                    <span class="input"><span class="dollar-sign">&#36;</span> <input class="input-dollar-box" type="number" placeholder="Enter request amount" name="budget_amount" value="{{
+                        request.form.budget_amount }}" required></span>
                 </div>
                 <input class="button" type="submit" value="Send Request">
             </form>
@@ -94,7 +96,9 @@
     </div>
 
     <div class="name-box">
-        {{ username }}, <br /> <span style="font-family:Georgia"> Engineering Manager </span>
+        <span class="vertical-center">
+            {{ username }} <br /><br/> <span style="font-weight: bold;">{{ role }} Head</span>
+        </span>
     </div>
 
     <div class="overview-buttons-frame">

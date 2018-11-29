@@ -64,10 +64,10 @@ Create the tables listed in the [schema](./deliverables/artifacts/schema.md), wi
 > mysql> CREATE TABLE Users (user_id INT PRIMARY KEY AUTO_INCREMENT, username VARCHAR(100) UNIQUE, password VARCHAR(100), company_id INT, role VARCHAR(100), FOREIGN KEY (company_id) REFERENCES Company(company_id));
 <br>
 
-> mysql> CREATE TABLE Departments (dept_id INT PRIMARY KEY AUTO_INCREMENT, user_id INT, budget INT, revenue_goal INT, actual_expenses INT, FOREIGN KEY (user_id) REFERENCES Users(user_id));
+> mysql> CREATE TABLE Departments (dept_id INT PRIMARY KEY AUTO_INCREMENT, user_id INT, budget INT, revenue_goal INT, status ENUM('ceo_notified', 'ceo_not_notified', 'accepted', 'declined'), FOREIGN KEY (user_id) REFERENCES Users(user_id));
 <br>
 
-> mysql> CREATE TABLE Requests (request_id INT PRIMARY KEY AUTO_INCREMENT, user_id INT, amount INT, date DATETIME, reason VARCHAR(100), status ENUM('in_progress', 'accepted', 'declined'), FOREIGN KEY (user_id) REFERENCES Users(user_id));
+> mysql> CREATE TABLE Requests (request_id INT PRIMARY KEY AUTO_INCREMENT, user_id INT, amount INT, date DATETIME, reason VARCHAR(100), status ENUM('ceo_notified', 'ceo_not_notified', 'accepted', 'declined'), FOREIGN KEY (user_id) REFERENCES Users(user_id));
 <br>
 
 > mysql> CREATE TABLE Expense_history (exp_id INT PRIMARY KEY AUTO_INCREMENT, user_id INT, purpose VARCHAR(30), amount INT, date DATETIME, FOREIGN KEY (user_id) REFERENCES Users(user_id));
