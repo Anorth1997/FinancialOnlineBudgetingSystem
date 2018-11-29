@@ -61,19 +61,37 @@
 }
 
 .request-list-box-header-department-name{
+    width:20%;
     float:left;
 }
 
 .request-list-box-header-amount {
+    width:20%;
     float:left;
 }
 
 .request-list-box-header-reason {
+    width:35%;
     float:left;
 }
 
 .request-list-box-header-notify {
+    width:20%;
     float:left;
+}
+
+.request-list-entry {
+    position:relative;
+    height:15%;
+    width:100%;
+
+}
+
+.request-list-entry-text {
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .distribute-revenue-form {
