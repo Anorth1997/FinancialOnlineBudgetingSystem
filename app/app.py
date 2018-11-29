@@ -117,7 +117,14 @@ def ceo():
 @app.route("/financial")
 def financial():
     if 'username' in session:
-        return render_template('financial.html', username=session['username'], company=session['company'])
+        # Create cursor
+        cur = mysql.connection.cursor()
+
+        # Get the total revenue goal data
+        cur.execute("SELECT * FROM Company WHERE company_id = %s", [session['company_id']])
+        data = cur.fetchone()
+
+        return render_template('financial.html', username=session['username'], company=session['company'], total_revenue_goal=data['total_revenue_goal'])
     # TODO: (IAN) render a not logged in page
     return render_template('homePage.html')
 
