@@ -110,21 +110,23 @@ def ceo():
                     return render_template('ceo.html', username=session['username'], company=session['company'])
 
     if 'username' in session:
-        return render_template('ceo.html', username=session['username'], company=session['company'])
+        if session['role'] == 'ceo':
+            return render_template('ceo.html', username=session['username'], company=session['company'])
     # TODO: (IAN) render a not logged in page
     return render_template('homePage.html')
 
 @app.route("/financial")
 def financial():
     if 'username' in session:
-        # Create cursor
-        cur = mysql.connection.cursor()
+        if session['role'] == 'financial':
+            # Create cursor
+            cur = mysql.connection.cursor()
 
-        # Get the total revenue goal data
-        cur.execute("SELECT * FROM Company WHERE company_id = %s", [session['company_id']])
-        data = cur.fetchone()
+            # Get the total revenue goal data
+            cur.execute("SELECT * FROM Company WHERE company_id = %s", [session['company_id']])
+            data = cur.fetchone()
 
-        return render_template('financial.html', username=session['username'], company=session['company'], total_revenue_goal=data['total_revenue_goal'])
+            return render_template('financial.html', username=session['username'], company=session['company'], total_revenue_goal=data['total_revenue_goal'])
     # TODO: (IAN) render a not logged in page
     return render_template('homePage.html')
 
@@ -138,6 +140,8 @@ class AddExpenseForm(Form):
     purpose = StringField('purpose', [validators.Length(min=4, max=200)])
     amount = StringField('amount', [validators.Length(min=1, max=50)])
 
+class ExpectedBudgetForm(Form):
+    budget_amount = StringField('amount', [validators.Length(min=1, max=50)])
 
 @app.route("/employee", methods=['GET', 'POST'])
 def employee():
@@ -155,11 +159,20 @@ def employee():
                 cur.execute("INSERT INTO Expense_history(user_id, purpose, amount) VALUES(%s, %s, %s)",
                             (user_id, purpose, amount))
 
+                cur.execute("SELECT * FROM Departments WHERE user_id = %s", [user_id])
+                department_data = cur.fetchone()
+                actual_expenses = department_data['actual_expenses']
+                if actual_expenses is None:
+                    actual_expenses = 0
+
+                cur.execute("UPDATE Departments SET actual_expenses = %s WHERE user_id = %s", (actual_expenses + int(amount), user_id))
+
                 mysql.connection.commit()
 
                 cur.close()
 
-                return render_template('employee.html', username=session['username'], company=session['company'])
+                return render_template('employee.html', username=session['username'], company=session['company'],
+                                       role=session['role'])
 
         elif 'reason' in request.form.keys():
             form = RequestFundForm(request.form)
@@ -182,10 +195,37 @@ def employee():
                 # close connection
                 cur.close()
 
-                return render_template('employee.html', username=session['username'], company=session['company'])
+                return render_template('employee.html', username=session['username'], company=session['company'],
+                                       role=session['role'])
+
+        elif 'budget_amount' in request.form.keys():
+            form = ExpectedBudgetForm(request.form)
+            if form.validate():
+                #initialize the fileds
+                amount = form.budget_amount.data
+                user_id = session['user_id']
+
+                # Create cursor
+                cur = mysql.connection.cursor()
+
+                cur.execute("UPDATE Departments SET budget = %s WHERE user_id = %s", (amount, user_id))
+
+                mysql.connection.commit()
+
+                cur.close()
+
+                return render_template('employee.html', username=session['username'], company=session['company'],
+                                       role=session['role'])
 
     if 'username' in session:
-        return render_template('employee.html', username=session['username'], company=session['company'])
+        # Create cursor
+        cur = mysql.connection.cursor()
+
+        # Get the total revenue goal data
+        cur.execute("SELECT * FROM Users WHERE user_id = %s", [session['user_id']])
+        user_data = cur.fetchone()
+
+        return render_template('employee.html', username=session['username'], company=session['company'], role=user_data['role'])
     # TODO: (IAN) render a not logged in page
     return render_template('homePage.html')
 
@@ -272,6 +312,7 @@ def login():
                 session['company'] = data['company_name']
                 session['company_id'] = data['company_id']
                 session['user_id'] = data['user_id']
+                session['role'] = role
                 app.logger.info('PASSWORD MATCHED')
                 if role == 'ceo':
                     return redirect("/ceo")
