@@ -193,7 +193,14 @@ def employee():
                 return render_template('employee.html', username=session['username'], company=session['company'])
 
     if 'username' in session:
-        return render_template('employee.html', username=session['username'], company=session['company'])
+        # Create cursor
+        cur = mysql.connection.cursor()
+
+        # Get the total revenue goal data
+        cur.execute("SELECT * FROM Users WHERE user_id = %s", [session['user_id']])
+        user_data = cur.fetchone()
+
+        return render_template('employee.html', username=session['username'], company=session['company'], role=user_data['role'])
     # TODO: (IAN) render a not logged in page
     return render_template('homePage.html')
 
