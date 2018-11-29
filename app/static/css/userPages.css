@@ -139,6 +139,7 @@ li {
 }
 
 .graph-button {
+    z-index: 99;
     display: none;
     border:1px solid rgb(20, 20, 20);
     border-radius: 10px;

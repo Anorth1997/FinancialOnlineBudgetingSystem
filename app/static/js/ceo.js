@@ -78,7 +78,6 @@ function viewAllDepartmentHistoryClicked() {
     $('.graph-button').fadeIn();
     fadeAllCeo(showViewAllDeptHistory);
 
-
     $.ajax({
         url: "http://127.0.0.1:5000/expenses/full_history",
         cache: false,
