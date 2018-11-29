@@ -105,6 +105,14 @@
     top:7%;
 }
 
+.distribute-revenue-entry {
+    width:70%;
+    height:10%;
+    top: 5%;
+    left:5%;
+    position:relative;
+}
+
 .distribute-revenue-form-header {
     position:absolute;
     background-color:green;

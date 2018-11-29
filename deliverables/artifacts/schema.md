@@ -23,9 +23,9 @@
 * This table contains information for each individual department within a company.
 * The user_id field contains the user_id of the department head.
 
-| *dept_id | user_id | budget | revenue_goal | actual_expenses |
-|:-------:|:-------:|:------:|:------------:|:---------------:|
-|   INT   |   INT   |   INT  |      INT     |       INT       |
+| *dept_id | user_id | budget | revenue_goal |                  status                  |
+|:-------:|:-------:|:------:|:------------:|:----------------------------------------:|
+|   INT   |   INT   |   INT  |      INT     | ENUM = {ceo_notified, ceo_not_notified, accepted, declined} |
 <br>
 
 **Requests table**
@@ -40,9 +40,9 @@
 **Expense_history table**
 * This table contains all expense history for all departments.
 
-| *exp_id | user_id |   purpose   | amount |
-|:------:|:-------:|:-----------:|:------:|
-|   INT  |   INT   | VARCHAR(20) |   INT  |
+| *exp_id | user_id |   purpose   | amount | amount |
+|:------:|:-------:|:-----------:|:------:|:------:|
+|   INT  |   INT   | VARCHAR(20) |   INT   |  DATETIME  |
 <br>
 
 # Foreign Key Constraints

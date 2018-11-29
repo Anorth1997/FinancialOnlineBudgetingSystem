@@ -75,10 +75,6 @@ li {
     text-decoration: none;
 }
 
-.log-out-btn:hover {
-    background-color: #789114;
-}
-
 .graph-frame {
 	border: 10px outset rgb(40,70,50);
 	background-color:rgb(63, 83, 67);
@@ -144,11 +140,6 @@ li {
 	margin-right:5%;
 	text-align:center;
     position:relative;
-}
-
-.button:hover {
-    background-color : #789114;
-    color: black;
 }
 
 .graph-button {
@@ -270,10 +261,6 @@ input[type=submit] {
     line-height: 20px;
     cursor: pointer;
     transition: 0.2s;
-}
-
-.close-button:hover {
-    color: #789114;
 }
 
 .light-green-notification-popup {
