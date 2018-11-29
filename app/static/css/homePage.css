@@ -109,7 +109,8 @@ body, html {
 
 .input-container {
     display: block;
-    text-align: center;
+    text-align: right;
+    padding-right: 150px;
     margin-bottom: 10px;
     font-size: 30px;
 }
@@ -125,6 +126,7 @@ body, html {
 .input-name-text {
     color: white;
     font-weight: 400;
+    font-size: 20px;
 }
 
 .input-text-box {
