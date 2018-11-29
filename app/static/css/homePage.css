@@ -19,7 +19,7 @@ body, html {
 .white-card {
     position: absolute;
     background-color: rgb(33, 32, 36);
-    border-radius: 5px;
+    border-radius: 50px;
     height: 600px;
     width: 600px;
     top: 50%;
@@ -27,6 +27,8 @@ body, html {
     transform: translate(-50%, -50%);
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .3);
     text-align: center;
+    opacity: 0.95;
+    filter: alpha(opacity=95); /* For IE8 and earlier */
 }
 
 .main-text {
@@ -42,16 +44,17 @@ body, html {
 }
 
 .logo {
-    background-color: #4dff4d;
-    border-radius: 100%;
-    height: 100px;
-    width: 100px;
+    background-image: url("../images/fobs_logo1.png");
+    height: 200px;
+    width: 300px;
+    background-size: 100%;
     margin-top: 20px;
     position: relative;
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 110px;
+    background-repeat: no-repeat;
 }
 
 .logo-text {
@@ -78,7 +81,7 @@ body, html {
 .button {
     border:1px solid rgb(20, 20, 20);
     border-radius: 5px;
-	background-color:#4dff4d;
+    background-color:#23a13e;
 	line-height:30px;
 	margin-bottom:100px;
 	display:block;
@@ -106,7 +109,8 @@ body, html {
 
 .input-container {
     display: block;
-    text-align: center;
+    text-align: right;
+    padding-right: 150px;
     margin-bottom: 10px;
     font-size: 30px;
 }
@@ -122,6 +126,7 @@ body, html {
 .input-name-text {
     color: white;
     font-weight: 400;
+    font-size: 20px;
 }
 
 .input-text-box {

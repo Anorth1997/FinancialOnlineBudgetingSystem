@@ -1,11 +1,5 @@
 .content-create-department {
-<<<<<<< HEAD
-	display: none;
-}
 
-.content-review-financial-request {
-    display: none;
-=======
     padding-top: 10px;
     height: 100%;
     text-align: center;
@@ -26,10 +20,56 @@
     display: none;
 }
 
+.content-view-department-history {
+    padding-top: 10px;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    display: none;
+}
+
 .input-box-ceo {
     display: block;
     margin-bottom: 20px;
     margin-top: 5px;
     width: 400px;
->>>>>>> 95abb8fe6b426df2346aa54341767d91f9d8e88b
 }
+
+/* CSS for the table created for View All Department History */
+
+.department-history-table {
+    height: 100%;
+}
+
+table, td, tr {
+    text-align: left;
+}
+
+table {
+    width: 80%;
+    position: absolute;
+    margin: auto;
+    border-collapse: collapse;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+}
+
+table{
+    border: 1px solid white;
+    color: white;
+}
+
+table tr:first-child { 
+    background: #435245;
+}
+  
+table tbody tr:nth-child(even) td {
+    background-color: #8fa392;
+}
+
+table tbody tr:nth-child(odd) td {
+    background-color: #677e6a;
+}
+  
+  

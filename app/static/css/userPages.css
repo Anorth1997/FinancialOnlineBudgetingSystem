@@ -23,12 +23,13 @@ body {
  * Navigation Bar CSS
  */
 .nav-logo {
-    background-color:rgb(145, 213, 89);
-    border-radius: 100%;
+    background-image: url("../images/fobs_logo2.png");
     height: 40px;
-    width: 40px;
+    width: 60px;
+    background-size: 100%;
+    background-repeat: no-repeat;
     position: absolute;
-    left: 30px;
+    left: 10px;
     top: 50%;
     transform: translateY(-50%);
 }
@@ -42,16 +43,6 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.nav-logo-text {
-    font-weight: 300;
-    font-family: Sans-serif;
-    font-size: 20px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-}
 .nav {
     user-select: none;
     background-color: rgb(63, 84, 67);
@@ -119,7 +110,7 @@ li {
 .overview-buttons-frame {
 	border: 10px outset rgb(40, 70, 50);
 	border-radius:10px;
-	background-color:rgb(63, 83, 67);
+    background-color:rgb(63, 83, 67);
 	font-family:sans-serif;
 	position:absolute;
 	top: 35%;
@@ -131,7 +122,7 @@ li {
 .button {
     border:1px solid rgb(20, 20, 20);
     border-radius: 10px;
-    background-color:rgb(145, 213, 89);
+    background-color: #23a13e;
 	font-size:24px;
 	line-height:30px;
 	margin-bottom:100px;
@@ -151,7 +142,7 @@ li {
     display: none;
     border:1px solid rgb(20, 20, 20);
     border-radius: 10px;
-    background-color:rgb(145, 213, 89);
+    background-color:#23a13e;
 	font-size:17px;
     /* line-height:30px; */
     margin-top: 25px;
