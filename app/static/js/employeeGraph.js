@@ -34,7 +34,7 @@ function generateBarGraph(html) {
         const randomColour = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
         expenseBarData.backgroundColor = randomColour;
         barData.push(expenseBarData);
-    } 
+    }   
 
     const barDatasets = {
         labels: barLabels,

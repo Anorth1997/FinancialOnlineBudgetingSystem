@@ -288,28 +288,34 @@ def overview_expenses():
     # Create cursor
     cur = mysql.connection.cursor()
     # Get the list of all departments in the company
-    query = "SELECT * FROM users WHERE company_id = " + str(session["company_id"])
+    query = "SELECT * FROM users WHERE company_id = " + str(session["company_id"]) + " AND role != 'ceo'"
     cur.execute(query)
     result_set = cur.fetchall()
     department_users = []
+    print(result_set)
     for item in result_set:
         department_users.append((item["user_id"], item["role"]))
+    print('--dep--')
+    print(department_users)
     # Construct the result department data
     result_data = {"departments": []}
     for department in department_users:
         user_id, role = department
         # Get the budget of the department
+        print('first_userid: ' + str(user_id))
         query = "SELECT * FROM departments WHERE user_id = " + str(user_id)
+        
         result = cur.execute(query)
         if result == 0:
             return "No department found with user_id"
         data = cur.fetchone()
         budget = data["budget"]
+        revenue_goal = data["revenue_goal"]
         # Get the expense history from the department
         query = "SELECT * FROM expense_history WHERE user_id = " + str(user_id)
         cur.execute(query)
         result_set = cur.fetchall()
-        department_data = {"role": role, "items": [], "budget": budget}
+        department_data = {"role": role, "items": [], "budget": budget, "revenue_goal": srevenue_goal}
         for row in result_set:
             item = {}
             item["purpose"] = row["purpose"]
