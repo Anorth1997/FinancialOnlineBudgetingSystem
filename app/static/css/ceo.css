@@ -53,9 +53,6 @@ table {
     left: 50%;
     top: 30%;
     transform: translate(-50%, -50%);
-}
-
-table{
     border: 1px solid white;
     color: white;
 }

@@ -70,6 +70,7 @@ li {
     transform: translateY(-50%);
     color: white;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .graph-frame {
@@ -139,6 +140,7 @@ li {
 }
 
 .graph-button {
+    z-index: 99;
     display: none;
     border:1px solid rgb(20, 20, 20);
     border-radius: 10px;

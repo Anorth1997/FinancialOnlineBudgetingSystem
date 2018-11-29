@@ -1,3 +1,36 @@
+function displayAllDepartmentHistory(html) {
+    const initTable = '<table class="history-table" align="left"><tr class="history-tr">' +
+      '<th>Department</th>' +
+      '<th>Purpose</th>' +
+      '<th>Date</th>' +
+      '<th>Amount</th>' +
+      '</tr>'+
+      '</table>';
+
+    let table = $(initTable);
+    const expenses = html.items;
+    const departmentName = html.departmentName;
+    // Keep track of total so that we can display it on the last row
+    let total = 0;
+
+    // For each expense, create a new row in the table
+    for (let i = 0; i < expenses.length; i++) {
+        const currExpense = expenses[i];
+        let row = $('<tr class="history-tr"></tr>');
+        $(row).append('<td class="history-td">' + departmentName + '</td>');
+        $(row).append('<td class="history-td">' + currExpense.purpose + '</td>');
+        $(row).append('<td class="history-td">' + currExpense.date.slice(0, -4) + '</td>');
+        $(row).append('<td class="history-td">$' + currExpense.amount + '</td>');
+        $(table).append(row);
+        total += currExpense.amount;
+    }
+
+    // Create the last row that displays the total
+    $(table).append('<tr class="history-tr"><td class="history-td">Total</td><td class="history-td"></td><td class="history-td"></td><td class="history-td">$' + total.toString() + '</td></tr>');
+
+    $('.department-history-table').append(table);
+}
+
 // Functions for the employee page
 function fadeAllEmployee(callBack) {
     if ($('.content-initial').css('display').toLowerCase() != 'none') {
@@ -8,6 +41,8 @@ function fadeAllEmployee(callBack) {
         $('.content-request-funds').fadeOut(callBack);
     } else if ($('.content-set-expected-budget').css('display').toLowerCase() != 'none') {
         $('.content-set-expected-budget').fadeOut(callBack);
+    } else if ($('.content-view-department-history').css('display').toLowerCase() != 'none') {
+        $('.content-view-department-history').fadeOut(callBack);
     }
 }
 
@@ -17,15 +52,37 @@ function graphButtonClicked() {
 }
 
 function requestFundsClicked() {
+    $('.graph-button').fadeIn();
     fadeAllEmployee(showRequestFunds);
 }
 
 function setExpectedBudgetClicked() {
+    $('.graph-button').fadeIn();
     fadeAllEmployee(showExpectedBudget);
+}
+
+function viewDepartmentHistoryClicked() {
+    $('.graph-button').fadeIn();
+    fadeAllEmployee(showViewAllDeptHistory);
+
+    $.ajax({
+        url: "http://127.0.0.1:5000/expenses/department",
+        cache: false,
+        success: function(html){
+            console.log(html);
+            displayAllDepartmentHistory(html);
+        }
+    });
+    
 }
 
 function addExpensesClicked() {
     fadeAllEmployee(showAddExpenses);
+}
+
+function showViewAllDeptHistory() {
+    $('.content-view-department-history').fadeIn();
+    fadeInGraphButton()
 }
 
 function showAddExpenses(callback) {
