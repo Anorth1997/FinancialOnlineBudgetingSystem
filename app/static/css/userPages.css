@@ -64,6 +64,7 @@ li {
 }
 
 .log-out-btn {
+    background-color: rgb(114, 76, 175);
     position: absolute;
     right: 15px;
     top: 50%;
@@ -71,6 +72,10 @@ li {
     color: white;
     cursor: pointer;
     text-decoration: none;
+}
+
+.log-out-btn:hover {
+    background-color: red;
 }
 
 .graph-frame {
@@ -117,7 +122,8 @@ li {
 	top: 35%;
 	left: 70%;
 	width:23.5%;
-	height:57%;
+    height:57%;
+    
 }
 
 .button {
@@ -137,6 +143,10 @@ li {
 	margin-right:5%;
 	text-align:center;
     position:relative;
+}
+
+.button:hover {
+    color : gold;
 }
 
 .graph-button {
@@ -247,4 +257,26 @@ li {
 
 input[type=submit] {
     color: white;
+}
+
+.close-button {
+    margin-left: 15px;
+    color: teal;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.close-button:hover {
+    color: purple;
+}
+
+.light-green-notification-popup {
+    padding: 20px;
+    background-color: #7FFF00;
+    color: black;
+    margin-bottom: 12px;
 }

@@ -13,6 +13,13 @@ function displayAllRequests(html) {
 
     const requests = html.requests;
 
+    // clears the list 
+    $('.request-list-box-department-name').html("");
+    $('.request-list-box-amount').html("");
+    $('.request-list-box-reason').html("");
+    $('.request-list-box-notify').html("");
+
+
     for (let i = 0; requests.length; i++) {
         const currentRequest = requests[i];
         $('.request-list-box-department-name').append('<div class="request-list-entry"> <div class="request-list-entry-text">'
