@@ -218,14 +218,18 @@ def employee():
                                        role=session['role'])
 
     if 'username' in session:
-        # Create cursor
-        cur = mysql.connection.cursor()
+        if 'role' in session:
+            # Create cursor
+            cur = mysql.connection.cursor()
 
-        # Get the total revenue goal data
-        cur.execute("SELECT * FROM Users WHERE user_id = %s", [session['user_id']])
-        user_data = cur.fetchone()
+            cur.execute("SELECT revenue_goal FROM Departments WHERE user_id = %s", [session['user_id']])
+            revenue_goal = cur.fetchone()['revenue_goal']
+            if revenue_goal is None:
+                revenue_goal = 'not set yet'
 
-        return render_template('employee.html', username=session['username'], company=session['company'], role=user_data['role'])
+
+            return render_template('employee.html', username=session['username'], company=session['company'],
+                                   role=session['role'], revenue_goal=revenue_goal)
     # TODO: (IAN) render a not logged in page
     return render_template('homePage.html')
 

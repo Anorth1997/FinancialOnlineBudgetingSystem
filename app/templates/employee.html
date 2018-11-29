@@ -53,8 +53,10 @@
             <div class="form-div" style="text-align: center">
             <form action="" method="post">
                 <div class="input-container">
-                <label class="input-amount input-label" for="expectedBudget">Expected Budget</label>
-                <span class="input"><span class="dollar-sign">&#36;</span> <input class="input-dollar-box" type="number" placeholder="Enter request amount" name="budget_amount" value="{{
+                    <label class="input-amount input-label">Revenue Goal: {{ revenue_goal }}</label>
+
+                    <label class="input-amount input-label" for="expectedBudget">Expected Budget</label>
+                    <span class="input"><span class="dollar-sign">&#36;</span> <input class="input-dollar-box" type="number" placeholder="Enter request amount" name="budget_amount" value="{{
                         request.form.budget_amount }}" required></span>
                 </div>
                 <input class="button" type="submit" value="Send Request">
