@@ -33,3 +33,27 @@ function graphButtonClicked() {
     $('.graph-button').fadeOut();
     fadeAllFinancial(showInitialContent);
 }
+
+function checkIfCeoSetRevenueGoal() {
+    // If the ceo has set a revenue goal, then 
+    // display a notification
+    // notify financial head when CEO makes a total revenue foal
+    $.ajax({
+        url: "http://127.0.0.1:5000/financial/check_total_rev_goal_set",
+        cache: false,
+        success: function(html){
+
+            if (html.total_rev_goal == null) {
+                // ceo has not set the notification yet
+                return;
+            }
+
+            // display notification
+            
+        }
+    });
+
+}
+
+checkIfCeoSetRevenueGoal();
+

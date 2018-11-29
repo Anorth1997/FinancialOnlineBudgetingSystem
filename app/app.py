@@ -289,7 +289,7 @@ def overview_expenses():
     cur = mysql.connection.cursor()
     # Get the list of all departments in the company
 
-    query = "SELECT * FROM Users WHERE company_id = " + str(session["company_id"]) + " AND role != 'ceo'"
+    query = "SELECT * FROM Users WHERE company_id = " + str(session["company_id"]) + " AND role != 'ceo' AND role != 'financial'"
 
     cur.execute(query)
     result_set = cur.fetchall()
@@ -302,6 +302,7 @@ def overview_expenses():
     # Construct the result department data
     result_data = {"departments": []}
     for department in department_users:
+        print('loop')
         user_id, role = department
         # Get the budget of the department
         query = "SELECT * FROM Departments WHERE user_id = " + str(user_id)
@@ -367,6 +368,26 @@ def overview_expenses_full_history():
         item["purpose"] = row["purpose"]
         item["date"] = row["date"]
         result_data["expenses"].append(item)
+
+    return jsonify(result_data)
+
+
+# Important notification routes listed in project-team-15/deliverables/artifacts/notificationSystem.md
+# in the dev
+
+# For the financial department to check if the total revenue was set or not
+@app.route('/financial/check_total_rev_goal_set', methods=['GET'])
+def check_total_rev_goal_set():
+
+    # Create cursor
+    cur = mysql.connection.cursor()
+    # Get the list of all departments in the company
+    query = "SELECT total_revenue_goal FROM Company WHERE company_id = " + str(session["company_id"])
+    cur.execute(query)
+    result = cur.fetchone()
+    total_rev_goal = result['total_revenue_goal']
+
+    result_data = {'total_rev_goal': total_rev_goal}
 
     return jsonify(result_data)
 

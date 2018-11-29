@@ -8,7 +8,6 @@ function setRevenue() {
 }
 
 function showInitialContent(callback) {
-    console.log('get');
     $('.content-initial').fadeIn(callback);
 }
 
@@ -16,6 +15,6 @@ function hideInitialContent(callback) {
     $('.content-initial').fadeOut(callback);
 }
 
-function fadeInGraphButton(callback) {
+function fadeInGraphButton(callbac1k) {
     $('.graph-button').fadeIn(callback);
 }
