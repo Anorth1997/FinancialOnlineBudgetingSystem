@@ -98,7 +98,7 @@ def ceo():
                 if department != 'financial':
                     cur.execute("SELECT user_id FROM Users WHERE username = %s", [username])
                     user_id = cur.fetchone()['user_id']
-                    cur.execute("INSERT INTO Departments(user_id, budget, revenue_goal, actual_expenses) VALUES(%s, %s, %s, %s)",
+                    cur.execute("INSERT INTO Departments(user_id, budget, revenue_goal, status) VALUES(%s, %s, %s, %s)",
                                 (user_id, null, null, null))
 
                 # commit to DB
@@ -146,33 +146,36 @@ class ExpectedBudgetForm(Form):
 @app.route("/employee", methods=['GET', 'POST'])
 def employee():
     if request.method == 'POST':
-        if 'purpose' in request.form.keys():
+        if 'purpose' in request.form.keys(): ## expenses case
             form = AddExpenseForm(request.form)
             if form.validate():
 
                 purpose = form.purpose.data
                 amount = form.amount.data
                 user_id = session['user_id']
+                now = datetime.now()
+                formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
 
                 cur = mysql.connection.cursor()
 
-                cur.execute("INSERT INTO Expense_history(user_id, purpose, amount) VALUES(%s, %s, %s)",
-                            (user_id, purpose, amount))
+                cur.execute("INSERT INTO Expense_history(user_id, purpose, amount, date) VALUES(%s, %s, %s, %s)",
+                            (user_id, purpose, amount, formatted_date))
 
-                cur.execute("SELECT * FROM Departments WHERE user_id = %s", [user_id])
-                department_data = cur.fetchone()
-                actual_expenses = department_data['actual_expenses']
-                if actual_expenses is None:
-                    actual_expenses = 0
 
-                cur.execute("UPDATE Departments SET actual_expenses = %s WHERE user_id = %s", (actual_expenses + int(amount), user_id))
+                # cur.execute("SELECT * FROM Departments WHERE user_id = %s", [user_id])
+                # department_data = cur.fetchone()
+                # actual_expenses = department_data['actual_expenses']
+                # if actual_expenses is None:
+                #     actual_expenses = 0
+                #
+                # cur.execute("UPDATE Departments SET actual_expenses = %s WHERE user_id = %s", (actual_expenses + int(amount), user_id))
 
                 mysql.connection.commit()
 
                 cur.close()
 
                 return render_template('employee.html', username=session['username'], company=session['company'],
-                                       role=session['role'])
+                                       role=session['role'], revenue_goal=session['revenue_goal'])
 
         elif 'reason' in request.form.keys():
             form = RequestFundForm(request.form)
@@ -186,7 +189,7 @@ def employee():
                 cur = mysql.connection.cursor()
 
                 # Create the request in table
-                cur.execute("INSERT INTO Requests(user_id, amount, data, reason, status) VALUES(%s, %s, %s, %s, %s)",
+                cur.execute("INSERT INTO Requests(user_id, amount, date, reason, status) VALUES(%s, %s, %s, %s, %s)",
                             (session['user_id'], amount, formatted_date, reason, 'ceo_not_notified'))
 
                 # commit to DB
@@ -196,7 +199,7 @@ def employee():
                 cur.close()
 
                 return render_template('employee.html', username=session['username'], company=session['company'],
-                                       role=session['role'])
+                                       role=session['role'], revenue_goal=session['revenue_goal'])
 
         elif 'budget_amount' in request.form.keys():
             form = ExpectedBudgetForm(request.form)
@@ -209,13 +212,14 @@ def employee():
                 cur = mysql.connection.cursor()
 
                 cur.execute("UPDATE Departments SET budget = %s WHERE user_id = %s", (amount, user_id))
+                cur.execute("UPDATE Departments SET status = %s WHERE user_id = %s", ('ceo_not_notified', user_id))
 
                 mysql.connection.commit()
 
                 cur.close()
 
                 return render_template('employee.html', username=session['username'], company=session['company'],
-                                       role=session['role'])
+                                       role=session['role'], revenue_goal=session['revenue_goal'])
 
     if 'username' in session:
         if 'role' in session:
@@ -226,6 +230,7 @@ def employee():
             revenue_goal = cur.fetchone()['revenue_goal']
             if revenue_goal is None:
                 revenue_goal = 'not set yet'
+            session['revenue_goal'] = revenue_goal
 
 
             return render_template('employee.html', username=session['username'], company=session['company'],
