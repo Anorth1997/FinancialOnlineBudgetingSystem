@@ -54,12 +54,12 @@ function fadeAllCeo(callBack) {
 }
 
 function graphButtonClicked() {
-    $('.graph-button').fadeOut();
+    $('.graph-button').fadeIn();
     fadeAllCeo(showInitialContent);
 }
 
 function createDptClicked() {
-    $('.graph-button').fadeOut();
+    $('.graph-button').fadeIn();
     fadeAllCeo(showCreateDepartmentContent);
 }
 
