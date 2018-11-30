@@ -6,6 +6,14 @@
     display: none;
 }
 
+.content-review-budget-requests {
+    display: none;
+}
+
+.content-view-department-history{
+    display: none;
+}
+
 .request-list-box {
     overflow-y:auto;
     overflow-x:hide;
@@ -148,5 +156,9 @@
     height:40px;
     width:40px;
     position:absolute;
+}
+
+.department-history-table {
+    height: 100%;
 }
 

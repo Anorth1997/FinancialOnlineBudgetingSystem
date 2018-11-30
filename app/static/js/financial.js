@@ -4,8 +4,12 @@ function fadeAllFinancial(callBack) {
         $('.content-initial').fadeOut(callBack);
     } else if ($('.content-review-department-requests').css('display').toLowerCase() != 'none') {
         $('.content-review-department-requests').fadeOut(callBack);
+    } else if ($('.content-review-budget-requests').css('display').toLowerCase() != 'none') {
+        $('.content-review-budget-requests').fadeOut(callBack);
     } else if ($('.content-distribute-total-revenue').css('display').toLowerCase() != 'none') {
         $('.content-distribute-total-revenue').fadeOut(callBack);
+    } else if ($('.content-view-department-history').css('display').toLowerCase() != 'none') {
+        $('.content-view-department-history').fadeOut(callBack);
     }
 }
 
@@ -89,7 +93,8 @@ function submitFormClicked() {
         sum = sum + revenue_inputs[j];
         console.log(sum);
     }
-    const total_revenue = document.getElementById('total-revenue').innerHTML;
+    const total_revenue = document.getElementById('.total-revenue').innerHTML;
+    console.log(total_revenue);
     if (sum != Number(total_revenue)) {
         var alert_message = ("Yikes! The sum of the inputted revenues does not match the target total revenue!\n"
                                 + "Expected Sum of Inputs: " + total_revenue + "\n"
@@ -104,6 +109,58 @@ function submitFormClicked() {
         graphButtonClicked();
     }
 
+}
+
+function displayAllBudgetRequests(html) {
+
+    const budget_requests = html.budget_requests;
+
+    // Clears the list before appending html elements to div's. Prevents the same tuples from being printed more than
+    // once when fading out of the Review Department Requests frame, and then fading it back in.
+    $('.request-list-box-department-name').html("");
+    $('.request-list-box-amount').html("");
+    $('.request-list-box-notify').html("");
+
+
+    for (let i = 0; i < budget_requests.length; i++) {
+        const currentRequest = budget_requests[i];
+        $('.request-list-box-department-name').append('<div class="request-list-entry"> <div class="request-list-entry-text">'
+                                                                + currentRequest.dept_name + '</div> </div>');
+        $('.request-list-box-amount').append('<div class="request-list-entry"> <div class="request-list-entry-text">'
+                                                                + currentRequest.budget + '</div> </div>');
+        if (currentRequest.status == 'ceo_not_notified') {
+            $('.request-list-box-notify').append('<div class="request-list-entry">'
+                                                            + '<div class="request-list-notify-ceo-button" onclick="budgetNotifyCEOClicked('
+                                                            + currentRequest.dept_id
+                                                            + ')"> Notify </div> </div>');
+        } else {
+            $('.request-list-box-notify').append('<div class="request-list-entry"> <div class="request-list-notify-ceo-button" style="background-color:yellow;cursor:auto">Notified</div></div>');
+        }
+    }
+
+}
+
+function budgetNotifyCEOClicked(department_id) {
+    $.post("http://127.0.0.1:5000/financial/notify_ceo_budget", {"dept_id": department_id})
+        .done(function(data) {reviewBudgetRequestsClicked()});
+
+}
+
+function reviewBudgetRequestsClicked() {
+    $('.graph-button').fadeOut();
+    fadeAllFinancial(showReviewBudgetRequests);
+    $.ajax({
+        url: "http://127.0.0.1:5000/undecided_budget_requests_all",
+        cache: false,
+        success: function(html){
+            displayAllBudgetRequests(html);
+        }
+    });
+}
+
+function showReviewBudgetRequests(callback) {
+    $('.content-review-budget-requests').fadeIn();
+    fadeInGraphButton();
 }
 
 function distributeTotalRevenueClicked() {
@@ -126,6 +183,57 @@ function showDistributeTotalRevenue(callback) {
 function graphButtonClicked() {
     $('.graph-button').fadeOut();
     fadeAllFinancial(showInitialContent);
+}
+
+function viewAllDepartmentHistoryClicked() {
+    $('.graph-button').fadeIn();
+    fadeAllFinancial(showViewAllDeptHistory);
+
+    $.ajax({
+        url: "http://127.0.0.1:5000/expenses/full_history",
+        cache: false,
+        success: function(html){
+            displayAllDepartmentHistory(html);
+        }
+    });
+}
+
+function showViewAllDeptHistory(callback) {
+    $('.content-view-department-history').fadeIn(callback);
+    fadeInGraphButton();
+}
+
+function displayAllDepartmentHistory(html) {
+    const initTable = '<table align="left"><tr>' +
+      '<th>Department</th>' +
+      '<th>Purpose</th>' +
+      '<th>Date</th>' +
+      '<th>Amount</th>' +
+      '</tr>'+
+      '</table>';
+
+    let table = $(initTable);
+    const expenses = html.expenses;
+
+    // Keep track of total so that we can display it on the last row
+    let total = 0;
+
+    // For each expense, create a new row in the table
+    for (let i = 0; i < expenses.length; i++) {
+        const currExpense = expenses[i];
+        let row = $('<tr></tr>');
+        $(row).append('<td>' + currExpense.department + '</td>');
+        $(row).append('<td>' + currExpense.purpose + '</td>');
+        $(row).append('<td>' + currExpense.date.slice(0, -4) + '</td>');
+        $(row).append('<td>$' + currExpense.amount + '</td>');
+        $(table).append(row);
+        total += currExpense.amount;
+    }
+
+    // Create the last row that displays the total
+    $(table).append('<tr><td>Total</td><td></td><td></td><td>$' + total.toString() + '</td></tr>');
+
+    $('.department-history-table').append(table);
 }
 
 function checkIfCeoSetRevenueGoal() {
