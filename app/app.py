@@ -461,7 +461,7 @@ def overview_expenses_full_history():
 
 # Route for the ceo to get department budgets with ceo_notified
 # the status
-@app.route('/ceo/get_department_budget_proposals')
+@app.route('/ceo/get_department_budget_proposals', methods=['GET'])
 def get_department_budget_proposals():
 
     cur = mysql.connection.cursor()
@@ -484,13 +484,13 @@ def get_department_budget_proposals():
     return jsonify(result_data)
 
 # Route for the ceo to decide whether a request is accepted or rejected
-@app.route('/ceo/ceo_request_decision')
+@app.route('/ceo/ceo_request_decision', methods=['POST'])
 def ceo_request_decision():
 
     # Get a request_id and update the status in the 
     # Requests table to be ceo_notified
-    request_id = request.args.get('req_id')
-    decision = request.args.get('decision')
+    request_id = request.form['req_id']
+    decision = request.form['decision']
 
     cur = mysql.connection.cursor()
 
@@ -501,13 +501,14 @@ def ceo_request_decision():
     return ''
 
 # Route for the ceo to decide whether a budget is accepted or rejected
-@app.route('/ceo/ceo_budget_decision')
+@app.route('/ceo/ceo_budget_decision', methods=['POST'])
 def ceo_budget_decision():
 
     # Get a request_id and update the status in the 
     # Requests table to be ceo_notified
-    dept_id = request.args.get('dept_id')
-    decision = request.args.get('decision')
+    
+    dept_id = request.form['dept_id']
+    decision = request.form['decision']
 
     cur = mysql.connection.cursor()
 
@@ -609,26 +610,28 @@ def get_decided_budget_requests():
     return jsonify(result_data)
 
 # Route for the Financial head to notify ceo of a request
-@app.route('/financial/notify_ceo_request')
+@app.route('/financial/notify_ceo_request', methods=['POST'])
 def notify_ceo_request():
 
     # Get a request_id and update the status in the 
     # Requests table to be ceo_notified
-    request_id = request.args.get('req_id')
-    cur = mysql.connection.cursor()
+    request_id = request.form['req_id']
 
+    cur = mysql.connection.cursor()
+    print('---req_id---')
+    print(request_id)
     cur.execute('UPDATE Requests SET status = "ceo_notified" WHERE request_id = ' + request_id)
     mysql.connection.commit()
     cur.close()
     return ''
 
 # Route for the Financial head to notify ceo of a budget request
-@app.route('/financial/notify_ceo_budget')
+@app.route('/financial/notify_ceo_budget', methods=['POST'])
 def notify_ceo_budget():
 
     # Get a dept_id and update the status in the 
     # Departments table to be ceo_notified
-    dept_id = request.args.get('dept_id')
+    dept_id = request.form['dept_id']
     cur = mysql.connection.cursor()
 
     cur.execute('UPDATE Departments SET status = "ceo_notified" WHERE dept_id = ' + dept_id)
