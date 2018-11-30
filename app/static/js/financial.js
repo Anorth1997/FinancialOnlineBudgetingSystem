@@ -75,12 +75,34 @@ function displayAllDepartmentsAndRevenueInputs(html) {
                                         + currentDepartment.department
                                         + ': <input type="text" id="'
                                         + currentDepartment.department
-                                        + 'RevenueEntry"> </form> </div>')
+                                        + '"> </form> </div>')
     }
 }
 
 function submitFormClicked() {
-
+    var revenue_inputs = [];
+    for (let i = 0; i < num_departments; i++) {
+        revenue_inputs[i] = Number(document.getElementById(department_list[i]).value);
+    }
+    var sum = 0;
+    for (let j = 0; j < num_departments; j++) {
+        sum = sum + revenue_inputs[j];
+        console.log(sum);
+    }
+    const total_revenue = document.getElementById('total-revenue').innerHTML;
+    if (sum != Number(total_revenue)) {
+        var alert_message = ("Yikes! The sum of the inputted revenues does not match the target total revenue!\n"
+                                + "Expected Sum of Inputs: " + total_revenue + "\n"
+                                + "Actual Sum of Inputs:   " + sum) ;
+        window.alert(alert_message);
+    } else {
+        for (let k = 0; k < num_departments; k++) {
+            $.post("http://127.0.0.1:5000/financial/set_department_revenues", {"dept_name": department_list[k],
+                                                                                "rev_goal": revenue_inputs[k]});
+        }
+        window.alert("Form submitted successfully.");
+        graphButtonClicked();
+    }
 
 }
 
