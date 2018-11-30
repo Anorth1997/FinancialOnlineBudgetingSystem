@@ -125,6 +125,7 @@ def financial():
             # Get the total revenue goal data
             cur.execute("SELECT * FROM Company WHERE company_id = %s", [session['company_id']])
             data = cur.fetchone()
+            print(data['total_revenue_goal'])
 
             return render_template('financial.html', username=session['username'], company=session['company'], total_revenue_goal=data['total_revenue_goal'])
     # TODO: (IAN) render a not logged in page
@@ -403,11 +404,11 @@ def overview_expenses():
             return "No department found with user_id"
 
         data = cur.fetchone()
-        
+
         if data["status"] != 'accepted':
             budget = 0
         else:
-            budget = data["budget"] 
+            budget = data["budget"]
         revenue_goal = data["revenue_goal"]
 
         # Get the expense history from the department
@@ -702,7 +703,7 @@ def get_undecided_budget_requests():
 @app.route('/undecided_budget_requests_all', methods=['GET'])
 def get_undecided_budget_requests_all():
     cur = mysql.connection.cursor()
-    query = ("SELECT dept_id, budget, status "
+    query = ("SELECT dept_id, budget, status, role "
              "FROM Departments AS D NATURAL JOIN Users AS U "
              "WHERE U.company_id = " + str(session["company_id"]) + " AND "
                     "D.status != 'accepted' AND D.status != 'declined'")
@@ -715,6 +716,7 @@ def get_undecided_budget_requests_all():
         item["dept_id"] = row["dept_id"]
         item["budget"] = row["budget"]
         item["status"] = row["status"]
+        item["dept_name"] = row["role"]
         result_data["budget_requests"].append(item)
 
     return jsonify(result_data)

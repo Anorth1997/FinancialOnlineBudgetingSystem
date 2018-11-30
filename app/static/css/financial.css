@@ -6,6 +6,14 @@
     display: none;
 }
 
+.content-review-budget-requests {
+    display: none;
+}
+
+.content-view-department-history{
+    display: none;
+}
+
 .request-list-box {
     overflow-y:auto;
     overflow-x:hide;
@@ -149,4 +157,38 @@
     width:40px;
     position:absolute;
 }
+
+/* from ceo.css */
+
+.department-history-table {
+    height: 100%;
+}
+table, td, tr {
+    text-align: left;
+}
+
+table {
+    width: 80%;
+    position: absolute;
+    margin: auto;
+    border-collapse: collapse;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    border: 1px solid white;
+    color: white;
+}
+
+table tr:first-child {
+    background: #435245;
+}
+
+table tbody tr:nth-child(even) td {
+    background-color: #8fa392;
+}
+
+table tbody tr:nth-child(odd) td {
+    background-color: #677e6a;
+}
+
 
