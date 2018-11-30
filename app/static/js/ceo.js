@@ -156,13 +156,6 @@ function populateRequests(html) {
     for (let i = 0; i < requests.length; i++) {
         const curr = requests[i];
 
-        $('.request-list-box-department-name').html("");
-        $('.request-list-box-type').html("");
-        $('.request-list-box-amount').html("");
-        $('.request-list-box-accept').html("");
-        $('.request-list-box-reject').html(""); 
-
-
         $('.request-list-box-department-name').append('<div class="request-list-entry"> <div class="request-list-entry-text">'
                                                                 + curr.department + '</div> </div>');
 

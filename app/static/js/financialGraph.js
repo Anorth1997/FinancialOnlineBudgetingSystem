@@ -2,20 +2,25 @@ $.ajax({
     url: "http://127.0.0.1:5000/expenses/overview",
     cache: false,
     success: function(html){
-        console.log(html);
+
         generateBarGraph(html);
         generatePieGraph(html);
-        totalRevenueGoal = html.total_revenue_goal;
+        const totalRevenueGoal = getTotalRevenueGoal(html.departments);
         $('#total-revenue').text('Total Revenue: $' + totalRevenueGoal.toString());
     }
 });
 
-
+function getTotalRevenueGoal(departments) {
+    let total = 0;
+    for (let i = 0; i < departments.length; i++) {
+        total += departments[i].revenue_goal;
+    }
+    return total;
+}
 
 function generatePieGraph(html) {
 
     const departments = html.departments;
-
     
     // pie chart
     let pieCanvas = $("#pie");
