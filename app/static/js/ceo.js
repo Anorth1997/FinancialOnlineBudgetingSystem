@@ -31,14 +31,6 @@ function displayAllDepartmentHistory(html) {
     $('.department-history-table').append(table);
 }
 
-function getRequests() {
-    var requests = data;
-    var length = data.length;
-    for (var i = 0; i < length; i++) {
-        $('.content-review-financial-request').append(data[i].Department, data[i].Amount, data[i].Comment);
-    }
-}
-
 function fadeAllCeo(callBack) {
     if ($('.content-initial').css('display').toLowerCase() != 'none') {
         $('.content-initial').fadeOut(callBack);
@@ -71,7 +63,7 @@ function setTotalRevenueClicked() {
 function reviewFDRequestsClicked() {
     $('.graph-button').fadeIn();
     fadeAllCeo(showReviewFDRequest);
-    getRequests();
+    displayRequests();
 }
 
 function viewAllDepartmentHistoryClicked() {
@@ -105,16 +97,11 @@ function showReviewFDRequest(callback) {
 function showViewAllDeptHistory(callback) {
     $('.content-view-department-history').fadeIn(callback);
     fadeInGraphButton();
-
-
 }
 
-var enforeMutualExcludedCheckBox = function(group){
-    return function() {
-      var isChecked= $(this).prop("checked");
-      $(group).prop("checked", false);
-      $(this).prop("checked", isChecked);
-    }
-};
+function displayRequests() {
 
-$(".exclusive").click(enforeMutualExcludedCheckBox(".exclusive"));
+    console.log('cliccked');
+
+    
+}

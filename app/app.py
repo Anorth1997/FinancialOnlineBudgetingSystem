@@ -460,7 +460,7 @@ def overview_expenses_full_history():
 # in the dev
 
 # Route for the ceo to get department budgets with ceo_notified
-# the status
+# as the status
 @app.route('/ceo/get_department_budget_proposals', methods=['GET'])
 def get_department_budget_proposals():
 
@@ -480,6 +480,35 @@ def get_department_budget_proposals():
         item['dept_id'] = row['dept_id']
         item['budget'] = row['budget']
         result_data['budget_proposals'].append(item)
+
+    return jsonify(result_data)
+
+# Route for the ceo to get requests with ceo_notified
+# as the status
+@app.route('/ceo/get_department_requests', methods=['GET'])
+def get_department_requests():
+
+    cur = mysql.connection.cursor()
+
+    # Get the list of all departments in the company
+    query = ("SELECT U.role, R.request_id, R.amount, R.reason "
+            "FROM Users AS U NATURAL JOIN Requests AS R "
+            "WHERE U.company_id = " + str(session["company_id"]) + " AND "
+                "U.role != 'ceo' AND U.role != 'financial' AND "
+                "R.status='ceo_notified'")
+
+    cur.execute(query)
+    result_set = cur.fetchall()
+
+    result_data = {'requests': []}
+
+    for row in result_set:
+        item = {}
+        item['department'] = row['role']
+        item['request_id'] = row['request_id']
+        item['amount'] = row['amount']
+        item['reason'] = row['reason']
+        result_data['requests'].append(item)
 
     return jsonify(result_data)
 

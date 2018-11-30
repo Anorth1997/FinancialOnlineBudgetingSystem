@@ -71,22 +71,29 @@
         <!-- Since we have not decided upon how this will work, below is just some thoughts: could use checkboxes-->
         <div class="content-review-financial-request">
             <h1 class="content-title">Review Financial Requests</h1>
-            <div class="form-div">
-                <label class="input-name-text" for="total">Amount Allocate</label>
-                <input class="input-text-box" type="text" placeholder="Enter Amount" name="total" required>
-
-                Accept <input type="checkbox" class="exclusive" value="Accept Request" />
-                Decline <input type="checkbox" class="exclusive" value="Decline Request" /><br />
-
-                <label class="input-name-text" for="commments">Comments</label>
-                <input class="input-text-box" type="text" placeholder="Enter Optional Comments" name="comments">
-
-                <span class="button-text">Submit</span>
-
-                <div class="button">
-                    <span class="button-text">Next</span>
+            <div class = "request-list-box-header">
+                <div class = "request-list-box-header-department-name">
+                    Department Name
                 </div>
-
+                <div class = "request-list-box-header-type">
+                    Request Type
+                </div>
+                <div class = "request-list-box-header-amount">
+                    Amount ($)
+                </div>
+                <div class = "request-list-box-header-accept">
+                    Accept
+                </div>
+                <div class = "request-list-box-header-reject">
+                    Reject
+                </div>
+            </div>
+            <div class = "request-list-box">
+                <div class="request-list-box-department-name"> </div>
+                <div class="request-list-box-type"> </div>
+                <div class="request-list-box-amount"> </div>
+                <div class="request-list-box-accept"> </div>
+                <div class="request-list-box-reject"> </div>
             </div>
         </div>
 
