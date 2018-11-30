@@ -341,12 +341,15 @@ def department_expenses():
     # Create cursor
     cur = mysql.connection.cursor()
     # Get the budget of the department
-    query = "SELECT * FROM Departments WHERE user_id = " + str(session["user_id"])
+    query = ("SELECT * FROM Departments "
+            "WHERE user_id = " + str(session["user_id"]) +
+            " AND status='accepted'")
     result = cur.execute(query)
     if result == 0:
-        return "No department found with user_id"
-    data = cur.fetchone()
-    budget = data["budget"]
+        budget = 0
+    else:
+        data = cur.fetchone()
+        budget = data["budget"]
 
     # Get department name
     query = "SELECT role FROM Users WHERE user_id = " + str(session["user_id"])
@@ -374,6 +377,11 @@ def overview_expenses():
     cur = mysql.connection.cursor()
     # Get the list of all departments in the company
 
+    query = "SELECT total_revenue_goal FROM Company WHERE company_id = " + str(session["company_id"])
+    cur.execute(query)
+    result = cur.fetchone()
+    total_revenue = result["total_revenue_goal"]
+
     query = "SELECT * FROM Users WHERE company_id = " + str(session["company_id"]) + " AND role != 'ceo' AND role != 'financial'"
 
     cur.execute(query)
@@ -382,10 +390,9 @@ def overview_expenses():
     print(result_set)
     for item in result_set:
         department_users.append((item["user_id"], item["role"]))
-    print('--dep--')
-    print(department_users)
+
     # Construct the result department data
-    result_data = {"departments": []}
+    result_data = {"departments": [], "total_revenue_goal": total_revenue}
     for department in department_users:
         print('loop')
         user_id, role = department
@@ -394,9 +401,15 @@ def overview_expenses():
         result = cur.execute(query)
         if result == 0:
             return "No department found with user_id"
+
         data = cur.fetchone()
-        budget = data["budget"]
+        
+        if data["status"] != 'accepted':
+            budget = 0
+        else:
+            budget = data["budget"] 
         revenue_goal = data["revenue_goal"]
+
         # Get the expense history from the department
         query = "SELECT * FROM Expense_history WHERE user_id = " + str(user_id)
         cur.execute(query)
@@ -557,7 +570,7 @@ def get_decided_requests_all():
                     "R.status = 'accepted' OR status = 'declined'")
     cur.execute(query)
     result_set = cur.fetchall()
-    result_data = {"decided_requests":[]}
+    result_data = {"requests":[]}
 
     for row in result_set:
         item = {}
@@ -566,7 +579,7 @@ def get_decided_requests_all():
         item["date"] = row["date"]
         item["reason"] = row["reason"]
         item["status"] = row["status"]
-        result_data["decided_requests"].append(item)
+        result_data["requests"].append(item)
 
     return jsonify(result_data)
 
@@ -581,7 +594,7 @@ def get_decided_requests():
 
     cur.execute(query)
     result_set = cur.fetchall()
-    result_data = {"decided_requests":[]}
+    result_data = {"requests":[]}
 
     for row in result_set:
         item = {}
@@ -590,7 +603,31 @@ def get_decided_requests():
         item["date"] = row["date"]
         item["reason"] = row["reason"]
         item["status"] = row["status"]
-        result_data["decided_requests"].append(item)
+        result_data["requests"].append(item)
+
+    return jsonify(result_data)
+
+# Route to get all undecided requests from the current department
+@app.route('/undecided_requests', methods=['GET'])
+def get_undecided_requests():
+    cur = mysql.connection.cursor()
+    query = ("SELECT request_id, amount, date, reason, status "
+             "FROM Requests "
+             "WHERE user_id = " + str(session["user_id"]) + " AND "
+                "status != 'accepted' AND status != 'declined'")
+
+    cur.execute(query)
+    result_set = cur.fetchall()
+    result_data = {"requests":[]}
+
+    for row in result_set:
+        item = {}
+        item["request_id"] = row["request_id"]
+        item["amount"] = row["amount"]
+        item["date"] = row["date"]
+        item["reason"] = row["reason"]
+        item["status"] = row["status"]
+        result_data["requests"].append(item)
 
     return jsonify(result_data)
     
@@ -604,14 +641,14 @@ def get_decided_budget_requests_all():
                     "D.status = 'accepted' OR D.status = 'declined'")
     cur.execute(query)
     result_set = cur.fetchall()
-    result_data = {"decided_budget_requests":[]}
+    result_data = {"budget_requests":[]}
 
     for row in result_set:
         item = {}
         item["dept_id"] = row["dept_id"]
         item["budget"] = row["budget"]
         item["status"] = row["status"]
-        result_data["decided_budget_requests"].append(item)
+        result_data["budget_requests"].append(item)
 
     return jsonify(result_data)
 
@@ -627,14 +664,58 @@ def get_decided_budget_requests():
     print(query)
     cur.execute(query)
     result_set = cur.fetchall()
-    result_data = {"decided_requests":[]}
+    result_data = {"budget_requests":[]}
 
     for row in result_set:
         item = {}
         item["dept_id"] = row["dept_id"]
         item["budget"] = row["budget"]
         item["status"] = row["status"]
-        result_data["decided_requests"].append(item)
+        result_data["budget_requests"].append(item)
+
+    return jsonify(result_data)
+
+# Route to get the undecided budget request from the current department
+@app.route('/undecided_budget_requests', methods=['GET'])
+def get_undecided_budget_requests():
+    cur = mysql.connection.cursor()
+    query = ("SELECT dept_id, budget, status "
+             "FROM Departments "
+             "WHERE user_id = " + str(session["user_id"]) + " AND "
+                "status != 'accepted' AND status != 'declined'")
+    print('---query---')
+    print(query)
+    cur.execute(query)
+    result_set = cur.fetchall()
+    result_data = {"budget_requests":[]}
+
+    for row in result_set:
+        item = {}
+        item["dept_id"] = row["dept_id"]
+        item["budget"] = row["budget"]
+        item["status"] = row["status"]
+        result_data["budget_requests"].append(item)
+
+    return jsonify(result_data)
+
+# Route for Financial head to get all the undecided budget requests
+@app.route('/undecided_budget_requests_all', methods=['GET'])
+def get_undecided_budget_requests_all():
+    cur = mysql.connection.cursor()
+    query = ("SELECT dept_id, budget, status "
+             "FROM Departments AS D NATURAL JOIN Users AS U "
+             "WHERE U.company_id = " + str(session["company_id"]) + " AND "
+                    "D.status != 'accepted' AND D.status != 'declined'")
+    cur.execute(query)
+    result_set = cur.fetchall()
+    result_data = {"budget_requests":[]}
+
+    for row in result_set:
+        item = {}
+        item["dept_id"] = row["dept_id"]
+        item["budget"] = row["budget"]
+        item["status"] = row["status"]
+        result_data["budget_requests"].append(item)
 
     return jsonify(result_data)
 
@@ -720,7 +801,8 @@ def get_all_departments():
     query = ("SELECT U2.role "
              "FROM Users U1, Users U2 "
              "WHERE U1.user_id = " + str(session["user_id"]) + " AND "
-                    "U1.company_id = U2.company_id "
+                    "U1.company_id = U2.company_id AND "
+                    "U2.role != 'ceo' AND U2.role != 'financial'"
              "ORDER BY U2.role ")
     cur.execute(query)
     result_set = cur.fetchall()

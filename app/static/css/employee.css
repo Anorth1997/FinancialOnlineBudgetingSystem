@@ -71,4 +71,15 @@
     background-color: #677e6a;
 }
   
-  
+.notification-div {
+    height: 100%;
+}
+
+.notification-table {
+    color: white;
+    width: 100%;
+}
+
+.notification-table > tr > th {
+    color: white;
+}

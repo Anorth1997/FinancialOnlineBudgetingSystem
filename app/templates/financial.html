@@ -3,9 +3,9 @@
 {% block title %}Finance Department{% endblock %}
 
 {% block js %}
-    <script type="text/javascript" src="{{ url_for('static', filename='js/graph.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/userPages.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/financial.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/financialGraph.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/financial.css') }}">
 {% endblock %}
 
@@ -17,7 +17,7 @@
 
         <div class="row content-initial">
             <div class="column">
-                <h1 class="graph-title-text">Total Revenue: $456 789</h1>
+                <h1 class="graph-title-text">Total Revenue: ${{total_revenue_goal}}</h1>
                 <canvas class="graph" width="400" height="400" id="pie"></canvas>
             </div>
             <div class="column">

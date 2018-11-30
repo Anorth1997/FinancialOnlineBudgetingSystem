@@ -99,3 +99,84 @@ function showRequestFunds(callback) {
     $('.content-request-funds').fadeIn();
     fadeInGraphButton()
 }
+
+// functions for the request notifications
+function getStatusString(status) {
+    if (status == 'accepted') {
+        return 'Accepted';
+    } else if (status == 'declined') {
+        return 'Declined';
+    } else {
+        return 'Pending';
+    } 
+}
+
+function displayRequestNotifToTable(html) {
+    const requests = html.requests;
+
+    for (let i = 0; i < requests.length; i++) {
+        const currReq = requests[i];
+        const status = getStatusString(currReq.status);
+
+        let row = $('<tr></tr>');
+        $(row).append('<td>' + currReq.reason + '</td>');
+        $(row).append('<td>' + currReq.amount + '</td>');
+        $(row).append('<td>' + status + '</td>');
+        $('.notification-table').append(row);
+    }
+}
+
+function displayBudgetRequestNotifToTable(html) {
+    const requests = html.budget_requests;
+    for (let i = 0; i < requests.length; i++) {
+        const currReq = requests[i];
+        
+        if (currReq.budget == null) {
+            continue;
+        }
+
+        const status = getStatusString(currReq.status);
+
+        let row = $('<tr></tr>');
+        $(row).append('<td>Budget Request</td>');
+        $(row).append('<td>' + currReq.budget + '</td>');
+        $(row).append('<td>' + status + '</td>');
+        $('.notification-table').append(row);
+    }
+}
+
+function displayRequestNotifications() {
+
+    $.ajax({
+        url: "http://127.0.0.1:5000/undecided_requests",
+        cache: false,
+        success: function(html){
+            displayRequestNotifToTable(html);
+        }
+    });
+
+    $.ajax({
+        url: "http://127.0.0.1:5000/decided_requests",
+        cache: false,
+        success: function(html){
+            displayRequestNotifToTable(html);
+        }
+    });
+
+    $.ajax({
+        url: "http://127.0.0.1:5000/decided_budget_requests",
+        cache: false,
+        success: function(html){
+            displayBudgetRequestNotifToTable(html);
+        }
+    });
+
+    $.ajax({
+        url: "http://127.0.0.1:5000/undecided_budget_requests",
+        cache: false,
+        success: function(html){
+            displayBudgetRequestNotifToTable(html);
+        }
+    });
+}
+displayRequestNotifications();
