@@ -70,4 +70,3 @@ We have assigned a product manager and a scrum lord to guide the group. The prod
 * Image mock-ups of each website page to use as reference during development.
 * A video to present an interactive experience.
 * User story for this project. The complete story is in user.md file.
-

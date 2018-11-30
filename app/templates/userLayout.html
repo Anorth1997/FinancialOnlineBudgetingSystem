@@ -5,19 +5,24 @@
     <title>{% block title %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/userPages.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/chart.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/url.js') }}"></script>
 </head>
 
 <body>
     <nav class="nav">
         <div class="nav-logo">
-            <span class="nav-logo-text">F.O.B.S.</span>
         </div>
 
-        <span class="nav-company-name">{Company name here}</span>
+        <span class="nav-company-name">{{ company }}</span>
 
-        <ul>
-            <li class="log-out-btn"><a>Log out</a></li>
-        </ul>
+        <a href="/"  class="log-out-btn">
+            <span class="">Log out</span>
+        </a>
+        <!--<ul>-->
+            <!--<li class="log-out-btn"><a>Log out</a></li>-->
+        <!--</ul>-->
 	</nav>
 
     {% block content %}
@@ -25,5 +30,5 @@
 
 
 </body>
-
+{% block js %}{% endblock %}
 </html>

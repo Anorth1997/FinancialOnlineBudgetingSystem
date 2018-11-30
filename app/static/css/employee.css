@@ -1,0 +1,85 @@
+/* CSS for the Employee page */
+
+.content-set-expected-budget {
+    padding-top: 10px;
+    height: 100%;
+    text-align: center;
+    display: none;
+}
+
+.content-add-expenses {
+    padding-top: 10px;
+    height: 100%;
+    text-align: center;
+    display: none;
+}   
+
+.content-request-funds {
+    padding-top: 10px;
+    height: 100%;
+    text-align: center;
+    display: none;
+}
+
+.dollar-sign {
+    color: white;
+    font-weight: 400;
+}
+
+.input-text-box-reason {
+    width: 500px;
+    height: 100px;  
+}
+
+.content-view-department-history {
+    padding-top: 10px;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    display: none;
+}
+
+.department-history-table {
+    height: 100%;
+}
+
+.history-table, .history-td, .history-tr {
+    text-align: left;
+}
+
+.history-table {
+    width: 80%;
+    position: absolute;
+    margin: auto;
+    border-collapse: collapse;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    border: 1px solid white;
+    color: white;
+}
+
+.history-table .history-tr:first-child { 
+    background: #435245;
+}
+  
+.history-table tbody .history-tr:nth-child(even) td {
+    background-color: #8fa392;
+}
+
+.history-table tbody .history-tr:nth-child(odd) td {
+    background-color: #677e6a;
+}
+  
+.notification-div {
+    height: 100%;
+}
+
+.notification-table {
+    color: white;
+    width: 100%;
+}
+
+.notification-table > tr > th {
+    color: white;
+}
