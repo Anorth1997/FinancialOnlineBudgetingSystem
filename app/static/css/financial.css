@@ -94,6 +94,21 @@
     transform: translate(-50%, -50%);
 }
 
+.request-list-notify-ceo-button {
+    position:relative;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background-color:#23a13e;
+    border: 1px solid black;
+    border-radius:10px;
+    height:22px;
+    font-size:20px;
+    width:100px;
+    text-align:center;
+    cursor:pointer;
+}
+
 .distribute-revenue-form {
     overflow-y:scroll;
     position:absolute;

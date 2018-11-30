@@ -15,6 +15,6 @@ function hideInitialContent(callback) {
     $('.content-initial').fadeOut(callback);
 }
 
-function fadeInGraphButton(callbac1k) {
+function fadeInGraphButton(callback) {
     $('.graph-button').fadeIn(callback);
 }

@@ -21,7 +21,7 @@ function displayAllRequests(html) {
     $('.request-list-box-notify').html("");
 
 
-    for (let i = 0; requests.length; i++) {
+    for (let i = 0; i < requests.length; i++) {
         const currentRequest = requests[i];
         $('.request-list-box-department-name').append('<div class="request-list-entry"> <div class="request-list-entry-text">'
                                                                 + currentRequest.department + '</div> </div>');
@@ -29,9 +29,17 @@ function displayAllRequests(html) {
                                                                 + currentRequest.amount + '</div> </div>');
         $('.request-list-box-reason').append('<div class="request-list-entry"> <div class="request-list-entry-text">'
                                                                 + currentRequest.reason + '</div></div>');
-        $('.request-list-box-notify').append();
+        $('.request-list-box-notify').append('<div class="request-list-entry">'
+                                                            + '<div class="request-list-notify-ceo-button" onclick="notifyCEOClicked('
+                                                            + currentRequest.request_id
+                                                            + ')"> Notify </div> </div>');
     }
 
+}
+
+function notifyCEOClicked(corresponding_request_id) {
+    $.post("http://127.0.0.1:5000/financial/notify_ceo_request", {"req_id", corresponding_request_id});
+    reviewDepartmentRequestsClicked();
 }
 
 function reviewDepartmentRequestsClicked() {
@@ -60,7 +68,7 @@ function displayAllDepartmentsAndRevenueInputs(html) {
 
     $('.distribute-revenue-form').html('');
 
-    for (let i = 0; departments.length; i++) {
+    for (let i = 0; i < departments.length; i++) {
         const currentDepartment = departments[i];
         department_list[i] = currentDepartment.department;
         $('.distribute-revenue-form').append('<div class="distribute-revenue-entry"><form>'
@@ -80,7 +88,7 @@ function distributeTotalRevenueClicked() {
     $('.graph-button').fadeOut();
     fadeAllFinancial(showDistributeTotalRevenue);
     $.ajax({
-        url: "http://127.0.0.1:5000/all_departments",
+        url: "http://127.0.0.1:5000/financial/all_departments",
         cache: false,
         success: function(html){
             displayAllDepartmentsAndRevenueInputs(html);
@@ -99,7 +107,7 @@ function graphButtonClicked() {
 }
 
 function checkIfCeoSetRevenueGoal() {
-    // If the ceo has set a revenue goal, then 
+    // If the ceo has set a revenue goal, then
     // display a notification
     // notify financial head when CEO makes a total revenue foal
     $.ajax({
@@ -113,7 +121,7 @@ function checkIfCeoSetRevenueGoal() {
             }
 
             // display notification
-            
+
         }
     });
 
