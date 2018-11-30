@@ -51,19 +51,29 @@ function showReviewDepartmentRequests(callback) {
     fadeInGraphButton();
 }
 
+var num_departments;
+var department_list = [];
+
 function displayAllDepartmentsAndRevenueInputs(html) {
     const departments = html.departments;
+    num_departments = departments.length;
 
     $('.distribute-revenue-form').html('');
 
     for (let i = 0; departments.length; i++) {
         const currentDepartment = departments[i];
+        department_list[i] = currentDepartment.department;
         $('.distribute-revenue-form').append('<div class="distribute-revenue-entry"><form>'
                                         + currentDepartment.department
-                                        + ': <input type="text" name="'
+                                        + ': <input type="text" id="'
                                         + currentDepartment.department
                                         + 'RevenueEntry"> </form> </div>')
     }
+}
+
+function submitFormClicked() {
+
+
 }
 
 function distributeTotalRevenueClicked() {

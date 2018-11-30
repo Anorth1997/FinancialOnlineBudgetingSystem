@@ -613,7 +613,7 @@ def check_total_rev_goal_set():
 @app.route('/requests/all_requests', methods=['GET'])
 def all_department_requests ():
     cur = mysql.connection.cursor()
-    query = ("SELECT U2.role, R.amount, R.reason "
+    query = ("SELECT U2.role, R.amount, R.reason, R.request_id "
              "FROM Users U1, Users U2, Requests R "
              "WHERE U1.user_id = " + str(session["user_id"]) + " AND "
                     "U1.company_id = U2.company_id AND "
@@ -627,16 +627,17 @@ def all_department_requests ():
     for row in result_set:
         print(counter)
         counter += 1
-        print(row["role"] + " " + str(row["amount"]) + " " + row["reason"])
+        print(row["role"] + " " + str(row["amount"]) + " " + row["reason"] + " " + str(row["request_id"]))
         item = {}
         item["department"] = row["role"]
         item["amount"] = row["amount"]
         item["reason"] = row["reason"]
+        item["request_id"] = row["request_id"]
         result_data["requests"].append(item)
 
     return jsonify(result_data)
 
-@app.route('/all_departments', methods=['GET'])
+@app.route('/financial/all_departments', methods=['GET'])
 def get_all_departments():
     cur = mysql.connection.cursor()
     query = ("SELECT U2.role "
@@ -652,6 +653,8 @@ def get_all_departments():
         item = {}
         item["department"] = row["role"]
         result_data["departments"].append(item)
+
+    return jsonify(result_data)
 
 if __name__ == '__main__':
     app.run(debug=True)
