@@ -502,7 +502,7 @@ def get_department_requests():
 
     result_data = {'requests': []}
 
-    for row in result_set:
+    for row in result_set:  
         item = {}
         item['department'] = row['role']
         item['request_id'] = row['request_id']
