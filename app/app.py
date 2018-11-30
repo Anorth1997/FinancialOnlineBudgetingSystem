@@ -459,6 +459,65 @@ def overview_expenses_full_history():
 # Important notification routes listed in project-team-15/deliverables/artifacts/notificationSystem.md
 # in the dev
 
+# Route for the ceo to get department budgets with ceo_notified
+# the status
+@app.route('/ceo/get_department_budget_proposals')
+def get_department_budget_proposals():
+
+    cur = mysql.connection.cursor()
+
+    # Get the list of all departments in the company
+    query = "SELECT U.role, D.dept_id, D.budget FROM Users AS U NATURAL JOIN Departments AS D WHERE U.company_id = " + str(session["company_id"]) + " AND U.role != 'ceo' AND U.role != 'financial' AND status='ceo_notified'"
+
+    cur.execute(query)
+    result_set = cur.fetchall()
+
+    result_data = {'budget_proposals': []}
+
+    for row in result_set:
+        item = {}
+        item['role'] = row['role']
+        item['dept_id'] = row['dept_id']
+        item['budget'] = row['budget']
+        result_data['budget_proposals'].append(item)
+
+    return jsonify(result_data)
+
+# Route for the ceo to decide whether a request is accepted or rejected
+@app.route('/ceo/ceo_request_decision')
+def ceo_request_decision():
+
+    # Get a request_id and update the status in the 
+    # Requests table to be ceo_notified
+    request_id = request.args.get('req_id')
+    decision = request.args.get('decision')
+
+    cur = mysql.connection.cursor()
+
+    cur.execute('UPDATE Requests SET status = "' + decision + '" WHERE request_id = ' + request_id)
+    mysql.connection.commit()
+    cur.close()
+
+    return ''
+
+# Route for the ceo to decide whether a budget is accepted or rejected
+@app.route('/ceo/ceo_budget_decision')
+def ceo_budget_decision():
+
+    # Get a request_id and update the status in the 
+    # Requests table to be ceo_notified
+    dept_id = request.args.get('dept_id')
+    decision = request.args.get('decision')
+
+    cur = mysql.connection.cursor()
+
+    cur.execute('UPDATE Departments SET status = "' + decision + '" WHERE dept_id = ' + dept_id)
+    mysql.connection.commit()
+    cur.close()
+
+    return ''
+
+
 # Route for the Financial head to notify ceo of a request
 @app.route('/financial/notify_ceo_request')
 def notify_ceo_request():
