@@ -85,34 +85,34 @@ table tbody tr:nth-child(odd) td {
 }
 
 .request-list-box-department-name {
-    width:20%;
+    width:19.7%;
     height:100%;
     border-right:2px solid black;
     float:left;
 }
 
 .request-list-box-amount {
-    width:20%;
+    width:19.7%;
     height:100%;
     border-right:2px solid black;
     float:left;
 }
 
 .request-list-box-accept {
-    width:20%;
+    width:19.7%;
     height:100%;
     border-right:2px solid black;
     float:left;
 }
 
 .request-list-box-reject {
-    width:20%;
+    width:19.7%;
     height:100%;
     float:left;
 }
 
 .request-list-box-type {
-    width:20%;
+    width:19.7%;
     height:100%;
     float:left;
     border-right:2px solid black;
@@ -134,27 +134,27 @@ table tbody tr:nth-child(odd) td {
 }
 
 .request-list-box-header-department-name{
-    width:20%;
+    width:19.7%;
     float:left;
 }
 
 .request-list-box-header-amount {
-    width:20%;
+    width:19.7%;
     float:left;
 }
 
 .request-list-box-header-accept {
-    width:20%;
+    width:19.7%;
     float:left;
 }
 
 .request-list-box-header-reject {
-    width:20%;
+    width:19.7%;
     float:left;
 }
 
 .request-list-box-header-type {
-    width:20%;
+    width:19.7%;
     float:left;
 }
 
@@ -162,7 +162,6 @@ table tbody tr:nth-child(odd) td {
     position:relative;
     height:15%;
     width:100%;
-
 }
 
 .request-list-entry-text {
@@ -172,12 +171,27 @@ table tbody tr:nth-child(odd) td {
     transform: translate(-50%, -50%);
 }
 
-.request-list-notify-ceo-button {
+.request-list-accept-button {
     position:relative;
     top:50%;
     left:50%;
     transform: translate(-50%, -50%);
     background-color:#23a13e;
+    border: 1px solid black;
+    border-radius:10px;
+    height:22px;
+    font-size:20px;
+    width:100px;
+    text-align:center;
+    cursor:pointer;
+}
+
+.request-list-reject-button {
+    position:relative;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background-color:#ff0000;
     border: 1px solid black;
     border-radius:10px;
     height:22px;

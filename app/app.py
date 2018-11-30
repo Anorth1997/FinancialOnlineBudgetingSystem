@@ -476,7 +476,7 @@ def get_department_budget_proposals():
 
     for row in result_set:
         item = {}
-        item['role'] = row['role']
+        item['department'] = row['role']
         item['dept_id'] = row['dept_id']
         item['budget'] = row['budget']
         result_data['budget_proposals'].append(item)
