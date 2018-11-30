@@ -46,7 +46,7 @@ function fadeAllCeo(callBack) {
 }
 
 function graphButtonClicked() {
-    $('.graph-button').fadeIn();
+    $('.graph-button').fadeOut();
     fadeAllCeo(showInitialContent);
 }
 
@@ -102,7 +102,7 @@ function showViewAllDeptHistory(callback) {
 
 // Code to display Financial Department Requests
 
-function populateBudgetRequests(html) { 
+function populateBudgetRequests(html) {
     const budgetProposals = html.budget_proposals;
     if (budgetProposals == null) {
         return;
@@ -114,7 +114,7 @@ function populateBudgetRequests(html) {
         $('.request-list-box-type').html("");
         $('.request-list-box-amount').html("");
         $('.request-list-box-accept').html("");
-        $('.request-list-box-reject').html(""); 
+        $('.request-list-box-reject').html("");
 
 
         $('.request-list-box-department-name').append('<div class="request-list-entry"> <div class="request-list-entry-text">'
@@ -122,7 +122,7 @@ function populateBudgetRequests(html) {
 
         $('.request-list-box-type').append('<div class="request-list-entry"> <div class="request-list-entry-text">'
                                                                  + 'Budget Request</div> </div>');
-                                                       
+
         $('.request-list-box-amount').append('<div class="request-list-entry"> <div class="request-list-entry-text">'
                                                                 + curr.budget + '</div> </div>');
         $('.request-list-box-accept').append('<div class="request-list-entry">'
@@ -161,7 +161,7 @@ function populateRequests(html) {
 
         $('.request-list-box-type').append('<div class="request-list-entry"> <div class="request-list-entry-text">'
                                                                  + curr.reason + '</div> </div>');
-                                                       
+
         $('.request-list-box-amount').append('<div class="request-list-entry"> <div class="request-list-entry-text">'
                                                                 + curr.amount + '</div> </div>');
         $('.request-list-box-accept').append('<div class="request-list-entry">'
