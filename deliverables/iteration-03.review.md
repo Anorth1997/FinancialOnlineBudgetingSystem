@@ -7,12 +7,13 @@
 
 ## Iteration XX - Review & Retrospect
 
- * When: FILL IN THE DATE WHEN YOU ACTUALLY HAD YOUR REVIEW MEETING
- * Where: PHYSICAL LOCATION AND/OR ONLINE
+ * When: Nov 30st 2018
+ 
+ * Where: In-person, BA 2175
 
 ## Process - Reflection
 
-(Optional) Short introduction
+We finished all the major functionality of our project, and today we review the overall feature of our complete proejct.
 
 #### Decisions that turned out well
 
