@@ -38,8 +38,8 @@ function displayAllRequests(html) {
 }
 
 function notifyCEOClicked(corresponding_request_id) {
-    $.post("http://127.0.0.1:5000/financial/notify_ceo_request", {"req_id", corresponding_request_id});
-    reviewDepartmentRequestsClicked();
+    $.post("http://127.0.0.1:5000/financial/notify_ceo_request", {"req_id": corresponding_request_id})
+        .done(function(data) {reviewDepartmentRequestsClicked()});
 }
 
 function reviewDepartmentRequestsClicked() {
@@ -51,8 +51,7 @@ function reviewDepartmentRequestsClicked() {
         success: function(html){
             displayAllRequests(html);
         }
-    });  
-    $.post("http://127.0.0.1:5000/financial/notify_ceo_request", {"req_id": 1});  
+    });
 }
 
 function showReviewDepartmentRequests(callback) {
