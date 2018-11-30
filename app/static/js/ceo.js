@@ -71,7 +71,7 @@ function viewAllDepartmentHistoryClicked() {
     fadeAllCeo(showViewAllDeptHistory);
 
     $.ajax({
-        url: "http://127.0.0.1:5000/expenses/full_history",
+        url: appUrl + "/expenses/full_history",
         cache: false,
         success: function(html){
             displayAllDepartmentHistory(html);
@@ -137,12 +137,12 @@ function populateBudgetRequests(html) {
 }
 
 function budgetDeclineClicked(deptId) {
-    $.post("http://127.0.0.1:5000/ceo/ceo_budget_decision", {"dept_id": deptId, "decision": "declined"})
+    $.post(appUrl + "/ceo/ceo_budget_decision", {"dept_id": deptId, "decision": "declined"})
     .done(function(data) {reviewFDRequestsClicked()});
 }
 
 function budgetAcceptClicked(deptId) {
-    $.post("http://127.0.0.1:5000/ceo/ceo_budget_decision", {"dept_id": deptId, "decision": "accepted"})
+    $.post(appUrl + "/ceo/ceo_budget_decision", {"dept_id": deptId, "decision": "accepted"})
     .done(function(data) {reviewFDRequestsClicked()});
 }
 
@@ -176,12 +176,12 @@ function populateRequests(html) {
 }
 
 function reqAcceptClicked(req_id) {
-    $.post("http://127.0.0.1:5000/ceo/ceo_request_decision", {"req_id": req_id, "decision": "accepted"})
+    $.post(appUrl + "/ceo/ceo_request_decision", {"req_id": req_id, "decision": "accepted"})
     .done(function(data) {reviewFDRequestsClicked()});
 }
 
 function reqDeclineClicked(req_id) {
-    $.post("http://127.0.0.1:5000/ceo/ceo_request_decision", {"req_id": req_id, "decision": "declined"})
+    $.post(appUrl + "/ceo/ceo_request_decision", {"req_id": req_id, "decision": "declined"})
     .done(function(data) {reviewFDRequestsClicked()});
 }
 
@@ -195,7 +195,7 @@ function displayRequests() {
 
     // get budget requests
     $.ajax({
-        url: "http://127.0.0.1:5000/ceo/get_department_budget_proposals",
+        url: appUrl + "/ceo/get_department_budget_proposals",
         cache: false,
         success: function(html){
             populateBudgetRequests(html)
@@ -204,7 +204,7 @@ function displayRequests() {
 
     // get requests
     $.ajax({
-        url: "http://127.0.0.1:5000/ceo/get_department_requests",
+        url: appUrl + "/ceo/get_department_requests",
         cache: false,
         success: function(html){
             populateRequests(html)

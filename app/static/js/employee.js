@@ -66,7 +66,7 @@ function viewDepartmentHistoryClicked() {
     fadeAllEmployee(showViewAllDeptHistory);
 
     $.ajax({
-        url: "http://127.0.0.1:5000/expenses/department",
+        url: appUrl + "/expenses/department",
         cache: false,
         success: function(html){
             console.log(html);
@@ -148,7 +148,7 @@ function displayBudgetRequestNotifToTable(html) {
 function displayRequestNotifications() {
 
     $.ajax({
-        url: "http://127.0.0.1:5000/undecided_requests",
+        url: appUrl + "/undecided_requests",
         cache: false,
         success: function(html){
             displayRequestNotifToTable(html);
@@ -156,7 +156,7 @@ function displayRequestNotifications() {
     });
 
     $.ajax({
-        url: "http://127.0.0.1:5000/decided_requests",
+        url: appUrl + "/decided_requests",
         cache: false,
         success: function(html){
             displayRequestNotifToTable(html);
@@ -164,7 +164,7 @@ function displayRequestNotifications() {
     });
 
     $.ajax({
-        url: "http://127.0.0.1:5000/decided_budget_requests",
+        url: appUrl + "/decided_budget_requests",
         cache: false,
         success: function(html){
             displayBudgetRequestNotifToTable(html);
@@ -172,7 +172,7 @@ function displayRequestNotifications() {
     });
 
     $.ajax({
-        url: "http://127.0.0.1:5000/undecided_budget_requests",
+        url: appUrl + "/undecided_budget_requests",
         cache: false,
         success: function(html){
             displayBudgetRequestNotifToTable(html);

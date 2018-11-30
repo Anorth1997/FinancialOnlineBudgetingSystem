@@ -38,7 +38,7 @@ function displayAllRequests(html) {
 }
 
 function notifyCEOClicked(corresponding_request_id) {
-    $.post("http://127.0.0.1:5000/financial/notify_ceo_request", {"req_id": corresponding_request_id})
+    $.post(appUrl + "/financial/notify_ceo_request", {"req_id": corresponding_request_id})
         .done(function(data) {reviewDepartmentRequestsClicked()});
 }
 
@@ -46,7 +46,7 @@ function reviewDepartmentRequestsClicked() {
     $('.graph-button').fadeOut();
     fadeAllFinancial(showReviewDepartmentRequests);
     $.ajax({
-        url: "http://127.0.0.1:5000/requests/all_requests",
+        url: appUrl + "/requests/all_requests",
         cache: false,
         success: function(html){
             displayAllRequests(html);
@@ -97,7 +97,7 @@ function submitFormClicked() {
         window.alert(alert_message);
     } else {
         for (let k = 0; k < num_departments; k++) {
-            $.post("http://127.0.0.1:5000/financial/set_department_revenues", {"dept_name": department_list[k],
+            $.post(appUrl + "/financial/set_department_revenues", {"dept_name": department_list[k],
                                                                                 "rev_goal": revenue_inputs[k]});
         }
         window.alert("Form submitted successfully.");
@@ -110,7 +110,7 @@ function distributeTotalRevenueClicked() {
     $('.graph-button').fadeOut();
     fadeAllFinancial(showDistributeTotalRevenue);
     $.ajax({
-        url: "http://127.0.0.1:5000/financial/all_departments",
+        url: appUrl + "/financial/all_departments",
         cache: false,
         success: function(html){
             displayAllDepartmentsAndRevenueInputs(html);
@@ -133,7 +133,7 @@ function checkIfCeoSetRevenueGoal() {
     // display a notification
     // notify financial head when CEO makes a total revenue foal
     $.ajax({
-        url: "http://127.0.0.1:5000/financial/check_total_rev_goal_set",
+        url: appUrl + "/financial/check_total_rev_goal_set",
         cache: false,
         success: function(html){
 

@@ -1,5 +1,5 @@
 $.ajax({
-    url: "http://127.0.0.1:5000/expenses/overview",
+    url: appUrl + "/expenses/overview",
     cache: false,
     success: function(html){
         console.log(html);
