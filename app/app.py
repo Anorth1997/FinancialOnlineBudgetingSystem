@@ -517,6 +517,51 @@ def ceo_budget_decision():
 
     return ''
 
+# Route to get all requests that are accepted or declined
+@app.route('/decided_requests_all', methods=['GET'])
+def get_decided_requests_all():
+    cur = mysql.connection.cursor()
+    query = ("SELECT request_id, amount, date, reason "
+             "FROM Requests AS R NATURAL JOIN Users AS U "
+             "WHERE U.company_id = " + str(session["company_id"]) + " AND "
+                    "R.status = 'accepted' OR status = 'declined'")
+    cur.execute(query)
+    result_set = cur.fetchall()
+    result_data = {"decided_requests":[]}
+
+    for row in result_set:
+        item = {}
+        item["request_id"] = row["request_id"]
+        item["amount"] = row["amount"]
+        item["date"] = row["date"]
+        item["reason"] = row["reason"]
+        result_data["decided_requests"].append(item)
+
+    return jsonify(result_data)
+
+# Route to get all requests from the current department that are accepted or declined
+@app.route('/decided_requests', methods=['GET'])
+def get_decided_requests():
+    cur = mysql.connection.cursor()
+    query = ("SELECT request_id, amount, date, reason "
+             "FROM Requests "
+             "WHERE user_id = " + str(session["user_id"]))
+
+    cur.execute(query)
+    result_set = cur.fetchall()
+    result_data = {"decided_requests":[]}
+
+    for row in result_set:
+        item = {}
+        item["request_id"] = row["request_id"]
+        item["amount"] = row["amount"]
+        item["date"] = row["date"]
+        item["reason"] = row["reason"]
+        result_data["decided_requests"].append(item)
+
+    return jsonify(result_data)
+    
+
 
 # Route for the Financial head to notify ceo of a request
 @app.route('/financial/notify_ceo_request')
