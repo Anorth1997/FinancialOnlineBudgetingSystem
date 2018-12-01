@@ -65,9 +65,8 @@ For example, "we use pull-requests" is not a precise statement since it leaves t
 
 #### Artifacts
 
-List/describe the artifacts you will produce in order to present your project idea.
-
-* Artifacts can be text, code, images, videos, interactive mock-ups and/or any other useful artifact you can think of.
-* Make sure to explain the purpose of each artifact (i.e. Why is it on your to-do list? Why is it useful for your team?)
-* Be concise, yet precise.
-   For example: "Build the website" is not precise at all, but "Build a static home page and upload it somewhere, so that it is publicly accessible" is much clearer.
+* A [Relational Database Schema](./artifacts/schema.md) to to properly show the structure of all our sql tables
+  * This is to keep track of any changes to our sql tables and keep team  members up-to-date
+  * Make it easier to find where a specific information is stored
+* A [Notification System Explanation](./artifacts/notificationSystem.md) to explain the logic flow of our web application
+  * This is to properly explain our user experience to a potential user
