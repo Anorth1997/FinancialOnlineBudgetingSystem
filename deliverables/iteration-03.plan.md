@@ -81,7 +81,7 @@
  * A screenshot of our Trello Board.
    * Helps us keep track of what needs to be done and add priorities to each work
    * We can assign tasks to individual group members. Group members are notified over email when tasks are being assigned, or if new tasks are added.
- * Facebook Messenger
+ * Facebook Messenger / Slack
    * Group discussions about bugs, implementations, goals
    * Planning new meetings if required
    * Task assignments
