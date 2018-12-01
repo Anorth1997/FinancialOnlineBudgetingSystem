@@ -8,16 +8,38 @@
 ## Process
 
 #### Changes from previous iteration
-
+ 
  * Linking each team member's work to their commit history, as a way of demonstrating both their work and making the document more interactive.
    * Success metric: Everyone's work wil be well documented and easily understandable.
  * Making better use of Trello, Slack and our To-DO list to improve our team dynamic by communicating more effectively.
-   * Success metric: We're all still friends at the end of the project...On a serious note, if our Trello board is well populated and evely distributed amongst team members
+   * Success metric: We're all still friends at the end of the project...On a serious note, if our Trello board is well populated and evenly distributed amongst team members
+ * Document important ideas from meetings into a file, and push it to GitHub for everyone to see
+   * Success metric The artifacts folder contains new files containing information and ideas
+
 
 #### Roles & responsibilities
 
-Describe the different roles on the team and the responsibilities associated with each role.
-
+* Ziyao Chen: Scrum Lord, back-end developer 
+    * app.py
+    * Create Department button functionality
+    * Set Total Revenue Button's back end 
+* Amney El Azarif: Product Manager, back-end developer
+    * 
+* Jason Zheng: front-end developer & back-end developer
+    * user.py
+    * button layout
+* Ian Wang: front-end developer & back-end developer
+    * homepage layout
+* Boning Wang: back-end developer
+    * financial page layout
+    * employee page layout
+* David Kwon: front-end developer & back-end developer
+    * homepage layout
+    * dummy graphs
+* Calvin Lu: front-end developerm& back-end developer
+    * user-page layout
+    
+    
 #### Events
 
 Describe meetings (and other events) you are planning to have:
@@ -26,19 +48,47 @@ Describe meetings (and other events) you are planning to have:
  * What's the **purpose** of each meeting?
  * Other events could be coding sessions, code reviews, quick weekly sync' meeting online, etc.
  
-* Nov 17nd, 2pm, in-person:
-    * Planning meeting
+* Nov 17nd, 2pm, Bahen, in-person:
+    * Purpose: Planning meeting
+    * Discussed iteration goals and review meeting date
     * Designed a schema for our relational database
+    * Wrote down the schema in a markdown files
     * Demoed signup and login using a dummy database
     * Set up local SQL database for each group member
+    * Created instructions to create the database tables
 
+* Nov 20th, 12pm, Sandford Fleming Tutorial Room, in-person:
+    * Purpose: Discussion and work meeting
+    * Update each other on our progress, concerns, goals
+    * Similar to standup meetings
+    
+* Nov 25, 2pm, Bahen, in-person:
+    * Purpose: Work meeting
+    * Communicate with group members to confirm what features are necessary
+    * Share implementation ideas
+    * Discuss and edit the database design
+    
+* Nov 27th, 12pm, Sandford Fleming Tutorial Room, in-person:
+    * Purpose: Discussion and work meeting
+    * Update each other on our progress, concerns, goals
+    * Similar to standup meetings
+
+* Nov 29 12pm, Bahen, in-person:
+    * Purpose: Work meeting
+    * Finishing touches on the application
+    * Brainstorm ideas anc create the video demo
+    
 #### Artifacts
-
  * A screenshot of our Trello Board.
-   * Trello helps us keep track of what needs to be done and add priorities to each work 
- * Slack: private chat
-   * Used for group discussions and task assignment
- * [Relational Database Schema](./artifacts/schema.md)
+   * Helps us keep track of what needs to be done and add priorities to each work
+   * We can assign tasks to individual group members. Group members are notified over email when tasks are being assigned, or if new tasks are added.
+ * Facebook Messenger
+   * Group discussions about bugs, implementations, goals
+   * Planning new meetings if required
+   * Task assignments
+   * Post screenshots of new features to get group feedback
+   * Product Manager post notification messages before meetings
+   
 
 #### Git / GitHub workflow
 
