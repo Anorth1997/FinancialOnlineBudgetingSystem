@@ -29,7 +29,7 @@ We've noticed that our current process workflow has greatly boosted our efficien
  * Implement the database to store user/company data
    - [Database schema](/deliverable/artifact/schema.md)
  * Implement graphs to be dynamically generated based on input from database
-   -[Graph code](/app/static/js/graph.js)
+   - [Graph code](/app/static/js/graph.js)
  * Launch the application on a server
    - Link: http://fobs-env.jtau2gwpib.ca-central-1.elasticbeanstalk.com/
 
