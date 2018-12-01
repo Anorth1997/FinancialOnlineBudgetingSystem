@@ -24,19 +24,14 @@ We've noticed that our current process workflow has greatly boosted our efficien
 
 #### Goals and/or tasks that were met/completed:
 
-[Flask application](app/app.py)
  * Integrate communication between the users of the system
-   - Revenue goal communication between all levels of users
-   - Finance request approvals for large sums by financial department
-[Database schema](/deliverable/artifact/schema.md)
+   - [Flask application](app/app.py)
  * Implement the database to store user/company data
-   - User data should include login information as well as employee type
-   - Company data should include revenue goals, expected budget as well as actual spending
-[Graph code](/app/static/js/graph.js)
+   - [Database schema](/deliverable/artifact/schema.md)
  * Implement graphs to be dynamically generated based on input from database
-   -Launch the application on a server
-Link: http://fobs-env.jtau2gwpib.ca-central-1.elasticbeanstalk.com/
+   -[Graph code](/app/static/js/graph.js)
  * Launch the application on a server
+   - Link: http://fobs-env.jtau2gwpib.ca-central-1.elasticbeanstalk.com/
 
 #### Goals and/or tasks that were planned but not met/completed:
  
