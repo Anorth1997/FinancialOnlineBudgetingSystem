@@ -78,7 +78,7 @@
     * Brainstorm ideas and create the video demo
     
 #### Artifacts
- * A screenshot of our Trello Board.
+ * Trello Board.
    * Helps us keep track of what needs to be done and add priorities to each work
    * We can assign tasks to individual group members. Group members are notified over email when tasks are being assigned, or if new tasks are added.
  * Facebook Messenger / Slack
