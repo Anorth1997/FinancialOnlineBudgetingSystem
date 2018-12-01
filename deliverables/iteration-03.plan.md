@@ -76,7 +76,7 @@ Describe meetings (and other events) you are planning to have:
 * Nov 29 12pm, Bahen, in-person:
     * Purpose: Work meeting
     * Finishing touches on the application
-    * Brainstorm ideas anc create the video demo
+    * Brainstorm ideas and create the video demo
     
 #### Artifacts
  * A screenshot of our Trello Board.
