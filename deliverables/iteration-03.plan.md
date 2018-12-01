@@ -20,33 +20,32 @@
 #### Roles & responsibilities
 
 * Ziyao Chen: Scrum Lord, back-end developer 
-    * app.py
-    * Create Department button functionality
-    * Set Total Revenue Button's back end 
-* Amney El Azarif: Product Manager, back-end developer
-    * 
+    * implemented log out functionality
+    * implemented back-end for ceo page buttons
+    * implemented back-end for employee page buttons
+* Amney El Azarif: Product Manager, back-end developer, cloud solution architect
+    * migrated web application to the cloud
+    * polished homepage and user-page layout (css/html)
+    * enriched web application flow
 * Jason Zheng: front-end developer & back-end developer
-    * user.py
-    * button layout
+    * implemented front-end for employee page buttons
+    * implemented back-end for ceo page buttons
 * Ian Wang: front-end developer & back-end developer
-    * homepage layout
+    * implemented user sessions
+    * implemented back-end for graph rendering
+    * created the team logo
 * Boning Wang: back-end developer
-    * financial page layout
-    * employee page layout
+    * implemented back-end for employee page buttons
+    * implemented back-end for ceo page buttons
 * David Kwon: front-end developer & back-end developer
-    * homepage layout
-    * dummy graphs
-* Calvin Lu: front-end developerm& back-end developer
-    * user-page layout
-    
+    * linked back-end graph rendering to front-end display
+    * implemented front-end for user-pages buttons (ceo/financial/employee)
+    * implemented front-end homepage
+* Calvin Lu: front-end developer & back-end developer
+    * implemented front-end for financial page buttons
+    * implemented back-end for financial page buttons
     
 #### Events
-
-Describe meetings (and other events) you are planning to have:
-
- * When and where? In-person or online?
- * What's the **purpose** of each meeting?
- * Other events could be coding sessions, code reviews, quick weekly sync' meeting online, etc.
  
 * Nov 17nd, 2pm, Bahen, in-person:
     * Purpose: Planning meeting
@@ -92,13 +91,10 @@ Describe meetings (and other events) you are planning to have:
 
 #### Git / GitHub workflow
 
-Describe your Git / GitHub workflow.
-Essentially, we want to understand how your team members share a codebase and avoid conflicts.
-
- * Be concise, yet precise.      
-For example, "we use pull-requests" is not a precise statement since it leaves too many open questions - Pull-requests from where to where? Who reviews the pull-requests? Who is responsible for merging them? etc.
- * If applicable, specify any naming conventions or standards you decide to adopt.
- * Don't forget to **explain why** you chose this workflow.
+All work that is curently being implemented is done in our "dev" branch which is our development branch. Our "master" branch is left untouched and we only open pull-requests from "dev" to "master" to merge when we have a working stable release of our web application.
+Typically, when two team members are working on the same file, they warn each other and create a new branch to work on their changes and then create a pull-request from their branch to the "dev" branch, else if their files are not conflicting then they work directly on "dev".
+Pull-requests are revieweved by a maximum of 3 team members (in-addition to the reviewee) and are assigned by GitHub's recommendation. The reason as to why we set a maximum of 3 members is to avoid having to wait for too many people to be available.
+In addition, team members always have meaningful commit messages for other members to understand what they did and also keep thet team up-dated on what they worked (by using Slack or Facebook Messenger).
 
 ## Product
 
