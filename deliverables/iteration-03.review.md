@@ -1,6 +1,6 @@
 Financial Online Budgeting System (F.O.B.S.)
 
-Note: The demo video link is located in [demo2.md](demo2.md)
+Note: The demo video link is located in [demo2.md](../demo2.md)
 
 ## Iteration 03 - Review & Retrospect
 
