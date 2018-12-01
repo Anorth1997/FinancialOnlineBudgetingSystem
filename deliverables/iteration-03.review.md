@@ -8,11 +8,9 @@ Financial Online Budgeting System (F.O.B.S.)
 ## Iteration 03 - Review & Retrospect
 
  * When: Nov 30th 2018
- * Where: BA2175, in person
+ * Where: BA2175, in-person
 
 ## Process - Reflection
-
-(Optional) Short introduction
 
 #### Decisions that turned out well
 
@@ -50,20 +48,19 @@ List any process-related changes you are planning to make (if there are any)
 
 #### Goals and/or tasks that were met/completed:
 
-[Artifact](app/app.py)
+[Flask application](app/app.py)
  * Integrate communication between the users of the system
-   -Revenue goal communication between all levels of users
-   -Finance request approvals for large sums by financial department
- [Artifact](/deliverable/artifact/schema.md)
+   - Revenue goal communication between all levels of users
+   - Finance request approvals for large sums by financial department
+[Database schema](/deliverable/artifact/schema.md)
  * Implement the database to store user/company data
-   -User data should include login information as well as employee type
-   -Company data should include revenue goals, expected budget as well as actual spending
- [Artifact](/app/static/js/graph.js)
+   - User data should include login information as well as employee type
+   - Company data should include revenue goals, expected budget as well as actual spending
+[Graph code](/app/static/js/graph.js)
  * Implement graphs to be dynamically generated based on input from database
    -Launch the application on a server
- * From most to least important.
- * Refer/link to artifact(s) that show that a goal/task was met/completed.
- * If a goal/task was not part of the original iteration plan, please mention it.
+Link: http://fobs-env.jtau2gwpib.ca-central-1.elasticbeanstalk.com/
+ * Launch the application on a server
 
 #### Goals and/or tasks that were planned but not met/completed:
  All our goals listed in our planning markdown file were met.
