@@ -12,7 +12,7 @@ Note: The demo video link is located in [demo2.md](../demo2.md)
 #### Decisions that turned out well
 
  * Using a Trello board to set up the tasks that are in-progress or to be done has been very helpful in our project management. It also displayed the completed tasks so that we could extend from them. This decision was helpful in a way that we could finish all the important steps first before implementing any additional features, and allowed for a more organized workflow.
-  - [Trello Board](artifacts/TrelloBoard.png): A link to our trello board during the middle of the sprint
+    - [Trello Board](artifacts/TrelloBoard.png): A link to our trello board during the middle of the sprint
  * We organized an interactive collaboration on slack/messenger that allowed us to finish each other's incomplete work so that we all get a better understanding of the project as well as less time spent doing late night work alone, which is less productive and more harmful to our bodies.
  
 #### Decisions that did not turn out as well as we hoped
