@@ -1,5 +1,7 @@
 Financial Online Budgeting System (F.O.B.S.)
 
+Note: The demo video link is located in [demo2.md](project-team-15/demo2.md)
+
 ## Iteration 03 - Review & Retrospect
 
  * When: Nov 30th 2018
