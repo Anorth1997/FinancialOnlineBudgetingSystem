@@ -76,6 +76,7 @@ Now everything related to database has been set up properly.
 
 
 ## RUNNING THE APPLICATION
+One small change to make is to go into app/static/js/url.js and comment out the first url and instead comment in the localhost url
 
 The application can be run from the command line:
 > python app.py
