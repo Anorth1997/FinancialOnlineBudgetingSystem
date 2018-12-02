@@ -141,7 +141,7 @@ function displayAllBudgetRequests(html) {
 }
 
 function budgetNotifyCEOClicked(department_id) {
-    $.post("http://127.0.0.1:5000/financial/notify_ceo_budget", {"dept_id": department_id})
+    $.post(appUrl + "/financial/notify_ceo_budget", {"dept_id": department_id})
         .done(function(data) {reviewBudgetRequestsClicked()});
 
 }
@@ -150,7 +150,7 @@ function reviewBudgetRequestsClicked() {
     $('.graph-button').fadeOut();
     fadeAllFinancial(showReviewBudgetRequests);
     $.ajax({
-        url: "http://127.0.0.1:5000/undecided_budget_requests_all",
+        url: appUrl + "/undecided_budget_requests_all",
         cache: false,
         success: function(html){
             displayAllBudgetRequests(html);
@@ -190,7 +190,7 @@ function viewAllDepartmentHistoryClicked() {
     fadeAllFinancial(showViewAllDeptHistory);
 
     $.ajax({
-        url: "http://127.0.0.1:5000/expenses/full_history",
+        url: appUrl + "/expenses/full_history",
         cache: false,
         success: function(html){
             displayAllDepartmentHistory(html);

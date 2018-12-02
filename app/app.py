@@ -568,7 +568,7 @@ def get_decided_requests_all():
     query = ("SELECT request_id, amount, date, reason, status "
              "FROM Requests AS R NATURAL JOIN Users AS U "
              "WHERE U.company_id = " + str(session["company_id"]) + " AND "
-                    "R.status = 'accepted' OR status = 'declined'")
+                    "(R.status = 'accepted' OR status = 'declined')")
     cur.execute(query)
     result_set = cur.fetchall()
     result_data = {"requests":[]}
@@ -591,7 +591,7 @@ def get_decided_requests():
     query = ("SELECT request_id, amount, date, reason, status "
              "FROM Requests "
              "WHERE user_id = " + str(session["user_id"]) + " AND "
-                "status = 'accepted' OR status = 'declined'")
+                "(status = 'accepted' OR status = 'declined')")
 
     cur.execute(query)
     result_set = cur.fetchall()
@@ -615,7 +615,7 @@ def get_undecided_requests():
     query = ("SELECT request_id, amount, date, reason, status "
              "FROM Requests "
              "WHERE user_id = " + str(session["user_id"]) + " AND "
-                "status != 'accepted' AND status != 'declined'")
+                "(status != 'accepted' AND status != 'declined')")
 
     cur.execute(query)
     result_set = cur.fetchall()
@@ -639,7 +639,7 @@ def get_decided_budget_requests_all():
     query = ("SELECT dept_id, budget, status "
              "FROM Departments AS D NATURAL JOIN Users AS U "
              "WHERE U.company_id = " + str(session["company_id"]) + " AND "
-                    "D.status = 'accepted' OR D.status = 'declined'")
+                    "(D.status = 'accepted' OR D.status = 'declined')")
     cur.execute(query)
     result_set = cur.fetchall()
     result_data = {"budget_requests":[]}
@@ -660,7 +660,7 @@ def get_decided_budget_requests():
     query = ("SELECT dept_id, budget, status "
              "FROM Departments "
              "WHERE user_id = " + str(session["user_id"]) + " AND "
-                "status = 'accepted' OR status = 'declined'")
+                "(status = 'accepted' OR status = 'declined')")
     print('---query---')
     print(query)
     cur.execute(query)
@@ -683,7 +683,7 @@ def get_undecided_budget_requests():
     query = ("SELECT dept_id, budget, status "
              "FROM Departments "
              "WHERE user_id = " + str(session["user_id"]) + " AND "
-                "status != 'accepted' AND status != 'declined'")
+                "(status != 'accepted' AND status != 'declined')")
     print('---query---')
     print(query)
     cur.execute(query)
@@ -706,7 +706,7 @@ def get_undecided_budget_requests_all():
     query = ("SELECT dept_id, budget, status, role "
              "FROM Departments AS D NATURAL JOIN Users AS U "
              "WHERE U.company_id = " + str(session["company_id"]) + " AND "
-                    "D.status != 'accepted' AND D.status != 'declined'")
+                    "(D.status != 'accepted' AND D.status != 'declined')")
     cur.execute(query)
     result_set = cur.fetchall()
     result_data = {"budget_requests":[]}
